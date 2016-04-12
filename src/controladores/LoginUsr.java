@@ -1,6 +1,7 @@
 package controladores;
 
 import java.io.IOException;
+import java.sql.*;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
@@ -34,6 +35,10 @@ public class LoginUsr extends HttpServlet {
 	private String usuario, password;
 	private Hashtable<String, String> logins;
 	
+	private Connection coneccion = null;
+	private Statement declaracion = null;
+	private ResultSet resultados = null;
+	
     public LoginUsr() {
         super();
     }
@@ -43,13 +48,39 @@ public class LoginUsr extends HttpServlet {
 	 */
 	public void init(ServletConfig config) throws ServletException {
 		sc = config;
-		logins = new Hashtable<String, String>();
+		logins = new Hashtable<String, String>();	
+		try{
+			 Class.forName("com.mysql.jdbc.Driver");		
+			 try {
+				coneccion = DriverManager.getConnection("jdbc:mysql://localhost/jruteros","root","Desmond");
+			} catch (Exception e) {
+				e.printStackTrace();
+				//response.getWriter().append("Fallo la coneccion.");
+			}
+			 declaracion = coneccion.createStatement();
+			 resultados = declaracion.executeQuery("SELECT * FROM jruteros.usuarios");
+			 
+			 if(resultados != null){
+				 while(resultados.next()){
+					 usuario = resultados.getString("usuario");					 
+					 password = resultados.getString("password");
+					 logins.put(usuario, password);
+					 //response.getWriter().append("User:"+usuario+"|Pass:"+password+"<br>");
+				 }
+			 }
+			 
+		}catch(Exception e){
+			e.printStackTrace();
+			//response.getWriter().append("Fallo el driver");
+		}
+		
+		/*	Cargar usuarios desde los valores de entrada (o web.xml)
 		Enumeration<String> itr = sc.getInitParameterNames();
 		while(itr.hasMoreElements()){
 			usuario = itr.nextElement().toString();
 			password = sc.getInitParameter(usuario);
 			logins.put(usuario, password);
-		}
+		}*/
 	}
 
 	/**
@@ -57,7 +88,8 @@ public class LoginUsr extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append("Served at: ").append(request.getContextPath()).append("<br>");
+		
 	}
 
 	/**
@@ -80,7 +112,7 @@ public class LoginUsr extends HttpServlet {
 					sesion.setAttribute("isAdmin", false);
 				}
 				
-				response.sendRedirect("../JRuteros/vistas/index.jsp");
+				response.sendRedirect("../JRuteros/vistas/Actividades/index.jsp");
 			}
 		}else{
 			response.sendRedirect("../JRuteros/vistas/login.html");
