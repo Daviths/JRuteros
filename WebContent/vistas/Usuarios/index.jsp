@@ -10,7 +10,7 @@
 	<title>Indice de Usuarios</title>
 	</head>
 	<body>
-		<%@include file="../menu.html"  %>
+		<%@include file="../menu.jsp"  %>
 		<table class="table table-hover">
 	 		<tr>
 	 			<th>ID</th>

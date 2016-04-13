@@ -2,7 +2,6 @@ package controladores.sesion;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import dao.UsuarioDAO;
 import modelos.Usuario;
 
-@WebServlet("/LoginUsr")
+@WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -28,12 +27,7 @@ public class Login extends HttpServlet {
 				System.out.println("SESION INICIADA CORRECTAMENTE");
 				HttpSession sesion = request.getSession(true);
 				sesion.setAttribute("usuario", u);
-				//response.sendRedirect("../JRuteros/vistas/Actividades/index.jsp");
-				// DE ACA EN ADELANTE ES PRUEBA
-					//RequestDispatcher rs = request.getRequestDispatcher("../JRuteros/Index");
-					//rs.forward(request, response);
-					response.sendRedirect("../JRuteros/Index");
-				// FIN DE LA PRUEBA
+				response.sendRedirect("usuarios");
 			} else {
 				System.out.println("PASSWORD INCORRECTA");
 				response.sendRedirect("../JRuteros/vistas/login.html");

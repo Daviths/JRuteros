@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <title>Listado Actividades</title>
 </head>
 <body>
-	<%@include file="../menu.html"  %>
+	<%@include file="../menu.jsp"  %>
 	<a class="btn btn-default" href="#" role="button">Nueva Actividad</a>
 	<table class="table table-hover">
 	 		<tr>

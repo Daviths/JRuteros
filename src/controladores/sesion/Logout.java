@@ -15,7 +15,7 @@ public class Logout extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession sesion = request.getSession(true);
 		sesion.invalidate();
-		response.sendRedirect("login.html");
+		response.sendRedirect("../JRuteros/vistas/login.html");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
