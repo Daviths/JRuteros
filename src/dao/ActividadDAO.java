@@ -1,4 +1,4 @@
-package modelos;
+package dao;
 
 public class ActividadDAO {
 	

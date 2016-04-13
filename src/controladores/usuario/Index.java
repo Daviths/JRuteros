@@ -1,4 +1,4 @@
-package controladores;
+package controladores.usuario;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelos.UsuarioDAO;
+import dao.UsuarioDAO;
 
 @WebServlet("/Index")
 public class Index extends HttpServlet {

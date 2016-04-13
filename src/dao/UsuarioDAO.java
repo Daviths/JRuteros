@@ -1,4 +1,4 @@
-package modelos;
+package dao;
 
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -9,6 +9,7 @@ import com.mysql.jdbc.ResultSet;
 import com.sun.istack.internal.logging.Logger;
 
 import db.DBUtils;
+import modelos.Usuario;
 
 public class UsuarioDAO {
 	public static List<Usuario> getAll() {
