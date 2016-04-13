@@ -20,6 +20,24 @@ public class Usuario {
 	private Boolean es_admin,
 					esta_habilitado;
 	
+	// Constructor
+	public Usuario(String usuario, String password, Boolean es_admin, Boolean esta_habilitado,
+			String dni, String domicilio, String nombre, String apellido, String fecha_de_nacimiento, 
+			String email) {
+		this.usuario = usuario;
+		this.password = password;
+		this.es_admin = es_admin;
+		this.esta_habilitado = esta_habilitado;
+		this.dni = dni;
+		this.domicilio = domicilio;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.fecha_de_nacimiento = fecha_de_nacimiento;
+		//this.sexo = sexo; ???
+		this.email = email;
+		
+	}
+	
 	// Metodos
 	public String getPassword() {
 		return password;

@@ -52,7 +52,8 @@ public class LoginUsr extends HttpServlet {
 		try{
 			 Class.forName("com.mysql.jdbc.Driver");		
 			 try {
-				coneccion = DriverManager.getConnection("jdbc:mysql://localhost/jruteros","root","Desmond");
+				coneccion = DriverManager.getConnection("jdbc:mysql://localhost/jruteros","root","gaspar");
+				System.out.println("CONECTADO A LA BD");
 			} catch (Exception e) {
 				e.printStackTrace();
 				//response.getWriter().append("Fallo la coneccion.");
