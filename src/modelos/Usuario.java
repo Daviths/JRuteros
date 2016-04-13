@@ -1,5 +1,9 @@
 package modelos;
 
+import java.sql.SQLException;
+
+import com.mysql.jdbc.ResultSet;
+
 public class Usuario {
 	// Atributos
 	private String 	usuario,
@@ -20,22 +24,19 @@ public class Usuario {
 	private Boolean es_admin,
 					esta_habilitado;
 	
-	// Constructor
-	public Usuario(String usuario, String password, Boolean es_admin, Boolean esta_habilitado,
-			String dni, String domicilio, String nombre, String apellido, String fecha_de_nacimiento, 
-			String email) {
-		this.usuario = usuario;
-		this.password = password;
-		this.es_admin = es_admin;
-		this.esta_habilitado = esta_habilitado;
-		this.dni = dni;
-		this.domicilio = domicilio;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.fecha_de_nacimiento = fecha_de_nacimiento;
-		//this.sexo = sexo; ???
-		this.email = email;
-		
+	// Constructor	
+	public Usuario(ResultSet rs) throws SQLException {
+		this.usuario = rs.getString(1);
+		this.password = rs.getString(2);
+		this.es_admin = rs.getBoolean(3);
+		this.esta_habilitado = rs.getBoolean(4);
+		this.dni = rs.getString(5);
+		this.domicilio = rs.getString(6);
+		this.nombre = rs.getString(7);
+		this.apellido = rs.getString(8);
+		this.fecha_de_nacimiento = rs.getString(9);
+		//this.sexo = rs.getString(10); ???
+		this.email = rs.getString(11);
 	}
 	
 	// Metodos
