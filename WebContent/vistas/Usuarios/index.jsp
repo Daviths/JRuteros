@@ -17,18 +17,34 @@
 	 			<th>Nombre</th>
 	 			<th>Apellido</th>
 	 			<th>Usuario</th>
+	 			<th>Email</th>
 	 			<th>Estado</th>
 	 			<th colspan="3">Acción</th>
 	 		</tr>
 	 		
 	 		<c:forEach items="${usuarios}" var="usuario">
 	 			<tr>
-	 				<td>ID?</td>
+	 				<td>${usuario.getId()}</td>
 	 				<td>${usuario.getNombre()}</td>
 	 				<td>${usuario.getApellido()}</td>
 	 				<td>${usuario.getUsuario()}</td>
 	 				<td>${usuario.getEmail()}</td>
-	 				<td>${usuario.getEsta_habilitado()}</td>
+	 				<td> 	
+	 					 				
+		 				<c:choose>
+		 					<c:when test="${usuario.getEsta_habilitado()}">
+		 						<a class="btn btn-primary btn-xs" href="#">Habilitado</a>
+		 					</c:when>
+		 					
+		 					<c:otherwise>
+		 						<a class="btn btn-danger btn-xs" href="#">Deshabilitado</a>
+		 					</c:otherwise>
+		 				</c:choose>
+		 				
+	 				</td>
+	 				<td><a class="btn btn-default btn-xs" href="#">Ver</a></td>
+		 			<td><a class="btn btn-primary btn-xs" href="#">Editar</a></td>
+		 			<td><a class="btn btn-danger btn-xs" href="#">Eliminar</a></td>
 	 			</tr>
 	 		</c:forEach>
 		</table>

@@ -24,19 +24,22 @@ public class Usuario {
 	private Boolean es_admin,
 					esta_habilitado;
 	
+	private Integer id;
+	
 	// Constructor	
 	public Usuario(ResultSet rs) throws SQLException {
-		this.usuario = rs.getString(1);
-		this.password = rs.getString(2);
-		this.es_admin = rs.getBoolean(3);
-		this.esta_habilitado = rs.getBoolean(4);
-		this.dni = rs.getString(5);
-		this.domicilio = rs.getString(6);
-		this.nombre = rs.getString(7);
-		this.apellido = rs.getString(8);
-		this.fecha_de_nacimiento = rs.getString(9);
-		//this.sexo = rs.getString(10); ???
-		this.email = rs.getString(11);
+		this.id = rs.getInt(1);
+		this.usuario = rs.getString(2);
+		this.password = rs.getString(3);
+		this.es_admin = rs.getBoolean(4);
+		this.esta_habilitado = rs.getBoolean(5);
+		this.dni = rs.getString(6);
+		this.domicilio = rs.getString(7);
+		this.nombre = rs.getString(8);
+		this.apellido = rs.getString(9);
+		this.fecha_de_nacimiento = rs.getString(10);
+		//this.sexo = rs.getString(11); ???
+		this.email = rs.getString(12);
 	}
 	
 	// Metodos
@@ -128,5 +131,12 @@ public class Usuario {
 		this.sexo = sexo;
 	}
 	
+	public Integer getId() {
+		return id;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	
 }
