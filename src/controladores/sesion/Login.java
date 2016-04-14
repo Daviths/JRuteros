@@ -27,13 +27,18 @@ public class Login extends HttpServlet {
 				System.out.println("SESION INICIADA CORRECTAMENTE");
 				HttpSession sesion = request.getSession(true);
 				sesion.setAttribute("usuario", u);
-				response.sendRedirect("usuarios");
+				if(u.getEs_admin()){
+					response.sendRedirect("usuarios");
+				}else{
+					response.sendRedirect("actividades");
+				}
 			} else {
 				System.out.println("PASSWORD INCORRECTA");
-				response.sendRedirect("../JRuteros/vistas/login.html");
+				response.sendRedirect("../JRuteros/vistas/login.html?error=Password_incorrecta");
 			}
 		} else {
 			System.out.println("USUARIO INCORRECTO O NO EXISTE");
+			response.sendRedirect("../JRuteros/vistas/login.html?error=Usuario_incorrecto");
 		}
 		
 	}

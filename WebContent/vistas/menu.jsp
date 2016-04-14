@@ -1,3 +1,9 @@
+<%@page import="modelos.Usuario"%>
+<%
+	HttpSession sesion = request.getSession(true); 
+ 	Usuario u = (Usuario) sesion.getAttribute("usuario");
+%>
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -14,7 +20,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="usuarios">Usuarios<span class="sr-only">(current)</span></a></li>
+      	<% if(u.getEs_admin()){ %>
+        	<li><a href="usuarios">Usuarios<span class="sr-only"></span></a></li>
+        <%} %>
         <li><a href="actividades">Activides</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -39,11 +47,6 @@
         <li><a href="TerminarSesion">Desloguearse</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-			<%@page import="modelos.Usuario"%>
-			<%
-			HttpSession sesion = request.getSession(true); 
-    		Usuario u = (Usuario) sesion.getAttribute("usuario");
-			%>
 			<%=u.getUsuario()%>
 		 <span class="caret"></span></a>
           <ul class="dropdown-menu">
