@@ -20,10 +20,13 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-      	<% if(u.getEs_admin()){ %>
-        	<li><a href="usuarios">Usuarios<span class="sr-only"></span></a></li>
-        <%} %>
+      	<% 	if(u != null){
+      			if(u.getEs_admin()){ %>
+        			<li><a href="usuarios">Usuarios<span class="sr-only"></span></a></li>
+        <%		}
+      		} %>
         <li><a href="actividades">Activides</a></li>
+        <li><a href="rutas">Rutas</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -44,19 +47,22 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="TerminarSesion">Desloguearse</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-			<%=u.getUsuario()%>
-		 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
+		<% if(u != null){ %>
+			<li><a href="TerminarSesion">Desloguearse</a></li>
+			<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+			<span class="caret"></span><%=u.getUsuario()%></a>
+			<ul class="dropdown-menu">
+				<li><a href="#">Action</a></li>
+				<li><a href="#">Another action</a></li>
+				<li><a href="#">Something else here</a></li>
+				<li role="separator" class="divider"></li>
+				<li><a href="#">Separated link</a></li>
+			</ul>
+		<%}else{ %>
+			<li><a href="../login.html">Loguearse</a></li>
+		<%} %>
+		</ul>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
