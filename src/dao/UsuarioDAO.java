@@ -13,6 +13,31 @@ import db.DBUtils;
 import modelos.Usuario;
 
 public class UsuarioDAO {	
+	public static void addNew(Usuario usuario) {
+		try {
+			String sql = "INSERT INTO usuarios (usuario, es_admin, esta_habilitado, dni, domicilio, nombre, apellido, fecha_de_nacimiento, email, password) VALUES(?,?,?,?,?,?,?,?,?,?)";
+			PreparedStatement ps = (PreparedStatement) DBUtils.getPreparedStatement(sql);
+			ps.setString(1, usuario.getUsuario());			
+			ps.setBoolean(2, false);
+			ps.setBoolean(3, true);
+			ps.setString(4, usuario.getDni());
+			ps.setString(5, usuario.getDomicilio());
+			ps.setString(6, usuario.getNombre());
+			ps.setString(7, usuario.getApellido());
+			ps.setString(8, usuario.getFecha_de_nacimiento());
+			//ps.setString(9, usuario.getSexo()); ??
+			ps.setString(9, usuario.getEmail());
+			
+			//Password
+			String password = "gaspar";
+			ps.setString(10, password);
+			ps.executeUpdate();
+			
+		} catch (ClassNotFoundException | SQLException ex) {
+			Logger.getLogger(UsuarioDAO.class.getName(), null).log(Level.SEVERE, null, ex);
+		}		
+	}
+	
 	public static List<Usuario> getAll() {
 		List<Usuario> usuarios = new LinkedList<Usuario>();
 		

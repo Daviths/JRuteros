@@ -26,7 +26,7 @@ public class Usuario {
 	
 	private Integer id;
 	
-	// Constructor	
+	// Constructores
 	public Usuario(ResultSet rs) throws SQLException {
 		this.id = rs.getInt(1);
 		this.usuario = rs.getString(2);
@@ -42,6 +42,11 @@ public class Usuario {
 		this.email = rs.getString(12);
 	}
 	
+	public Usuario() {
+		setEs_admin(false);
+		setEsta_habilitado(true);
+	}
+
 	// Metodos
 	public String getPassword() {
 		return password;
