@@ -42,7 +42,7 @@
 		 				</c:choose>
 		 				
 	 				</td>
-	 				<td><a class="btn btn-default btn-xs" href="#">Ver</a></td>
+	 				<td><a class="btn btn-default btn-xs" href="ver_usuario?usuario=${usuario.usuario}">Ver</a></td>
 		 			<td><a class="btn btn-primary btn-xs" href="editar_usuario?usuario=${usuario.usuario}">Editar</a></td>
 		 			<td><a class="btn btn-danger btn-xs" href="eliminar_usuario?usuario=${usuario.usuario}">Eliminar</a></td>
 	 			</tr>
