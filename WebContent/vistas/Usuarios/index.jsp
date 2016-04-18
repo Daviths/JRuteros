@@ -33,18 +33,18 @@
 	 					 				
 		 				<c:choose>
 		 					<c:when test="${usuario.getEsta_habilitado()}">
-		 						<a class="btn btn-primary btn-xs" href="#">Habilitado</a>
+		 						<a class="btn btn-primary btn-xs" href="cambiar_estado_usuario?usuario=${usuario.usuario}">Habilitado</a>
 		 					</c:when>
 		 					
 		 					<c:otherwise>
-		 						<a class="btn btn-danger btn-xs" href="#">Deshabilitado</a>
+		 						<a class="btn btn-danger btn-xs" href="cambiar_estado_usuario?usuario=${usuario.usuario}">Deshabilitado</a>
 		 					</c:otherwise>
 		 				</c:choose>
 		 				
 	 				</td>
 	 				<td><a class="btn btn-default btn-xs" href="#">Ver</a></td>
-		 			<td><a class="btn btn-primary btn-xs" href="#">Editar</a></td>
-		 			<td><a class="btn btn-danger btn-xs" href="#">Eliminar</a></td>
+		 			<td><a class="btn btn-primary btn-xs" href="editar_usuario?usuario=${usuario.usuario}">Editar</a></td>
+		 			<td><a class="btn btn-danger btn-xs" href="eliminar_usuario?usuario=${usuario.usuario}">Eliminar</a></td>
 	 			</tr>
 	 		</c:forEach>
 		</table>

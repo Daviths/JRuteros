@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 
+import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.ResultSet;
 import com.sun.istack.internal.logging.Logger;
 
@@ -43,6 +44,46 @@ public class UsuarioDAO {
         }
 		
 		return u;
+	}
+	
+	public void edit(String usuario, String dni, String domicilio, String nombre) {
+		try {
+			String sql = "UPDATE usuarios SET dni = ?, domicilio = ?, nombre = ?" + " WHERE usuario = ?";
+			PreparedStatement ps = (PreparedStatement) DBUtils.getPreparedStatement(sql);
+			ps.setString(1, dni);
+			ps.setString(2, domicilio);
+			ps.setString(3, nombre);
+			ps.setString(4, usuario);
+			ps.executeUpdate();
+		} catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName(), null).log(Level.SEVERE, null, ex);
+        }
+	}
+	
+	public static void edit(String usuario) {
+		try {
+			String sql = "UPDATE usuarios SET esta_habilitado = !esta_habilitado" + " WHERE usuario = ?";
+			PreparedStatement ps = (PreparedStatement) DBUtils.getPreparedStatement(sql);
+			ps.setString(1, usuario);
+			ps.executeUpdate();
+		} catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName(), null).log(Level.SEVERE, null, ex);
+        }
+	}
+	
+	public void delete(String usuario) {
+		try {
+			String sql = "DELETE FROM usuarios WHERE usuario = ?";			
+			PreparedStatement ps = (PreparedStatement) DBUtils.getPreparedStatement(sql);
+			ps.setString(1, usuario);
+			ps.executeUpdate();
+		} catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName(), null).log(Level.SEVERE, null, ex);
+		}
+	}
+	
+	public static void cambiarEstado(String usuario) {
+		edit(usuario);		
 	}
 	
 }

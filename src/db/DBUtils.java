@@ -12,7 +12,7 @@ public class DBUtils {
         String db_driver = "com.mysql.jdbc.Driver";
         String db_url = "jdbc:mysql://localhost/jruteros";
         String user = "root";
-        String pass = "Desmond";
+        String pass = "gaspar";
         
         Class.forName(db_driver);
         Connection con = DriverManager.getConnection(db_url, user, pass);
