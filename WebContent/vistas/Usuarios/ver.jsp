@@ -28,7 +28,7 @@
 		<p>${usuario.getFecha_de_nacimiento()}</p>
 		
 		<h3>Sexo</h3>
-		<p>- - - - - - - - - - - - - - - - -</p>
+		<p>${usuario.getSexo()}</p>
 		
 		<h3>Email</h3>
 		<p>${usuario.getEmail()}</p>

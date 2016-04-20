@@ -26,6 +26,11 @@
 		  	</div>
 		  	
 		  	<div class="form-group">
+			    <label>Apellido</label>
+			    <input type="text" class="form-control" value="${usuario.apellido}" name="apellido" placeholder="Apellido">
+		  	</div>
+		  	
+		  	<div class="form-group">
 			    <label>Domicilio</label>
 			    <input type="text" class="form-control" value="${usuario.domicilio}" name="domicilio" placeholder="Domicilio">
 		  	</div>		 

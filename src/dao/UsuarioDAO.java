@@ -71,14 +71,15 @@ public class UsuarioDAO {
 		return u;
 	}
 	
-	public void edit(String usuario, String dni, String domicilio, String nombre) {
+	public void edit(String usuario, String dni, String domicilio, String nombre, String apellido) {
 		try {
-			String sql = "UPDATE usuarios SET dni = ?, domicilio = ?, nombre = ?" + " WHERE usuario = ?";
+			String sql = "UPDATE usuarios SET dni = ?, domicilio = ?, nombre = ?, apellido=? " + " WHERE usuario = ?";
 			PreparedStatement ps = (PreparedStatement) DBUtils.getPreparedStatement(sql);
 			ps.setString(1, dni);
 			ps.setString(2, domicilio);
 			ps.setString(3, nombre);
-			ps.setString(4, usuario);
+			ps.setString(4, apellido);
+			ps.setString(5, usuario);
 			ps.executeUpdate();
 		} catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName(), null).log(Level.SEVERE, null, ex);

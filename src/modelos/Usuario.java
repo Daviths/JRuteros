@@ -12,15 +12,10 @@ public class Usuario {
 					apellido,
 					nombre,
 					domicilio,
+					sexo,
 					fecha_de_nacimiento,
 					email;
 	
-	private sexos sexo;
-	
-		private enum sexos {
-			MASCULINO, FEMENINO;
-		}
-		
 	private Boolean es_admin,
 					esta_habilitado;
 	
@@ -38,7 +33,7 @@ public class Usuario {
 		this.nombre = rs.getString(8);
 		this.apellido = rs.getString(9);
 		this.fecha_de_nacimiento = rs.getString(10);
-		//this.sexo = rs.getString(11); ???
+		this.sexo = rs.getString(11);
 		this.email = rs.getString(12);
 	}
 	
@@ -112,6 +107,14 @@ public class Usuario {
 		this.fecha_de_nacimiento = fecha_de_nacimiento;
 	}
 
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -128,14 +131,6 @@ public class Usuario {
 		this.usuario = usuario;
 	}
 
-	public sexos getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(sexos sexo) {
-		this.sexo = sexo;
-	}
-	
 	public Integer getId() {
 		return id;
 	}

@@ -19,9 +19,10 @@ public class Actualizar extends HttpServlet {
 		String dni = request.getParameter("dni");
 		String domicilio = request.getParameter("domicilio");
 		String nombre = request.getParameter("nombre");
+		String apellido = request.getParameter("apellido");
 		
 		UsuarioDAO usuario_dao = new UsuarioDAO();
-		usuario_dao.edit(usuario, dni, domicilio, nombre);
+		usuario_dao.edit(usuario, dni, domicilio, nombre, apellido);
 		
 		response.sendRedirect("usuarios");
 	}
