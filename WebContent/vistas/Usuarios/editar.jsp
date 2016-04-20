@@ -34,6 +34,27 @@
 			    <label>Domicilio</label>
 			    <input type="text" class="form-control" value="${usuario.domicilio}" name="domicilio" placeholder="Domicilio">
 		  	</div>		 
+		  	
+		  	<div class="form-group">
+				<label>Sexo</label>
+			  	<div class="radio">
+				  <label>
+				    <input type="radio" name="sexo" value="MASCULINO" checked>
+				    Masculino
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="sexo" value="FEMENINO">
+				    Femenino
+				  </label>
+				</div>
+			</div>
+		  	 
+		  	 <div class="form-group">
+			    <label>Email</label>
+			    <input type="text" class="form-control" value="${usuario.email}" name="email" placeholder="Email">
+		  	</div>		
 		  	 
 		  	<button type="submit" class="btn btn-default">Guardar cambios</button>
 		</form>		

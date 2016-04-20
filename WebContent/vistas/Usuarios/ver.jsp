@@ -32,5 +32,7 @@
 		
 		<h3>Email</h3>
 		<p>${usuario.getEmail()}</p>
+		
+		<FORM><INPUT Type="button" class="btn btn-info" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
 	</body>
 </html>
