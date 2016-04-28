@@ -24,13 +24,18 @@ public class Login extends HttpServlet {
 		
 		if(u != null) {
 			if(u.getPassword().equals(password)) {
-				System.out.println("SESION INICIADA CORRECTAMENTE");
-				HttpSession sesion = request.getSession(true);
-				sesion.setAttribute("usuario", u);
-				if(u.getEs_admin()){
-					response.sendRedirect("usuarios");
+				if(u.getEsta_habilitado()){
+					System.out.println("SESION INICIADA CORRECTAMENTE");
+					HttpSession sesion = request.getSession(true);
+					sesion.setAttribute("usuario", u);
+					if(u.getEs_admin()){
+						response.sendRedirect("usuarios");
+					}else{
+						response.sendRedirect("actividades");
+					}
 				}else{
-					response.sendRedirect("actividades");
+					System.out.println("Usuario Deshabilitado");
+					response.sendRedirect("../JRuteros/vistas/login.html?error=Usuario_deshabilitado");
 				}
 			} else {
 				System.out.println("PASSWORD INCORRECTA");
