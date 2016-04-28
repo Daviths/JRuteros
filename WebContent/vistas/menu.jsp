@@ -53,8 +53,9 @@
 			<ul class="dropdown-menu">
 				<li><a href="ver_usuario?usuario=<%=u.getUsuario()%>">Mi Perfil</a></li>
 				<li><a href="editar_usuario?usuario=<%=u.getUsuario()%>">Editar mi perfil</a></li>
-				<li><a href="#">Something else here</a></li>
 				<li role="separator" class="divider"></li>
+				<li><a href="#">Ver mis rutas</a></li>		
+				<li role="separator" class="divider"></li>		
 				<li><a href="TerminarSesion">Desloguearse</a></li>
 			</ul>
 		<%}else{ %>
