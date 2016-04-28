@@ -3,7 +3,7 @@
 	<head>
 	<meta charset="ISO-8859-1">
 	<title>Agregar una nueva ruta</title>
-	<link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	</head>
 	<body>
 		<form action="CrearRuta" method="POST">
@@ -130,7 +130,7 @@
 			</div>
 		  	  	
 		  	<button type="submit" class="btn btn-default">Submit</button>
+		  	<INPUT Type="button" class="btn btn-info" VALUE="Back" onClick="history.go(-1);return true;">
 		</form>		
-		
 	</body>
 </html>

@@ -11,7 +11,9 @@
 </head>
 <body>
 	<%@include file="../menu.jsp"  %>
-	<a class="btn btn-default" href="/nueva.jsp" role="button">Nueva Ruta</a>
+	<% if (u != null){%>
+		<a class="btn btn-default" href="${pageContext.request.contextPath}/vistas/Rutas/nueva.jsp" role="button">Nueva Ruta</a>
+	<% } %>
 	<table class="table table-hover">
 	 		<tr>
 	 			<th>Nombre</th>

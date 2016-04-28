@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"  pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,12 +11,13 @@
 </head>
 <body>
 	<%@include file="../menu.jsp"  %>
-	<a class="btn btn-default" href="#" role="button">Nueva Actividad</a>
+	<% if (u != null && u.getEs_admin()){%>
+		<a class="btn btn-default" href="${pageContext.request.contextPath}/vistas/Actividades/nueva.jsp" role="button">Nueva Actividad</a>
+	<% } %>
 	<table class="table table-hover">
 	 		<tr>
 	 			<th>Nombre</th>
 	 			<th>Descripcion</th>
-	 			<th>Usuario</th>
 	 			<th>Estado</th>
 	 			<th colspan="3">Acción</th>
 	 		</tr>
