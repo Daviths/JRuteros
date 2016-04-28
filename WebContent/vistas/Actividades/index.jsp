@@ -12,7 +12,9 @@
 <body>
 	<%@include file="../menu.jsp"  %>
 	<% if (u != null && u.getEs_admin()){%>
-		<a class="btn btn-default" href="${pageContext.request.contextPath}/vistas/Actividades/nueva.jsp" role="button">Nueva Actividad</a>
+		<a class="btn btn-default" href="${pageContext.request.contextPath}/vistas/Actividades/nueva.jsp" role="button">
+		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Nueva Actividad
+		</a>
 	<% } %>
 	<table class="table table-hover">
 	 		<tr>
@@ -29,15 +31,25 @@
 		 			<td>descripcion de la actividad</td>
 		 			<td>
 		 			<% if ((i % 2)==0){ //Cambiar por comprobacion de habilitacion usuario%> 
-		 			<a class="btn btn-info btn-xs" href="#">Habilitada</a>
+		 			<a class="btn btn-info btn-xs" href="#">
+		 			<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>Habilitada
+		 			</a>
 		 			<% }else{ %>
-		 				<a class="btn btn-info btn-xs" href="#">Deshabilitada</a>
+		 				<a class="btn btn-info btn-xs" href="#">
+		 				<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>Deshabilitada
+		 				</a>
 		 			<% } %>
 		 			</td>
-		 			<td><a class="btn btn-default btn-xs" href="#">Ver</a></td>
+		 			<td><a class="btn btn-default btn-xs" href="#">
+		 			<span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>Ver
+		 			</a></td>
 		 			<% if (u != null && u.getEs_admin()){%>
-		 				<td><a class="btn btn-primary btn-xs" href="#">Editar</a></td>
-		 				<td><a class="btn btn-danger btn-xs" href="#">Eliminar</a></td>
+		 				<td><a class="btn btn-primary btn-xs" href="#">
+		 				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>Editar
+		 				</a></td>
+		 				<td><a class="btn btn-danger btn-xs" href="#">
+		 				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Eliminar
+		 				</a></td>
 		 			<% } %>
 		 		</tr>
 	 		<% } %>
