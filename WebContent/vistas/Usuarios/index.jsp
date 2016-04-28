@@ -37,26 +37,26 @@
 		 				<c:choose>
 		 					<c:when test="${usuario.getEsta_habilitado()}">
 		 						<a class="btn btn-primary btn-xs" href="cambiar_estado_usuario?usuario=${usuario.usuario}">
-		 						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Habilitado
+		 						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;Habilitado
 		 						</a>
 		 					</c:when>
 		 					
 		 					<c:otherwise>
 		 						<a class="btn btn-danger btn-xs" href="cambiar_estado_usuario?usuario=${usuario.usuario}">
-		 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Deshabilitado
+		 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;Deshabilitado
 		 						</a>
 		 					</c:otherwise>
 		 				</c:choose>
 		 				
 	 				</td>
 	 				<td><a class="btn btn-default btn-xs" href="ver_usuario?usuario=${usuario.usuario}">
-	 				<span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>Ver
+	 				<span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>&nbsp;Ver
 	 				</a></td>
 		 			<td><a class="btn btn-primary btn-xs" href="editar_usuario?usuario=${usuario.usuario}">
-		 			<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Editar
+		 			<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Editar
 		 			</a></td>
 		 			<td><a class="btn btn-danger btn-xs" href="eliminar_usuario?usuario=${usuario.usuario}">
-		 			<span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Eliminar
+		 			<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;Eliminar
 		 			</a></td>
 	 			</tr>
 	 		</c:forEach>

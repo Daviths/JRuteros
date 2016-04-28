@@ -13,7 +13,7 @@
 	<%@include file="../menu.jsp"  %>
 	<% if (u != null){%>
 		<a class="btn btn-default" href="${pageContext.request.contextPath}/vistas/Rutas/nueva.jsp" role="button">
-		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Nueva Ruta
+		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Nueva Ruta
 		</a>
 	<% } %>
 	<table class="table table-hover">
@@ -47,14 +47,14 @@
 		 			<td>HOY</td>
 		 			<td>Fotos</td>
 		 			<td><a class="btn btn-default btn-xs" href="#">
-		 			<span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>Ver
+		 			<span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>&nbsp;Ver
 		 			</a></td>
 		 			<% if (u != null && u.getEs_admin()){%>
 		 				<td><a class="btn btn-primary btn-xs" href="#">
-		 				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>Editar
+		 				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Editar
 		 				</a></td>
 		 				<td><a class="btn btn-danger btn-xs" href="#">
-		 				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Eliminar
+		 				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;Eliminar
 		 				</a></td>
 		 			<% } %>
 		 		</tr>
