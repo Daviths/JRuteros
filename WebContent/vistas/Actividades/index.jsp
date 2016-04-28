@@ -35,8 +35,10 @@
 		 			<% } %>
 		 			</td>
 		 			<td><a class="btn btn-default btn-xs" href="#">Ver</a></td>
-		 			<td><a class="btn btn-primary btn-xs" href="#">Editar</a></td>
-		 			<td><a class="btn btn-danger btn-xs" href="#">Eliminar</a></td>
+		 			<% if (u != null && u.getEs_admin()){%>
+		 				<td><a class="btn btn-primary btn-xs" href="#">Editar</a></td>
+		 				<td><a class="btn btn-danger btn-xs" href="#">Eliminar</a></td>
+		 			<% } %>
 		 		</tr>
 	 		<% } %>
 		</table>
