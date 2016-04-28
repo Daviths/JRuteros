@@ -3,8 +3,6 @@
 	HttpSession sesion = request.getSession(true); 
  	Usuario u = (Usuario) sesion.getAttribute("usuario");
 %>
-<script src="bootstrap/js/jquery.js"></script>
-<script src="bootstrap/js/bootstrap.js"></script>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -48,20 +46,19 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-		<% if(u != null){ %>
-			<li><a href="TerminarSesion">Desloguearse</a></li>
+		<% if(u != null){ %>			
 			<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 			<span class="caret"></span><%=u.getUsuario()%></a>
 			<ul class="dropdown-menu">
-				<li><a href="#">Action</a></li>
-				<li><a href="#">Another action</a></li>
+				<li><a href="ver_usuario?usuario=<%=u.getUsuario()%>">Mi Perfil</a></li>
+				<li><a href="editar_usuario?usuario=<%=u.getUsuario()%>">Editar mi perfil</a></li>
 				<li><a href="#">Something else here</a></li>
 				<li role="separator" class="divider"></li>
-				<li><a href="#">Separated link</a></li>
+				<li><a href="TerminarSesion">Desloguearse</a></li>
 			</ul>
 		<%}else{ %>
-			<li><a href="../login.html">Loguearse</a></li>
+			<li><a href="${pageContext.request.contextPath}/vistas/login.html">Loguearse</a></li>
 		<%} %>
 		</ul>
       </ul>

@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<script src="${pageContext.request.contextPath}/bootstrap/js/jquery.min.js"></script>
+  	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.js"></script>
 <title>Listado Rutas</title>
 </head>
 <body>

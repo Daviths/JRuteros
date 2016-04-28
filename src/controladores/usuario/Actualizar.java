@@ -27,7 +27,7 @@ public class Actualizar extends HttpServlet {
 		UsuarioDAO usuario_dao = new UsuarioDAO();
 		usuario_dao.edit(usuario, dni, domicilio, nombre, apellido, sexo, email);
 		
-		response.sendRedirect("usuarios");
+		response.sendRedirect("actividades");
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -57,6 +57,7 @@
 		  	</div>		
 		  	 
 		  	<button type="submit" class="btn btn-default">Guardar cambios</button>
+		  	<FORM><INPUT Type="button" class="btn btn-info" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
 		</form>		
 	</body>
 </html>
