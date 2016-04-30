@@ -1,11 +1,24 @@
 package modelos;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Actividad {
+	//variables
 	private String  nombre,
 					descripcion;
 	
 	private Boolean esta_habilitada;
-
+	private Integer id;
+	
+	//Constructor
+	public Actividad(ResultSet rs) throws SQLException{
+		this.id=rs.getInt(1);
+		this.nombre=rs.getString(2);
+		this.descripcion=rs.getString(3);
+		this.esta_habilitada=rs.getBoolean(4);		
+	}
+	//Metodos
 	public Boolean getEsta_habilitada() {
 		return esta_habilitada;
 	}
@@ -28,5 +41,11 @@ public class Actividad {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
 	}
 }

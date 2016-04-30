@@ -25,12 +25,13 @@ public class UsuarioDAO {
 			ps.setString(6, usuario.getNombre());
 			ps.setString(7, usuario.getApellido());
 			ps.setString(8, usuario.getFecha_de_nacimiento());
-			//ps.setString(9, usuario.getSexo()); ??
+			ps.setString(9, usuario.getSexo()); 
 			ps.setString(9, usuario.getEmail());
 			
 			//Password
 			String password = "gaspar";
 			ps.setString(10, password);
+			
 			ps.executeUpdate();
 			
 		} catch (ClassNotFoundException | SQLException ex) {
