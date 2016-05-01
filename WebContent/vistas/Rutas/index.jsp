@@ -58,7 +58,7 @@
 		 				<td><a class="btn btn-primary btn-xs" href="#">
 		 				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Editar
 		 				</a></td>
-		 				<td><a class="btn btn-danger btn-xs" href="#">
+		 				<td><a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/eliminar_ruta?nombre=${ruta.nombre}">
 		 				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;Eliminar
 		 				</a></td>
 		 			<% } %>
