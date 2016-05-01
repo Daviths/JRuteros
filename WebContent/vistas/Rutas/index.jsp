@@ -51,14 +51,14 @@
 		 			<td>${ruta.getActividad()}</td>
 		 			<td>${ruta.getTiempo_estimado()}</td>
 		 			<td>${ruta.getFecha_de_realizacion()}</td>
-		 			<td><a class="btn btn-default btn-xs" href="#">
+		 			<td><a class="btn btn-default btn-xs" href="ver_ruta?nombre=${ruta.nombre}">
 		 			<span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>&nbsp;Ver
 		 			</a></td>
 		 			<% if (u != null && u.getEs_admin()){%>
 		 				<td><a class="btn btn-primary btn-xs" href="editar_ruta?nombre=${ruta.nombre}">
 		 				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Editar
 		 				</a></td>
-		 				<td><a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/eliminar_ruta?nombre=${ruta.nombre}">
+		 				<td><a class="btn btn-danger btn-xs" href="eliminar_ruta?nombre=${ruta.nombre}">
 		 				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;Eliminar
 		 				</a></td>
 		 			<% } %>
