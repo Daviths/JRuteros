@@ -1,4 +1,4 @@
-package controladores.usuario;
+package controladores.actividad;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -12,18 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sun.istack.internal.logging.Logger;
 
-import dao.UsuarioDAO;
-import modelos.Usuario;
+import dao.ActividadDAO;
+import modelos.Actividad;
 
-@WebServlet("/ver_usuario")
+@WebServlet("/ver_actividad")
 public class Ver extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String usuario = request.getParameter("usuario");
-		Usuario u = UsuarioDAO.getUsuario(usuario);
-		request.setAttribute("usuario", u);
-		RequestDispatcher rd = request.getRequestDispatcher("/vistas/Usuarios/ver.jsp");
+		String actividad = request.getParameter("nombre");
+		Actividad u = ActividadDAO.getActividad(actividad);
+		request.setAttribute("actividad", u);
+		RequestDispatcher rd = request.getRequestDispatcher("/vistas/Actividades/ver.jsp");
 		try {
 			rd.forward(request, response);
 		} catch (ServletException | IOException ex) {

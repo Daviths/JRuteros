@@ -45,14 +45,14 @@
 		 					</c:otherwise>
 		 				</c:choose>		 			
 		 			</td>
-		 			<td><a class="btn btn-default btn-xs" href="#">
+		 			<td><a class="btn btn-default btn-xs" href="ver_actividad?nombre=${actividad.nombre}">
 		 			<span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>&nbsp;Ver
 		 			</a></td>
 		 			<% if (u != null && u.getEs_admin()){%>
-		 				<td><a class="btn btn-primary btn-xs" href="#">
+		 				<td><a class="btn btn-primary btn-xs" href="editar_actividad?nombre=${actividad.nombre}">
 		 				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Editar
 		 				</a></td>
-		 				<td><a class="btn btn-danger btn-xs" href="#">
+		 				<td><a class="btn btn-danger btn-xs" href="eliminar_actividad?nombre=${actividad.nombre}">
 		 				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;Eliminar
 		 				</a></td>
 		 			<% } %>

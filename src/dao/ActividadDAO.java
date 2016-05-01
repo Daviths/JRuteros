@@ -16,7 +16,7 @@ import db.DBUtils;
 public class ActividadDAO {
 	
 	public static void addNew(Actividad actividad){
-		String sql = "INSERT INTO actividades (nombre,descripcion,esta_habiltada) VALUES(?,?,?)";
+		String sql = "INSERT INTO actividades (nombre,descripcion,esta_habilitada) VALUES(?,?,?)";
 		try {
 			PreparedStatement ps = (PreparedStatement) DBUtils.getPreparedStatement(sql);
 			ps.setString(1, actividad.getNombre());
@@ -64,12 +64,13 @@ public class ActividadDAO {
 		return u;
 	}
 	
-	public void edit(String nombre, String descripcion) {
+	public static void edit(String nombre_original,String nombre_nuevo, String descripcion) {
 		try {
-			String sql = "UPDATE actividades SET descripcion = ?" + " WHERE nombre = ?";
+			String sql = "UPDATE actividades SET descripcion = ?, nombre = ?" + " WHERE nombre = ?";
 			PreparedStatement ps = (PreparedStatement) DBUtils.getPreparedStatement(sql);
 			ps.setString(1, descripcion);
-			ps.setString(2, nombre);
+			ps.setString(2, nombre_nuevo);
+			ps.setString(3, nombre_original);
 			ps.executeUpdate();
 		} catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName(), null).log(Level.SEVERE, null, ex);
@@ -87,7 +88,7 @@ public class ActividadDAO {
         }
 	}
 	
-	public void delete(String nombre) {
+	public static void delete(String nombre) {
 		try {
 			String sql = "DELETE FROM actividades WHERE nombre = ?";			
 			PreparedStatement ps = (PreparedStatement) DBUtils.getPreparedStatement(sql);

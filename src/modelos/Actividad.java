@@ -4,14 +4,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Actividad {
-	//variables
+	//Variables
 	private String  nombre,
-					descripcion;
-	
+					descripcion;	
 	private Boolean esta_habilitada;
 	private Integer id;
 	
-	//Constructor
+	//Constructores
+	public Actividad(){
+		this.esta_habilitada=true;
+	}
 	public Actividad(ResultSet rs) throws SQLException{
 		this.id=rs.getInt(1);
 		this.nombre=rs.getString(2);
