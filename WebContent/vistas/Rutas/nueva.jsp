@@ -118,12 +118,14 @@
 			    <input type="text" class="form-control" name="tiempo" placeholder="Tiempo Estimado">
 		  	</div>
 		  	
+		  	<%@page import="java.util.Date" %>
+		    <% Date dt = new Date(); %>		
 		  	<div class="form-group">
-			    <label>Fecha de Realización</label>
-			    <%@page import="java.util.Date" %>
-			    <% Date dt = new Date(); %>
-			    
-			    <input type="text" class="form-control" name="fecha" value="<%= dt.toString() %>" disabled>
+			   <label class="col-sm-2 control-label">Fecha de realización:</label>
+			    <div class="col-sm-10">
+			      <p class="form-control-static"><%= dt.toString() %></p>
+			    </div>			    	    
+			    <input type="hidden" class="form-control" name="fecha" value="<%= dt.toString() %>">
 		  	</div>		  			  	
 		  	
 		  	<div class="form-group">
