@@ -17,17 +17,10 @@ import modelos.Ruta;
 public class Nueva extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		
-		
-	}
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("actividades", ActividadDAO.getAll());
 		RequestDispatcher rs = request.getRequestDispatcher("/vistas/Rutas/nueva.jsp"); 
 		rs.forward(request, response);
-		processRequest(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
