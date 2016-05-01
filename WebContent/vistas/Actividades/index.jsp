@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"  pageEncoding="ISO-8859-1"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<script src="${pageContext.request.contextPath}/bootstrap/js/jquery.min.js"></script>
-  	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.js"></script>
-<title>Listado Actividades</title>
+	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.js"></script>
+	<title>Listado Actividades</title>
+	<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 </head>
 <body>
 	<%@include file="../menu.jsp"  %>
@@ -18,27 +18,32 @@
 	<% } %>
 	<table class="table table-hover">
 	 		<tr>
+	 			<th>ID</th>
 	 			<th>Nombre</th>
 	 			<th>Descripcion</th>
 	 			<th>Estado</th>
 	 			<th colspan="3">Acción</th>
 	 		</tr>
 	 		
-	 		<% for(int i = 0; i < 10; i++) { %>
+	 		<c:forEach items="${actividades}" var="actividad">
 		 		<tr>
-		 			<% // Obtener todos los usuarios e iterar %>	 			
-		 			<td>nombre</td>
-		 			<td>descripcion de la actividad</td>
+		 			<td>${actividad.getId()}</td>	 			
+		 			<td>${actividad.getNombre()}</td>	 
+		 			<td>${actividad.getDescripcion()}</td>	 
 		 			<td>
-		 			<% if ((i % 2)==0){ //Cambiar por comprobacion de habilitacion usuario%> 
-		 			<a class="btn btn-info btn-xs" href="#">
-		 			<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>&nbsp;Habilitada
-		 			</a>
-		 			<% }else{ %>
-		 				<a class="btn btn-info btn-warning btn-xs" href="#">
-		 				<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>&nbsp;Deshabilitada
-		 				</a>
-		 			<% } %>
+			 			<c:choose>
+		 					<c:when test="${actividad.getEsta_habilitada()}">
+		 						<a class="btn btn-info btn-xs" href="cambiar_estado_actividad?nombre=${actividad.nombre}">
+		 						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;Habilitado
+		 						</a>
+		 					</c:when>
+		 					
+		 					<c:otherwise>
+		 						<a class="btn btn-warning btn-xs" href="cambiar_estado_actividad?nombre=${actividad.nombre}">
+		 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;Deshabilitado
+		 						</a>
+		 					</c:otherwise>
+		 				</c:choose>		 			
 		 			</td>
 		 			<td><a class="btn btn-default btn-xs" href="#">
 		 			<span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>&nbsp;Ver
@@ -52,7 +57,7 @@
 		 				</a></td>
 		 			<% } %>
 		 		</tr>
-	 		<% } %>
+	 		</c:forEach>
 		</table>
 
 </body>
