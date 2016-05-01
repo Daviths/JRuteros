@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<script src="${pageContext.request.contextPath}/bootstrap/js/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.js"></script>
-	<title>Listado Actividades</title>
+	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.js"></script>	
 	<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<title>Listado Actividades</title>
 </head>
 <body>
 	<%@include file="../menu.jsp"  %>
