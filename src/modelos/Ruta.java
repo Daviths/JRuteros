@@ -1,9 +1,17 @@
 package modelos;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Ruta {
+	//Variables
+	private Integer id;
 	private String	nombre,
 					descripcion,
-					fecha_de_realizacion;
+					fecha_de_realizacion,
+					dificultad,
+					actividad,
+				  	usuario;
 					
 	private Boolean es_publica, 
 					es_circular;
@@ -11,6 +19,30 @@ public class Ruta {
 	private Float 	distancia,
 					tiempo_estimado;
 	
+	//Constructores
+	public Ruta(){
+		
+	}
+	public Ruta(ResultSet rs) throws SQLException{
+		this.id = rs.getInt(1);
+		this.nombre = rs.getString(2);
+		this.descripcion = rs.getString(3);
+		this.fecha_de_realizacion = rs.getString(4);
+		this.es_publica = rs.getBoolean(5);
+		this.es_circular = rs.getBoolean(6);
+		this.distancia = rs.getFloat(7);
+		this.tiempo_estimado = rs.getFloat(8);
+		this.actividad = rs.getString(9);		
+		this.dificultad = rs.getString(10);
+		this.usuario = rs.getString(11);
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	//Metodos
 	public String getNombre() {
 		return nombre;
 	}
@@ -65,33 +97,27 @@ public class Ruta {
 
 	public void setTiempo_estimado(Float tiempo_estimado) {
 		this.tiempo_estimado = tiempo_estimado;
-	}
-
-	public dificultades getDificultad() {
-		return dificultad;
-	}
-
-	public void setDificultad(dificultades dificultad) {
-		this.dificultad = dificultad;
-	}
-
-	public Actividad getActividad() {
-		return actividad;
-	}
-
-	public void setActividad(Actividad actividad) {
-		this.actividad = actividad;
-	}
-
-	private dificultades dificultad;
-	
-		private enum dificultades {
-			FACIL, MODERADO, DIFICIL, MUY_DIFICIL, SOLO_EXPERTOS;
-		}
-	
-	private Actividad actividad;
-	
+	}	
 	// FALTA RECORRIDO
 	// FALTAN FOTOS
 	// PREGUNTAR BORRADO LOGICO
+	public String getDificultad() {
+		return dificultad;
+	}
+	public void setDificultad(String dificultad) {
+		this.dificultad = dificultad;
+	}
+	public String getActividad() {
+		return actividad;
+	}
+	public void setActividad(String actividad) {
+		this.actividad = actividad;
+	}
+	public String getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
 }

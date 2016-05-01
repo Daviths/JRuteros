@@ -9,16 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class Index
- */
-@WebServlet(name = "rutas", urlPatterns = { "/rutas" })
+import dao.RutaDAO;
+
+@WebServlet("/rutas")
 public class Index extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-
+		request.setAttribute("rutas", RutaDAO.getAll());
 		RequestDispatcher rs = request.getRequestDispatcher("/vistas/Rutas/index.jsp"); 
 		rs.forward(request, response);
 	}
@@ -27,9 +26,6 @@ public class Index extends HttpServlet {
 		processRequest(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
 	}

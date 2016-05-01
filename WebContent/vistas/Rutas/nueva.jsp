@@ -129,8 +129,8 @@
 				<p class="help-block">Una foto de la ruta.</p>
 			</div>
 		  	  	
-		  	<button type="submit" class="btn btn-default">Submit</button>
-		  	<INPUT Type="button" class="btn btn-info" VALUE="Back" onClick="history.go(-1);return true;">
+		  	<button type="submit" class="btn btn-default">Enviar</button>
+		  	<INPUT Type="button" class="btn btn-info" VALUE="Volver" onClick="history.go(-1);return true;">
 		</form>		
 	</body>
 </html>

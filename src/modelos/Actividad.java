@@ -5,10 +5,10 @@ import java.sql.SQLException;
 
 public class Actividad {
 	//Variables
+	private Integer id;
 	private String  nombre,
 					descripcion;	
-	private Boolean esta_habilitada;
-	private Integer id;
+	private Boolean esta_habilitada;	
 	
 	//Constructores
 	public Actividad(){
