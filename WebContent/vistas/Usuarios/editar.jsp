@@ -9,7 +9,7 @@
 	<body>
 		<h1>Editar usuario</h1>
 		
-		<form action="actualizar_usuario" method="POST">
+		<form action="editar_usuario" method="POST">
 			<div class="form-group">
 			    <label>Nombre de usuario</label>
 			    <input type="text" class="form-control" value="${usuario.usuario}" name="usuario" placeholder="Nombre de usuario">

@@ -8,7 +8,7 @@
 	<link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	</head>
 	<body>
-		<form action="actualizar_actividad" method="POST">
+		<form action="editar_actividad" method="POST">
 			<div class="form-group">
 			    <label>Nombre de la actividad</label>
 			    <input type="text" class="form-control" value="${actividad.nombre}" name="nombre_nuevo" placeholder="Nombre de la actividad">

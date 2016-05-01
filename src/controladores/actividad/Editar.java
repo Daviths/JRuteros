@@ -18,9 +18,8 @@ import modelos.Actividad;
 @WebServlet("/editar_actividad")
 public class Editar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nombre = request.getParameter("nombre");
 		Actividad u = ActividadDAO.getActividad(nombre);
 		request.setAttribute("actividad", u);
@@ -29,15 +28,15 @@ public class Editar extends HttpServlet {
 			rd.forward(request, response);
 		} catch (ServletException | IOException ex) {
             Logger.getLogger(Editar.class.getName(), null).log(Level.SEVERE, null, ex);
-        }		
-	}
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		processRequest(request, response);
+        }
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		processRequest(request, response);
+		String descripcion = request.getParameter("descripcion");
+		String nombre_nuevo = request.getParameter("nombre_nuevo");
+		String nombre_original = request.getParameter("nombre_original");
+		ActividadDAO.edit(nombre_original, nombre_nuevo, descripcion);
+		response.sendRedirect("actividades");
 	}
 
 }
