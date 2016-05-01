@@ -20,7 +20,6 @@
 	 		<tr>
 	 			<th>Nombre</th>
 	 			<th>Descripcion</th>
-	 			<th>Recorrido</th>
 	 			<th>Formato</th>
 	 			<th>Distancia</th>
 	 			<th>Dificultad</th>
@@ -31,38 +30,40 @@
 	 		</tr>
 	 		
 	 		<c:forEach items="${rutas}" var="ruta">
-		 		<tr>
-		 			<% // Obtener todos los usuarios e iterar %>	 			
-		 			<td>${ruta.getNombre()}</td>
-		 			<td>${ruta.getDescripcion()}</td>
-		 			<td>Mapita(?)</td>
-		 			<td>
-		 				<c:choose>
-				 			<c:when test="${ruta.getEs_circular()}">
-				 				Es Circular
-				 			</c:when>
-				 			<c:otherwise>
-				 				Es solo ida
-				 			</c:otherwise>
-			 			</c:choose>
-					</td>
-		 			<td>${ruta.getDistancia()} kms</td>
-		 			<td>${ruta.getDificultad()}</td>
-		 			<td>${ruta.getActividad()}</td>
-		 			<td>${ruta.getTiempo_estimado()}</td>
-		 			<td>${ruta.getFecha_de_realizacion()}</td>
-		 			<td><a class="btn btn-default btn-xs" href="ver_ruta?nombre=${ruta.nombre}">
-		 			<span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>&nbsp;Ver
-		 			</a></td>
-		 			<% if (u != null && u.getEs_admin()){%>
-		 				<td><a class="btn btn-primary btn-xs" href="editar_ruta?nombre=${ruta.nombre}">
-		 				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Editar
-		 				</a></td>
-		 				<td><a class="btn btn-danger btn-xs" href="eliminar_ruta?nombre=${ruta.nombre}">
-		 				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;Eliminar
-		 				</a></td>
-		 			<% } %>
-		 		</tr>
+		 		<c:choose>
+		 			<c:when test="${ruta.getEs_publica()}">
+			 			<tr>			
+				 			<td>${ruta.getNombre()}</td>
+				 			<td>${ruta.getDescripcion()}</td>
+				 			<td>
+				 				<c:choose>
+						 			<c:when test="${ruta.getEs_circular()}">
+						 				Es Circular
+						 			</c:when>
+						 			<c:otherwise>
+						 				Es solo ida
+						 			</c:otherwise>
+					 			</c:choose>
+							</td>
+				 			<td>${ruta.getDistancia()} kms</td>
+				 			<td>${ruta.getDificultad()}</td>
+				 			<td>${ruta.getActividad()}</td>
+				 			<td>${ruta.getTiempo_estimado()}</td>
+				 			<td>${ruta.getFecha_de_realizacion()}</td>
+				 			<td><a class="btn btn-default btn-xs" href="ver_ruta?nombre=${ruta.nombre}">
+				 			<span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>&nbsp;Ver
+				 			</a></td>
+				 			<% if (u != null && u.getEs_admin()){%>
+				 				<td><a class="btn btn-primary btn-xs" href="editar_ruta?nombre=${ruta.nombre}">
+				 				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Editar
+				 				</a></td>
+				 				<td><a class="btn btn-danger btn-xs" href="eliminar_ruta?nombre=${ruta.nombre}">
+				 				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;Eliminar
+				 				</a></td>
+				 			<% } %>
+				 		</tr>
+		 			</c:when>
+		 		</c:choose>		 		
 	 		</c:forEach>
 		</table>
 
