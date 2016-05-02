@@ -37,14 +37,13 @@ public class Editar extends HttpServlet {
 		String descripcion = request.getParameter("descripcion");
 		String nombre_nuevo = request.getParameter("nombre_nuevo");
 		String nombre_original = request.getParameter("nombre_original");
-		String fecha_de_realizacion= request.getParameter("fecha");
 		Boolean es_publica = request.getParameter("privacidad").equals("PUBLICA");
 		Boolean es_circular = request.getParameter("formato").equals("CIRCULAR");
 		Float distancia= Float.parseFloat(request.getParameter("distancia"));
 		Float tiempo_estimado = Float.parseFloat(request.getParameter("tiempo"));
 		String actividad= request.getParameter("actividad");
 		String dificultad= request.getParameter("dificultad");
-		RutaDAO.edit(nombre_original, nombre_nuevo, descripcion,fecha_de_realizacion,es_publica,es_circular,distancia,tiempo_estimado,actividad,dificultad);
+		RutaDAO.edit(nombre_original, nombre_nuevo, descripcion,es_publica,es_circular,distancia,tiempo_estimado,actividad,dificultad);
 		
 		response.sendRedirect("rutas");
 	}

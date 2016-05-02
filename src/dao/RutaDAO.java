@@ -71,20 +71,19 @@ public class RutaDAO {
 		return u;
 	}
 	
-	public static void edit(String nombre_original, String nombre_nuevo,String descripcion,String fecha_de_realizacion, Boolean es_publica, Boolean es_circular, Float distancia, Float tiempo_estimado, String actividad, String dificultad) {
+	public static void edit(String nombre_original, String nombre_nuevo,String descripcion, Boolean es_publica, Boolean es_circular, Float distancia, Float tiempo_estimado, String actividad, String dificultad) {
 		try {
-			String sql = "UPDATE rutas SET nombre = ?,descripcion = ?,fecha_de_realizacion=?,es_publica=?,es_circular=?,distancia=?,tiempo_estimado=?,actividad=?,dificultad=?" + " WHERE nombre = ?";
+			String sql = "UPDATE rutas SET nombre = ?,descripcion = ?,es_publica=?,es_circular=?,distancia=?,tiempo_estimado=?,actividad=?,dificultad=?" + " WHERE nombre = ?";
 			PreparedStatement ps = (PreparedStatement) DBUtils.getPreparedStatement(sql);
 			ps.setString(1, nombre_nuevo);
 			ps.setString(2, descripcion);
-			ps.setString(3, fecha_de_realizacion);
-			ps.setBoolean(4, es_publica);
-			ps.setBoolean(5, es_circular);
-			ps.setFloat(6, distancia);
-			ps.setFloat(7, tiempo_estimado);
-			ps.setString(8, actividad);
-			ps.setString(9, dificultad);
-			ps.setString(10, nombre_original);
+			ps.setBoolean(3, es_publica);
+			ps.setBoolean(4, es_circular);
+			ps.setFloat(5, distancia);
+			ps.setFloat(6, tiempo_estimado);
+			ps.setString(7, actividad);
+			ps.setString(8, dificultad);
+			ps.setString(9, nombre_original);
 			ps.executeUpdate();
 		} catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName(), null).log(Level.SEVERE, null, ex);
