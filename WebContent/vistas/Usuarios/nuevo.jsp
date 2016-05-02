@@ -10,12 +10,12 @@
 		<form action="../../nuevo_usuario" method="POST">
 			<div class="form-group">
 			    <label>Nombre de usuario</label>
-			    <input type="text" class="form-control" name="usuario" placeholder="Nombre de usuario">
+			    <input type="text" class="form-control" name="usuario" placeholder="Nombre de usuario" required>
 		  	</div>
 		  	
 		  	<div class="form-group">
 			    <label>DNI</label>
-			    <input type="text" class="form-control" name="dni" placeholder="DNI">
+			    <input type="text" class="form-control" name="dni" placeholder="DNI" >
 		  	</div>
 		  	
 			<div class="form-group">
@@ -56,7 +56,7 @@
 		  	
 		  	<div class="form-group">
 			    <label>Email</label>
-			    <input type="email" class="form-control" name="email" placeholder="Email">
+			    <input type="email" class="form-control" name="email" placeholder="Email" required>
 		  	</div>		  	
 		  	  	
 		  	<button type="submit" class="btn btn-default">Registrarse</button>

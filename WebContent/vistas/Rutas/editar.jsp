@@ -13,12 +13,12 @@
 		<form action="${pageContext.request.contextPath}/editar_ruta" method="POST">
 			<div class="form-group">
 			    <label>Nombre de la ruta</label>
-			    <input type="text" class="form-control" name="nombre_nuevo" value="${ruta.getNombre()}" placeholder="Nombre de la ruta">
+			    <input type="text" class="form-control" name="nombre_nuevo" value="${ruta.getNombre()}" placeholder="Nombre de la ruta" required>
 		  	</div>
 		  	<input type="hidden" name="nombre_original" value="${ruta.getNombre()}">
 		  	<div class="form-group">
 			    <label>Descripción</label>
-			    <input type="text" class="form-control" name="descripcion" value="${ruta.getDescripcion()}" placeholder="Descripción">
+			    <input type="text" class="form-control" name="descripcion" value="${ruta.getDescripcion()}" placeholder="Descripción" required>
 		  	</div>
 		  	
 		  	<div class="form-group">
@@ -61,7 +61,7 @@
 			
 			<div class="form-group">
 			    <label>Distancia</label>
-			    <input type="text" class="form-control" name="distancia" value="${ruta.getDistancia()}" placeholder="Distancia en kilómetros">
+			    <input type="text" class="form-control" name="distancia" value="${ruta.getDistancia()}" placeholder="Distancia en kilómetros" required>
 		  	</div>		  	
 		  	
 		  	<div class="form-group">
@@ -110,7 +110,7 @@
 					  	
 		  	<div class="form-group">
 			    <label>Tiempo Estimado</label>
-			    <input type="text" class="form-control" name="tiempo" value="${ruta.getTiempo_estimado()}" placeholder="Tiempo Estimado">
+			    <input type="text" class="form-control" name="tiempo" value="${ruta.getTiempo_estimado()}" placeholder="Tiempo Estimado" required>
 		  	</div>	
 		  	
 		  	<div class="form-group">

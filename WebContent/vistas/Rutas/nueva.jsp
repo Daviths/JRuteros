@@ -18,12 +18,12 @@
 		<form action="${pageContext.request.contextPath}/nueva_ruta" method="POST">
 			<div class="form-group">
 			    <label>Nombre de la ruta</label>
-			    <input type="text" class="form-control" name="nombre" placeholder="Nombre de la ruta">
+			    <input type="text" class="form-control" name="nombre" placeholder="Nombre de la ruta" required>
 		  	</div>
 		  	
 		  	<div class="form-group">
 			    <label>Descripción</label>
-			    <input type="text" class="form-control" name="descripcion" placeholder="Descripción">
+			    <input type="text" class="form-control" name="descripcion" placeholder="Descripción" required>
 		  	</div>
 		  	
 		  	<div class="form-group">
@@ -66,7 +66,7 @@
 			
 			<div class="form-group">
 			    <label>Distancia</label>
-			    <input type="text" class="form-control" name="distancia" placeholder="Distancia en kilómetros">
+			    <input type="text" class="form-control" name="distancia" placeholder="Distancia en kilómetros" required>
 		  	</div>		  	
 		  	
 		  	<div class="form-group">
@@ -115,7 +115,7 @@
 					  	
 		  	<div class="form-group">
 			    <label>Tiempo Estimado</label>
-			    <input type="text" class="form-control" name="tiempo" placeholder="Tiempo Estimado">
+			    <input type="text" class="form-control" name="tiempo" placeholder="Tiempo Estimado" required>
 		  	</div>
 		  	
 		  	<%@page import="java.util.Date" %>

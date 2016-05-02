@@ -12,12 +12,12 @@
 		<form action="editar_usuario" method="POST">
 			<div class="form-group">
 			    <label>Nombre de usuario</label>
-			    <input type="text" class="form-control" value="${usuario.usuario}" name="usuario" placeholder="Nombre de usuario">
+			    <input type="text" class="form-control" value="${usuario.usuario}" name="usuario" placeholder="Nombre de usuario" required>
 		  	</div>
 		  	
 		  	<div class="form-group">
 			    <label>DNI</label>
-			    <input type="text" class="form-control" value="${usuario.dni}" name="dni" placeholder="DNI">
+			    <input type="text" class="form-control" value="${usuario.dni}" name="dni" placeholder="DNI" required>
 		  	</div>  	
 		  	
 		  	<div class="form-group">

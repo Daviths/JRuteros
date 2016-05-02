@@ -11,12 +11,12 @@
 		<form action="editar_actividad" method="POST">
 			<div class="form-group">
 			    <label>Nombre de la actividad</label>
-			    <input type="text" class="form-control" value="${actividad.nombre}" name="nombre_nuevo" placeholder="Nombre de la actividad">
+			    <input type="text" class="form-control" value="${actividad.nombre}" name="nombre_nuevo" placeholder="Nombre de la actividad" required>
 		  	</div>
 		  	
 		  	<div class="form-group">
 			    <label>Descripción</label>
-			    <input type="text" class="form-control" value="${actividad.descripcion}" name="descripcion" placeholder="Descripción">
+			    <input type="text" class="form-control" value="${actividad.descripcion}" name="descripcion" placeholder="Descripción" required> 
 		  	</div>
 		   	  	
 		   	<input type="hidden" name="nombre_original" value="${actividad.nombre}">

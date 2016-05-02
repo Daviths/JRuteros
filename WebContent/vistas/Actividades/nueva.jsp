@@ -9,12 +9,12 @@
 		<form action="../../nueva_actividad" method="POST">
 			<div class="form-group">
 			    <label>Nombre de la actividad</label>
-			    <input type="text" class="form-control" name="nombre" placeholder="Nombre de la actividad">
+			    <input type="text" class="form-control" name="nombre" placeholder="Nombre de la actividad" required> 
 		  	</div>
 		  	
 		  	<div class="form-group">
 			    <label>Descripción</label>
-			    <input type="text" class="form-control" name="descripcion" placeholder="Descripción">
+			    <input type="text" class="form-control" name="descripcion" placeholder="Descripción" required>
 		  	</div>
 		   	  	
 		  	<button type="submit" class="btn btn-default">Submit</button>
