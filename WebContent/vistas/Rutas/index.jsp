@@ -16,6 +16,7 @@
 		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Nueva Ruta
 		</a>
 	<% } %>
+	
 	<table class="table table-hover">
 	 		<tr>
 	 			<th>Nombre</th>
@@ -53,7 +54,9 @@
 				 			<td><a class="btn btn-default btn-xs" href="ver_ruta?nombre=${ruta.nombre}">
 				 			<span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>&nbsp;Ver
 				 			</a></td>
-				 			<% if (u != null && u.getEs_admin()){%>
+				 			<c:set var="user" value="${ruta.getUsuario()}"/>
+				 			<% String user = pageContext.getAttribute("user").toString();
+				 			if (u != null && (u.getEs_admin() || u.getUsuario().equals(user))){%>
 				 				<td><a class="btn btn-primary btn-xs" href="editar_ruta?nombre=${ruta.nombre}">
 				 				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Editar
 				 				</a></td>
