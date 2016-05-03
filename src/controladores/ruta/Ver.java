@@ -30,5 +30,9 @@ public class Ver extends HttpServlet {
             Logger.getLogger(Editar.class.getName(), null).log(Level.SEVERE, null, ex);
         }	
 	}
+	
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request,response);		
+	}
 }

@@ -26,28 +26,27 @@
       		} %>
         <li><a href="actividades">Activides</a></li>
         <li><a href="rutas">Rutas</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
+        
       </ul>
-      <form class="navbar-form navbar-left" role="search">
+      <form class="navbar-form navbar-left" role="search" action="${pageContext.request.contextPath}/ver_ruta" method="POST" >
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Buscar ruta">
+          <input type="text" class="form-control" placeholder="Buscar ruta" name="nombre" required>
         </div>
-        <button type="submit" class="btn btn-default">
-        	<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-		</button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
+		<div class="btn-group">
+			<button name="Submit" value="buscar" type="Submit" class="btn btn-default">
+				&nbsp;<span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;
+			</button>
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				&nbsp;<span class="caret"></span>&nbsp;
+			</button>
+			<ul class="dropdown-menu">
+				<li><a href="#">Busqueda avanzada</a></li>
+				<li role="separator" class="divider"></li>
+				<li><a href="#">Otro tipo de busqueda(?)</a></li>
+			</ul>
+		</div>
+	</form>
+    <ul class="nav navbar-nav navbar-right">
 		<% if(u != null){ %>			
 			<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">

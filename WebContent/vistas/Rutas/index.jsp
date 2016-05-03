@@ -20,7 +20,6 @@
 	<table class="table table-hover">
 	 		<tr>
 	 			<th>Nombre</th>
-	 			<th>Descripcion</th>
 	 			<th>Formato</th>
 	 			<th>Distancia</th>
 	 			<th>Dificultad</th>
@@ -35,14 +34,13 @@
 		 			<c:when test="${ruta.getEs_publica()}">
 			 			<tr>			
 				 			<td>${ruta.getNombre()}</td>
-				 			<td>${ruta.getDescripcion()}</td>
 				 			<td>
 				 				<c:choose>
 						 			<c:when test="${ruta.getEs_circular()}">
-						 				Es Circular
+						 				Circular
 						 			</c:when>
 						 			<c:otherwise>
-						 				Es solo ida
+						 				Solo ida
 						 			</c:otherwise>
 					 			</c:choose>
 							</td>
