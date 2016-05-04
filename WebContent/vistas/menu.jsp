@@ -24,7 +24,7 @@
         			<li><a href="usuarios">Usuarios<span class="sr-only"></span></a></li>
         <%		}
       		} %>
-        <li><a href="actividades">Activides</a></li>
+        <li><a href="actividades">Actividades</a></li>
         <li><a href="rutas">Rutas</a></li>
         
       </ul>

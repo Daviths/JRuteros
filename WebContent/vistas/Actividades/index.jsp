@@ -21,42 +21,50 @@
 	 			<th>ID</th>
 	 			<th>Nombre</th>
 	 			<th>Descripcion</th>
-	 			<th>Estado</th>
+	 			<% if (u != null && u.getEs_admin()){%>
+	 				<th>Estado</th>
+	 			<% } %>
 	 			<th colspan="3">Acción</th>
 	 		</tr>
 	 		
 	 		<c:forEach items="${actividades}" var="actividad">
-		 		<tr>
-		 			<td>${actividad.getId()}</td>	 			
-		 			<td>${actividad.getNombre()}</td>	 
-		 			<td>${actividad.getDescripcion()}</td>	 
-		 			<td>
-			 			<c:choose>
-		 					<c:when test="${actividad.getEsta_habilitada()}">
-		 						<a class="btn btn-info btn-xs" href="cambiar_estado_actividad?nombre=${actividad.nombre}">
-		 						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;Habilitado
-		 						</a>
-		 					</c:when>
-		 					
-		 					<c:otherwise>
-		 						<a class="btn btn-warning btn-xs" href="cambiar_estado_actividad?nombre=${actividad.nombre}">
-		 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;Deshabilitado
-		 						</a>
-		 					</c:otherwise>
-		 				</c:choose>		 			
-		 			</td>
-		 			<td><a class="btn btn-default btn-xs" href="ver_actividad?nombre=${actividad.nombre}">
-		 			<span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>&nbsp;Ver
-		 			</a></td>
-		 			<% if (u != null && u.getEs_admin()){%>
-		 				<td><a class="btn btn-primary btn-xs" href="editar_actividad?nombre=${actividad.nombre}">
-		 				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Editar
-		 				</a></td>
-		 				<td><a class="btn btn-danger btn-xs" href="eliminar_actividad?nombre=${actividad.nombre}">
-		 				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;Eliminar
-		 				</a></td>
-		 			<% } %>
-		 		</tr>
+	 			<c:set var="esta_habilitada" value="${actividad.getEsta_habilitada()}"/>	 			
+	 			<% 	Boolean esta_habilitada = Boolean.valueOf(pageContext.getAttribute("esta_habilitada").toString());
+	 				if (u != null && (u.getEs_admin() || (esta_habilitada))){%>
+			 		<tr>
+			 			<td>${actividad.getId()}</td>	 			
+			 			<td>${actividad.getNombre()}</td>	 
+			 			<td>${actividad.getDescripcion()}</td>	 
+			 			<% if (u != null && u.getEs_admin()){%>
+				 			<td>
+					 			<c:choose>
+				 					<c:when test="${actividad.getEsta_habilitada()}">
+				 						<a class="btn btn-info btn-xs" href="cambiar_estado_actividad?nombre=${actividad.nombre}">
+				 						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;Habilitado
+				 						</a>
+				 					</c:when>
+				 					
+				 					<c:otherwise>
+				 						<a class="btn btn-warning btn-xs" href="cambiar_estado_actividad?nombre=${actividad.nombre}">
+				 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;Deshabilitado
+				 						</a>
+				 					</c:otherwise>
+				 				</c:choose>		 			
+				 			</td>
+				 		<% } %>
+			 			<td><a class="btn btn-default btn-xs" href="ver_actividad?nombre=${actividad.nombre}">
+			 			<span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>&nbsp;Ver
+			 			</a></td>
+			 			<% if (u != null && u.getEs_admin()){%>
+			 				<td><a class="btn btn-primary btn-xs" href="editar_actividad?nombre=${actividad.nombre}">
+			 				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Editar
+			 				</a></td>
+			 				<td><a class="btn btn-danger btn-xs" href="eliminar_actividad?nombre=${actividad.nombre}">
+			 				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;Eliminar
+			 				</a></td>
+			 			<% } %>
+			 		</tr>
+		 		<% } %>
 	 		</c:forEach>
 		</table>
 

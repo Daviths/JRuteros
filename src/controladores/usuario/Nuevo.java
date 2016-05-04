@@ -22,7 +22,7 @@ public class Nuevo extends HttpServlet {
 		usuario.setNombre(request.getParameter("nombre"));
 		usuario.setApellido(request.getParameter("apellido"));
 		usuario.setFecha_de_nacimiento(request.getParameter("fecha_de_nacimiento"));
-		//usuario.setSexo(request.getParameter("sexo"));
+		usuario.setSexo(request.getParameter("sexo"));
 		usuario.setEmail(request.getParameter("email"));
 		
 		UsuarioDAO.addNew(usuario);
