@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.ActividadDAO;
 import dao.RutaDAO;
 
 @WebServlet("/rutas")
@@ -17,6 +18,7 @@ public class Index extends HttpServlet {
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
+		request.setAttribute("actividades", ActividadDAO.getAll());
 		request.setAttribute("rutas", RutaDAO.getAll());
 		RequestDispatcher rs = request.getRequestDispatcher("/vistas/Rutas/index.jsp"); 
 		rs.forward(request, response);

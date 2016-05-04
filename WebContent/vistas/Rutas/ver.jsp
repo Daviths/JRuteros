@@ -139,6 +139,37 @@
 							${ruta.getFecha_de_realizacion()}
 						</div>
 					</div>
+		        </div>		        
+	        </div>
+	        <div class="row">
+		        <div class="col-sm-4">
+					<div class="panel panel-warning">
+						<div class="panel-heading">
+							<h3 class="panel-title">Puntuar</h3>
+						</div>
+						<div class="panel-body">
+							<form>
+							<div class="radio" >
+								 <label><input type="radio" name="puntos" value="1" checked>1 </label>
+								 <label><input type="radio" name="puntos" value="2">2</label>
+								 <label><input type="radio" name="puntos" value="2">3</label>
+								 <label><input type="radio" name="puntos" value="2">4</label>
+								 <label><input type="radio" name="puntos" value="2">5</label>
+							</div>
+							</form>
+						</div>
+					</div>
+		        </div>
+		        <div class="col-sm-4">
+		        	<div class="panel panel-warning">
+		        		<div class="panel-heading">
+							<h3 class="panel-title">Yo hice esta ruta</h3>
+						</div>
+						<div class="panel-body">							
+							<input type="checkbox" name="hecha">
+							<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+						</div>
+		        	</div>
 		        </div>
 	        </div>
 		</c:when>

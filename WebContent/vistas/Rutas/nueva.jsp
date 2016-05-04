@@ -47,7 +47,11 @@
 				<input type="file" id="recorrido">
 				<p class="help-block">Un dibujo del mapa o un archivo KML.</p>
 			</div>
-		  	
+		  	<div class="form-group">
+		  		<label for="mapa">Mapa</label>
+		  		<img src="${pageContext.request.contextPath}/imagenes/mapa.png" width="30%" height="30%">
+		  		<p class="help-block">Seleccione el recorrido en el mapa.</p>
+		  	</div>
 			<div class="form-group">
 				<label>Formato</label>
 			  	<div class="radio-inline">

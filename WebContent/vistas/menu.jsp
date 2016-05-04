@@ -22,48 +22,32 @@
       	<% 	if(u != null){
       			if(u.getEs_admin()){ %>
         			<li><a href="usuarios">Usuarios<span class="sr-only"></span></a></li>
-        <%		}
-      		} %>
-        <li><a href="actividades">Actividades</a></li>
+        			<li><a href="actividades">Actividades</a></li>
+        <%		}else{ %>
+        		<li><a href="rutas">Rutas</a></li>
+       		 <%}
+      		}else{ %>        
         <li><a href="rutas">Rutas</a></li>
-        
-      </ul>
-      <form class="navbar-form navbar-left" role="search" action="${pageContext.request.contextPath}/ver_ruta" method="POST" >
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Buscar ruta" name="nombre" required>
-        </div>
-		<div class="btn-group">
-			<button name="Submit" value="buscar" type="Submit" class="btn btn-default">
-				&nbsp;<span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;
-			</button>
-			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				&nbsp;<span class="caret"></span>&nbsp;
-			</button>
-			<ul class="dropdown-menu">
-				<li><a href="#">Busqueda avanzada</a></li>
-				<li role="separator" class="divider"></li>
-				<li><a href="#">Otro tipo de busqueda(?)</a></li>
+        <% } %>
+      </ul>      
+	    <ul class="nav navbar-nav navbar-right">
+			<% if(u != null){ %>			
+				<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+				<span class="caret"></span><%=u.getUsuario()%></a>
+				<ul class="dropdown-menu">
+					<li><a href="ver_usuario?usuario=<%=u.getUsuario()%>">Mi Perfil</a></li>
+					<li><a href="editar_usuario?usuario=<%=u.getUsuario()%>">Editar mi perfil</a></li>
+					<li role="separator" class="divider"></li>
+					<li><a href="MisRutas?usuario=<%=u.getUsuario()%>">Ver mis rutas</a></li>		
+					<li role="separator" class="divider"></li>		
+					<li><a href="TerminarSesion">Desloguearse</a></li>
+				</ul>
+			<%}else{ %>
+				<li><a href="${pageContext.request.contextPath}/vistas/login.html">Loguearse</a></li>
+			<%} %>
 			</ul>
-		</div>
-	</form>
-    <ul class="nav navbar-nav navbar-right">
-		<% if(u != null){ %>			
-			<li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-			<span class="caret"></span><%=u.getUsuario()%></a>
-			<ul class="dropdown-menu">
-				<li><a href="ver_usuario?usuario=<%=u.getUsuario()%>">Mi Perfil</a></li>
-				<li><a href="editar_usuario?usuario=<%=u.getUsuario()%>">Editar mi perfil</a></li>
-				<li role="separator" class="divider"></li>
-				<li><a href="#">Ver mis rutas</a></li>		
-				<li role="separator" class="divider"></li>		
-				<li><a href="TerminarSesion">Desloguearse</a></li>
-			</ul>
-		<%}else{ %>
-			<li><a href="${pageContext.request.contextPath}/vistas/login.html">Loguearse</a></li>
-		<%} %>
-		</ul>
-      </ul>
+	      </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

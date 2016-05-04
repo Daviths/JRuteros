@@ -11,12 +11,59 @@
 </head>
 <body>
 	<%@include file="../menu.jsp"  %>
-	<% if (u != null){%>
-		<a class="btn btn-default" href="${pageContext.request.contextPath}/nueva_ruta" role="button">
-		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Nueva Ruta
-		</a>
-	<% } %>
-	
+	<div class="container-fluid">
+		<ul class="nav navbar-nav">
+			<form class="navbar-form navbar-left" role="search" action="${pageContext.request.contextPath}/ver_ruta" method="POST" >
+				<div class="input-group">
+			        <input type="text" class="form-control" placeholder="Buscar ruta" name="nombre">
+			    </div>
+			    <div class="input-group">
+			        <input type="text" class="form-control" placeholder="Distancia" name="distancia">
+			    </div>
+			    <div class="input-group">
+					<select class="form-control" name="actividad">
+						<option value="TODAS">-Actividad-</option>
+				  		<c:forEach items="${actividades}" var="actividad">
+				  			<c:choose>
+					  			<c:when test="${actividad.getEsta_habilitada()}">
+									<option value="${actividad.getNombre()}">${actividad.getNombre()}</option>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="input-group">
+					<select class="form-control" name="dificultad">
+						<option value="TODAS">-Dificultad-</option>
+						<option value="FACIL">Fácil</option>
+						<option value="MODERADO">Moderado</option>
+						<option value="DIFICIL">Dificil</option>
+						<option value="MUY_DIFICIL">Muy Dificil</option>
+						<option value="SOLO_EXPERTOS">Solo Expertos</option>
+					</select>
+				</div>
+				<div class="input-group">
+					<select class="form-control" name="formato">
+						 <option value="TODAS">-Formato-</option>
+						 <option value="SOLO_IDA">Solo Ida</option>
+						 <option value="CIRCULAR">Circular</option>
+					</select>
+				</div>
+				<div class="input-group">
+					<button name="Submit" value="buscar" type="Submit" class="btn btn-default">
+						&nbsp;<span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;
+					</button>					
+				</div>				
+			</form>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<% if (u != null){%>
+				<a class="btn btn-default" href="${pageContext.request.contextPath}/nueva_ruta" role="button">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Nueva Ruta
+				</a>
+			<% } %>
+		</ul>
+	</div>
 	<table class="table table-hover">
 	 		<tr>
 	 			<th>Nombre</th>

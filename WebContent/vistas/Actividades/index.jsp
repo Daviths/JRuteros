@@ -15,7 +15,7 @@
 		<a class="btn btn-default" href="${pageContext.request.contextPath}/vistas/Actividades/nueva.jsp" role="button">
 		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Nueva Actividad
 		</a>
-	<% } %>
+	<% } %>	
 	<table class="table table-hover">
 	 		<tr>
 	 			<th>ID</th>
@@ -30,7 +30,7 @@
 	 		<c:forEach items="${actividades}" var="actividad">
 	 			<c:set var="esta_habilitada" value="${actividad.getEsta_habilitada()}"/>	 			
 	 			<% 	Boolean esta_habilitada = Boolean.valueOf(pageContext.getAttribute("esta_habilitada").toString());
-	 				if (u != null && (u.getEs_admin() || (esta_habilitada))){%>
+	 				if ((u != null && u.getEs_admin()) || (esta_habilitada)){%>
 			 		<tr>
 			 			<td>${actividad.getId()}</td>	 			
 			 			<td>${actividad.getNombre()}</td>	 
