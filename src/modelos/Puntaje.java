@@ -4,6 +4,7 @@ public class Puntaje {
 	//Variables
 	private Integer puntos;
 	private String fecha;
+	private Ruta Ruta;
 	//Metodos
 	public Integer getPuntos() {
 		return puntos;
