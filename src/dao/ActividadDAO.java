@@ -1,105 +1,120 @@
 package dao;
 
-import modelos.Actividad;
-
-import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
 
-import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.ResultSet;
-import com.sun.istack.internal.logging.Logger;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
-import db.DBUtils;
+import modelos.Actividad;
 
 public class ActividadDAO {
 	
-	public static void addNew(Actividad actividad){
-		String sql = "INSERT INTO actividades (nombre,descripcion,esta_habilitada) VALUES(?,?,?)";
-		try {
-			PreparedStatement ps = (PreparedStatement) DBUtils.getPreparedStatement(sql);
-			ps.setString(1, actividad.getNombre());
-			ps.setString(2, actividad.getDescripcion());
-			ps.setBoolean(3, true);
-			
-			ps.executeUpdate();
-			
-		} catch (ClassNotFoundException | SQLException ex) {
-			Logger.getLogger(ActividadDAO.class.getName(), null).log(Level.SEVERE, null, ex);
-			ex.printStackTrace();
-		}
+	public static Integer addNew(Actividad actividad, SessionFactory factory){
+		Session session = factory.openSession();
+	    Transaction tx = null;
+	    Integer actividadID = null;
+	    try{
+	       tx = session.beginTransaction();
+	       actividadID = (Integer) session.save(actividad); 
+	       tx.commit();
+	    }catch (HibernateException e) {
+	       if (tx!=null) tx.rollback();
+	       e.printStackTrace(); 
+	    }finally {
+	       session.close(); 
+	    }
+	    return actividadID;
 	}
 	
-	public static List<Actividad> getAll() {
-		List<Actividad> actividades = new LinkedList<Actividad>();
-		
-		try {
-			String sql = "SELECT * FROM actividades";
-			ResultSet rs = (ResultSet) DBUtils.getPreparedStatement(sql).executeQuery();
-			while(rs.next()) {
-				Actividad actividad= new Actividad(rs);
-				actividades.add(actividad);
+	public static List<Actividad> getAll(SessionFactory factory) {
+		Session session = factory.openSession();
+		Transaction tx = null;
+		List<Actividad> listaactividades = new LinkedList<Actividad>();
+		try{
+			tx = session.beginTransaction();
+			List<?> actividades = session.createQuery("FROM actividades").list(); 
+			for (Iterator<?> iterator = actividades.iterator(); iterator.hasNext();){
+				Actividad actividad = (Actividad) iterator.next(); 
+				listaactividades.add(actividad);
 			}
-		} catch (ClassNotFoundException | SQLException ex) {
-			Logger.getLogger(UsuarioDAO.class.getName(), null).log(Level.SEVERE, null, ex);
+			tx.commit();
+		}catch (HibernateException e) {
+			if (tx!=null) tx.rollback();
+			e.printStackTrace(); 
+		}finally {
+			session.close(); 
 		}
-		
-		return actividades;
+		return listaactividades;
 	}
 	
-	public static Actividad getActividad(String actividad) {
+	public static Actividad getActividad(Integer ActividadID, SessionFactory factory) {
 		Actividad u = null;
-		String sql = "SELECT * FROM actividades WHERE nombre = '" + actividad + "'";
-		
-		try {
-			ResultSet rs = (ResultSet) DBUtils.getPreparedStatement(sql).executeQuery();
-			if(rs.next()) {
-				u = new Actividad(rs);
-			}
-		} catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName(), null).log(Level.SEVERE, null, ex);
-        }
-		
+		Session session = factory.openSession();
+	    Transaction tx = null;
+	    try{
+	       tx = session.beginTransaction();
+	       u = (Actividad)session.get(Actividad.class, ActividadID);
+	    }catch (HibernateException e) {
+	    if (tx!=null) tx.rollback();
+	    	e.printStackTrace(); 
+	    }finally {
+	    	session.close(); 
+	    }
 		return u;
 	}
 	
-	public static void edit(String nombre_original,String nombre_nuevo, String descripcion) {
-		try {
-			String sql = "UPDATE actividades SET descripcion = ?, nombre = ?" + " WHERE nombre = ?";
-			PreparedStatement ps = (PreparedStatement) DBUtils.getPreparedStatement(sql);
-			ps.setString(1, descripcion);
-			ps.setString(2, nombre_nuevo);
-			ps.setString(3, nombre_original);
-			ps.executeUpdate();
-		} catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName(), null).log(Level.SEVERE, null, ex);
-        }
+	public static void edit(Integer ActividadID, String nombre_nuevo, String descripcion, SessionFactory factory) {
+		Session session = factory.openSession();
+	    Transaction tx = null;
+	    try{
+	       tx = session.beginTransaction();
+	       Actividad actividad = (Actividad)session.get(Actividad.class, ActividadID); 
+	       actividad.setDescripcion(descripcion);
+	       actividad.setNombre(nombre_nuevo);
+	       session.update(actividad); 
+	       tx.commit();
+	    }catch (HibernateException e) {
+	    	if (tx!=null) tx.rollback();
+	      	e.printStackTrace(); 
+	    }finally {
+	         session.close(); 
+	    }
 	}
 	
-	public static void edit(String nombre) {
-		try {
-			String sql = "UPDATE actividades SET esta_habilitada = !esta_habilitada" + " WHERE nombre = ?";
-			PreparedStatement ps = (PreparedStatement) DBUtils.getPreparedStatement(sql);
-			ps.setString(1, nombre);
-			ps.executeUpdate();
-		} catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName(), null).log(Level.SEVERE, null, ex);
-        }
+	public static void cambiarEstado(Integer ActividadID, SessionFactory factory) {
+		Session session = factory.openSession();
+	    Transaction tx = null;
+	    try{
+	       tx = session.beginTransaction();
+	       Actividad actividad = (Actividad)session.get(Actividad.class, ActividadID); 
+	       actividad.setEsta_habilitada(!actividad.getEsta_habilitada());
+	       session.update(actividad); 
+	       tx.commit();
+	    }catch (HibernateException e) {
+	    	if (tx!=null) tx.rollback();
+	      	e.printStackTrace(); 
+	    }finally {
+	    	session.close(); 
+	    }
 	}
 	
-	public static void delete(String nombre) {
-		try {
-			String sql = "DELETE FROM actividades WHERE nombre = ?";			
-			PreparedStatement ps = (PreparedStatement) DBUtils.getPreparedStatement(sql);
-			ps.setString(1, nombre);
-			ps.executeUpdate();
-		} catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName(), null).log(Level.SEVERE, null, ex);
-		}
-	}
-	
-	public static void cambiarEstado(String nombre) {
-		edit(nombre);		
+	public static void delete(Integer ActividadID, SessionFactory factory) {
+		Session session = factory.openSession();
+	    Transaction tx = null;
+	    try{
+	    	tx = session.beginTransaction();
+	    	Actividad actividad = (Actividad)session.get(Actividad.class, ActividadID); 
+	    	session.delete(actividad); 
+	    	tx.commit();
+	    }catch (HibernateException e) {
+	    	if (tx!=null) tx.rollback();
+	    	e.printStackTrace(); 
+	    }finally {
+	    	session.close(); 
+	    }
 	}
 }

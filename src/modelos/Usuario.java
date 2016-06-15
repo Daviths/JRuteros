@@ -1,46 +1,54 @@
 package modelos;
 
-import java.sql.SQLException;
+import java.util.List;
+import javax.persistence.*;
 
-import com.mysql.jdbc.ResultSet;
-
+@Entity
+@Table(name = "usuarios")
 public class Usuario {
 	// Atributos
-	private String 	usuario,
-					password,
-					dni,
-					apellido,
-					nombre,
-					domicilio,
-					sexo,
-					fecha_de_nacimiento,
-					email;
-	
-	private Boolean es_admin,
-					esta_habilitado;
-	
+	@Id @GeneratedValue
+	@Column(name = "id")
 	private Integer id;
 	
-	// Constructores
-	public Usuario(ResultSet rs) throws SQLException {
-		this.id = rs.getInt(1);
-		this.usuario = rs.getString(2);
-		this.password = rs.getString(3);
-		this.es_admin = rs.getBoolean(4);
-		this.esta_habilitado = rs.getBoolean(5);
-		this.dni = rs.getString(6);
-		this.domicilio = rs.getString(7);
-		this.nombre = rs.getString(8);
-		this.apellido = rs.getString(9);
-		this.fecha_de_nacimiento = rs.getString(10);
-		this.sexo = rs.getString(11);
-		this.email = rs.getString(12);
-	}
+	@Column(name = "usuario")
+	private String 	usuario;
 	
-	public Usuario() {
-		setEs_admin(false);
-		setEsta_habilitado(true);
-	}
+	@Column(name = "password")
+	private String	password;
+	
+	@Column(name = "dni")
+	private String	dni;
+	
+	@Column(name = "apellido")
+	private String	apellido;
+	
+	@Column(name = "nombre")
+	private String	nombre;
+	
+	@Column(name = "domicilio")
+	private String	domicilio;
+	
+	@Column(name = "sexo")
+	private String	sexo;
+	
+	@Column(name = "fecha_de_nacimiento")
+	private String	fecha_de_nacimiento;
+	
+	@Column(name = "email")
+	private String	email;
+	
+	@Column(name = "es_admin")
+	private Boolean es_admin;
+	
+	@Column(name = "esta_habilitado")
+	private Boolean	esta_habilitado;	
+	
+	@OneToMany(mappedBy="usuario")
+	private List<Ruta> rutas;
+	
+	// Constructores
+	public Usuario() {}
 
 	// Metodos
 	public String getPassword() {
@@ -137,6 +145,14 @@ public class Usuario {
 	
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public List<Ruta> getRutas() {
+		return rutas;
+	}
+
+	public void setRutas(List<Ruta> rutas) {
+		this.rutas = rutas;
 	}
 	
 }

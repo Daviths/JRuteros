@@ -1,25 +1,31 @@
 package modelos;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.List;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "actividades")
 public class Actividad {
 	//Variables
+	@Id @GeneratedValue
+	@Column(name = "id")
 	private Integer id;
-	private String  nombre,
-					descripcion;	
+	
+	@Column(name = "nombre")
+	private String  nombre;
+	
+	@Column(name = "descripcion")
+	private String	descripcion;
+	
+	@Column(name = "esta_habilitada")
 	private Boolean esta_habilitada;	
 	
+	@OneToMany(mappedBy="actividad")
+	private List<Ruta> rutas;
 	//Constructores
-	public Actividad(){
-		this.esta_habilitada=true;
-	}
-	public Actividad(ResultSet rs) throws SQLException{
-		this.id=rs.getInt(1);
-		this.nombre=rs.getString(2);
-		this.descripcion=rs.getString(3);
-		this.esta_habilitada=rs.getBoolean(4);		
-	}
+	public Actividad(){	}
+
 	//Metodos
 	public Boolean getEsta_habilitada() {
 		return esta_habilitada;
@@ -49,5 +55,13 @@ public class Actividad {
 	}
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public List<Ruta> getRutas() {
+		return rutas;
+	}
+
+	public void setRutas(List<Ruta> rutas) {
+		this.rutas = rutas;
 	}
 }

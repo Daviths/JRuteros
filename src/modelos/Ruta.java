@@ -1,48 +1,64 @@
 package modelos;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.List;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "rutas")
 public class Ruta {
 	//Variables
+	@Id @GeneratedValue
+	@Column(name = "id")
 	private Integer id;
-	private String	nombre,
-					descripcion,
-					fecha_de_realizacion,
-					dificultad,
-					actividad,
-				  	usuario;
+	
+	@Column(name = "nombre")
+	private String	nombre;
+	
+	@Column(name = "descripcion")
+	private String	descripcion;
+	
+	@Column(name = "fecha_de_realizacion")
+	private String	fecha_de_realizacion;
+	
+	@Column(name = "dificultad")
+	private String	dificultad;
+	
+	@ManyToOne(optional = false)
+	@JoinColumn(name="actividad_id")
+	private String	actividad;
+	
+	@ManyToOne(optional = false)
+	@JoinColumn(name="usuario_id")
+	private String	usuario;
 					
-	private Boolean es_publica, 
-					es_circular;
+	@Column(name = "es_publica")
+	private Boolean es_publica; 
 	
-	private Float 	distancia,
-					tiempo_estimado;
+	@Column(name = "es_circular")
+	private Boolean	es_circular;
 	
+	@Column(name = "distancia")
+	private Float 	distancia;
+	
+	@Column(name = "tiempo_estimado")
+	private Float	tiempo_estimado;
+	
+	@OneToMany(mappedBy="ruta")
+	private List<Foto> fotos;
+	
+	@OneToMany(mappedBy="ruta")
+	private List<Coordenada> coordenadas;
+
+
 	//Constructores
-	public Ruta(){
-		
-	}
-	public Ruta(ResultSet rs) throws SQLException{
-		this.id = rs.getInt(1);
-		this.nombre = rs.getString(2);
-		this.descripcion = rs.getString(3);
-		this.fecha_de_realizacion = rs.getString(4);
-		this.es_publica = rs.getBoolean(5);
-		this.es_circular = rs.getBoolean(6);
-		this.distancia = rs.getFloat(7);
-		this.tiempo_estimado = rs.getFloat(8);
-		this.actividad = rs.getString(9);		
-		this.dificultad = rs.getString(10);
-		this.usuario = rs.getString(11);
-	}
+	public Ruta(){}	
+	//Metodos
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	//Metodos
 	public String getNombre() {
 		return nombre;
 	}
@@ -118,6 +134,18 @@ public class Ruta {
 	}
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
+	}
+	public List<Foto> getFotos() {
+		return fotos;
+	}
+	public void setFotos(List<Foto> fotos) {
+		this.fotos = fotos;
+	}
+	public List<Coordenada> getCoordenadas() {
+		return coordenadas;
+	}
+	public void setCoordenadas(List<Coordenada> coordenadas) {
+		this.coordenadas = coordenadas;
 	}
 
 }

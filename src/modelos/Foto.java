@@ -1,11 +1,30 @@
 package modelos;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "fotos")
 public class Foto {
 	//variables
+	@Id @GeneratedValue
+	@Column(name = "id")
+	private Integer id;
+	
+	@Column(name = "nombre")
 	private String nombre;
+	
+	@Column(name = "tipo")
 	private String tipo;
+	
+	@Column(name = "contenido")
 	private String contenido;
+	
+	@ManyToOne(optional = false)
+	@JoinColumn(name="ruta_id")
 	public Ruta Ruta;
+	
+	//Contructor
+	public Foto(){}
+	
 	//metodos
 	public String getNombre() {
 		return nombre;
@@ -24,5 +43,21 @@ public class Foto {
 	}
 	public void setContenido(String contenido) {
 		this.contenido = contenido;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Ruta getRuta() {
+		return Ruta;
+	}
+
+	public void setRuta(Ruta ruta) {
+		Ruta = ruta;
 	}
 }
