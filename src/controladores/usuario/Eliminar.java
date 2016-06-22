@@ -17,7 +17,7 @@ public class Eliminar extends HttpServlet {
 			throws ServletException, IOException {
 		String usuario = request.getParameter("usuario");
 		UsuarioDAO usuario_dao = new UsuarioDAO();
-		usuario_dao.delete(usuario);
+		//usuario_dao.delete(usuario);
 		response.sendRedirect("usuarios");
 	}
 	

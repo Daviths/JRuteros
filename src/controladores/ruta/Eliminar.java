@@ -15,7 +15,7 @@ public class Eliminar extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nombre = request.getParameter("nombre");
-		RutaDAO.delete(nombre);
+		//RutaDAO.delete(nombre);
 		response.sendRedirect("rutas");
 	}
 }

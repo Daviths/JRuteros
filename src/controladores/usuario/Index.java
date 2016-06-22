@@ -17,7 +17,7 @@ public class Index extends HttpServlet {
        
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		request.setAttribute("usuarios", UsuarioDAO.getAll());
+		//request.setAttribute("usuarios", UsuarioDAO.getAll());
 		RequestDispatcher rs = request.getRequestDispatcher("/vistas/Usuarios/index.jsp"); 
 		rs.forward(request, response);
 	}

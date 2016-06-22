@@ -25,7 +25,7 @@ public class Nuevo extends HttpServlet {
 		usuario.setSexo(request.getParameter("sexo"));
 		usuario.setEmail(request.getParameter("email"));
 		
-		UsuarioDAO.addNew(usuario);
+		//UsuarioDAO.addNew(usuario);
 		
 		response.sendRedirect("./vistas/login.html");	
 	}

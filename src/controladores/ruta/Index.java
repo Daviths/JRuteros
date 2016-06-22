@@ -18,8 +18,8 @@ public class Index extends HttpServlet {
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		request.setAttribute("actividades", ActividadDAO.getAll());
-		request.setAttribute("rutas", RutaDAO.getAll());
+		//request.setAttribute("actividades", ActividadDAO.getAll());
+		//request.setAttribute("rutas", RutaDAO.getAll());
 		RequestDispatcher rs = request.getRequestDispatcher("/vistas/Rutas/index.jsp"); 
 		rs.forward(request, response);
 	}

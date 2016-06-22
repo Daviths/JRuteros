@@ -21,8 +21,8 @@ public class Ver extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String actividad = request.getParameter("nombre");
-		Actividad u = ActividadDAO.getActividad(actividad);
-		request.setAttribute("actividad", u);
+		//Actividad u = ActividadDAO.getActividad(actividad);
+		//request.setAttribute("actividad", u);
 		RequestDispatcher rd = request.getRequestDispatcher("/vistas/Actividades/ver.jsp");
 		try {
 			rd.forward(request, response);

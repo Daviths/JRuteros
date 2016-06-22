@@ -16,7 +16,7 @@ public class CambiarEstado extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String usuario = request.getParameter("usuario");
-		UsuarioDAO.cambiarEstado(usuario);		
+		//UsuarioDAO.cambiarEstado(usuario);		
 		response.sendRedirect("usuarios");
 	}
 	

@@ -18,7 +18,7 @@ public class Nueva extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("actividades", ActividadDAO.getAll());
+		//request.setAttribute("actividades", ActividadDAO.getAll());
 		RequestDispatcher rs = request.getRequestDispatcher("/vistas/Rutas/nueva.jsp"); 
 		rs.forward(request, response);
 	}
@@ -35,7 +35,7 @@ public class Nueva extends HttpServlet {
 		ruta.setTiempo_estimado(Float.parseFloat(request.getParameter("tiempo")));
 		ruta.setUsuario(request.getParameter("usuario"));
 		ruta.setFecha_de_realizacion(request.getParameter("fecha"));
-		RutaDAO.addNew(ruta);		
+		//RutaDAO.addNew(ruta);		
 		response.sendRedirect("rutas");	
 	}
 

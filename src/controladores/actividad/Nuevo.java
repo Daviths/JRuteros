@@ -18,7 +18,7 @@ public class Nuevo extends HttpServlet {
 		Actividad actividad = new Actividad();
 		actividad.setNombre(request.getParameter("nombre"));
 		actividad.setDescripcion(request.getParameter("descripcion"));
-		ActividadDAO.addNew(actividad);		
+		//ActividadDAO.addNew(actividad);		
 		response.sendRedirect("actividades");	
 	}
 

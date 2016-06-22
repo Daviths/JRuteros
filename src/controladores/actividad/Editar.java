@@ -21,8 +21,8 @@ public class Editar extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nombre = request.getParameter("nombre");
-		Actividad u = ActividadDAO.getActividad(nombre);
-		request.setAttribute("actividad", u);
+		//Actividad u = ActividadDAO.getActividad(nombre);
+		//request.setAttribute("actividad", u);
 		RequestDispatcher rd = request.getRequestDispatcher("/vistas/Actividades/editar.jsp");
 		try {
 			rd.forward(request, response);
@@ -35,7 +35,7 @@ public class Editar extends HttpServlet {
 		String descripcion = request.getParameter("descripcion");
 		String nombre_nuevo = request.getParameter("nombre_nuevo");
 		String nombre_original = request.getParameter("nombre_original");
-		ActividadDAO.edit(nombre_original, nombre_nuevo, descripcion);
+		//ActividadDAO.edit(nombre_original, nombre_nuevo, descripcion);
 		response.sendRedirect("actividades");
 	}
 

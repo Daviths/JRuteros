@@ -16,7 +16,7 @@ public class Eliminar extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String nombre = request.getParameter("nombre");
-		ActividadDAO.delete(nombre);
+		//ActividadDAO.delete(nombre);
 		response.sendRedirect("actividades");
 	}
 	

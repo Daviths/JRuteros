@@ -21,8 +21,8 @@ public class Ver extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String usuario = request.getParameter("usuario");
-		Usuario u = UsuarioDAO.getUsuario(usuario);
-		request.setAttribute("usuario", u);
+		//Usuario u = UsuarioDAO.getUsuario(usuario);
+		//request.setAttribute("usuario", u);
 		RequestDispatcher rd = request.getRequestDispatcher("/vistas/Usuarios/ver.jsp");
 		try {
 			rd.forward(request, response);

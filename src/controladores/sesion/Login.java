@@ -20,7 +20,7 @@ public class Login extends HttpServlet {
 		String usuario = request.getParameter("usuario");
 		String password = request.getParameter("password");
 		
-		Usuario u = UsuarioDAO.getUsuario(usuario);
+		/*Usuario u = UsuarioDAO.getUsuario(usuario);
 		
 		if(u != null) {
 			if(u.getPassword().equals(password)) {
@@ -44,7 +44,7 @@ public class Login extends HttpServlet {
 		} else {
 			System.out.println("USUARIO INCORRECTO O NO EXISTE");
 			response.sendRedirect("../JRuteros/vistas/login.html?error=Usuario_incorrecto");
-		}
+		}*/
 		
 	}
 }

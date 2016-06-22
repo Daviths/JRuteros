@@ -28,8 +28,8 @@ public class MisRutas extends HttpServlet {
 		HttpSession sesion = request.getSession(true);
 		Usuario u = (Usuario) sesion.getAttribute("usuario");
 		request.setAttribute("user", u.getUsuario());
-		request.setAttribute("actividades", ActividadDAO.getAll());
-		request.setAttribute("rutas", RutaDAO.getAll());
+		//request.setAttribute("actividades", ActividadDAO.getAll());
+		//request.setAttribute("rutas", RutaDAO.getAll());
 		RequestDispatcher rs = request.getRequestDispatcher("/vistas/Rutas/propias.jsp"); 
 		rs.forward(request, response);
 	}

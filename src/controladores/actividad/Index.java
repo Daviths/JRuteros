@@ -17,7 +17,7 @@ public class Index extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		request.setAttribute("actividades", ActividadDAO.getAll());
+		//request.setAttribute("actividades", ActividadDAO.getAll());
 		RequestDispatcher rs = request.getRequestDispatcher("/vistas/Actividades/index.jsp"); 
 		rs.forward(request, response);
 	}

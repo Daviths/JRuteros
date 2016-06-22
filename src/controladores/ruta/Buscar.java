@@ -26,8 +26,8 @@ public class Buscar extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String ruta = request.getParameter("nombre");
-		Ruta u = RutaDAO.getRuta(ruta);
-		request.setAttribute("ruta", u);
+		//Ruta u = RutaDAO.getRuta(ruta);
+		//request.setAttribute("ruta", u);
 		RequestDispatcher rd = request.getRequestDispatcher("/vistas/Rutas/ver.jsp");
 		try {
 			rd.forward(request, response);

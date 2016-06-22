@@ -16,7 +16,7 @@ public class CambiarEstado extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String nombre = request.getParameter("nombre");
-		ActividadDAO.cambiarEstado(nombre);		
+		//ActividadDAO.cambiarEstado(nombre);		
 		response.sendRedirect("actividades");
 	}
 	
