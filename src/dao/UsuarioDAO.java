@@ -1,131 +1,114 @@
 package dao;
 
-import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
-import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.ResultSet;
-import com.sun.istack.internal.logging.Logger;
-
-import db.DBUtils;
-import modelos.Ruta;
 import modelos.Usuario;
 
-public class UsuarioDAO {	
-	public static Integer addNew(Usuario usuario, SessionFactory factory) {
-		Session session = factory.openSession();
-	    Transaction tx = null;
+public class UsuarioDAO implements DAO {	
+	
+	public Integer addNew(Object o ,  EntityManager em) {
+		Usuario usuario = (Usuario) o;
+		EntityTransaction etx = em.getTransaction();
 	    Integer usuarioID = null;
 	    try{
-	       tx = session.beginTransaction();
-		   usuarioID = (Integer) session.save(usuario); 
-	       tx.commit();
+	      etx.begin();
+		   em.persist(usuario); 
+	       etx.commit();
 	    }catch (HibernateException e) {
-	       if (tx!=null) tx.rollback();
 	       e.printStackTrace(); 
 	    }finally {
-	       session.close(); 
+	       em.close(); 
 	    }
 	    return usuarioID;
 	}
 	
-	public static List<Usuario> getAll(SessionFactory factory) {
+	public List<Usuario> getAll( EntityManager em) {
 		List<Usuario> usuarios = new LinkedList<Usuario>();
-		Session session = factory.openSession();
-		Transaction tx = null;
+		EntityTransaction etx = em.getTransaction();
 		try{
-			tx = session.beginTransaction();
-			List<?> listausuarios = session.createQuery("FROM usuarios").list(); 
-			for (Iterator<?> iterator = listausuarios.iterator(); iterator.hasNext();){
+			etx.begin();
+			Query q = em.createQuery("from usuarios");
+			List<Usuario> listausuarios =(List<Usuario>)(q).getResultList();
+			for (Iterator<Usuario> iterator = listausuarios.iterator(); iterator.hasNext();){
 				Usuario u = (Usuario) iterator.next(); 
 				usuarios.add(u);
 			}
-			tx.commit();
 		}catch (HibernateException e) {
-			if (tx!=null) tx.rollback();
 			e.printStackTrace(); 
 		}finally {
-			session.close(); 
+			em.close(); 
 		}
 		return usuarios;
 	}
 	
-	public static Usuario getUsuario(Integer UsuarioID, SessionFactory factory) {
+	public Usuario getUsuario(Integer UsuarioID,  EntityManager em) {
 		Usuario u = null;
-		Session session = factory.openSession();
-	    Transaction tx = null;
+		EntityTransaction etx = em.getTransaction();
 	    try{
-	       tx = session.beginTransaction();
-	       u = (Usuario)session.get(Usuario.class, UsuarioID);
+	       etx.begin();
+	       u = (Usuario)em.find(Usuario.class, UsuarioID);
 	    }catch (HibernateException e) {
-	    if (tx!=null) tx.rollback();
 	    	e.printStackTrace(); 
 	    }finally {
-	    	session.close(); 
+	    	em.close(); 
 	    }
 		return u;
 	}
 	
-	public void edit(Integer UsuarioID, String dni, String domicilio, String nombre, String apellido, String sexo, String email, SessionFactory factory) {
-		Session session = factory.openSession();
-	    Transaction tx = null;
+	public void edit(Integer UsuarioID, String dni, String domicilio, String nombre, String apellido, String sexo, String email,  EntityManager em) {
+		EntityTransaction etx = em.getTransaction();
 	    try{
-	       tx = session.beginTransaction();
-	       Usuario usuario = (Usuario)session.get(Usuario.class, UsuarioID); 
+	      etx.begin();
+	       Usuario usuario = (Usuario)em.find(Usuario.class, UsuarioID); 
 	       usuario.setApellido(apellido);
 	       usuario.setDni(dni);
 	       usuario.setDomicilio(domicilio);
 	       usuario.setEmail(email);
 	       usuario.setNombre(nombre);
 	       usuario.setSexo(sexo);
-	       session.update(usuario); 
-	       tx.commit();
+	       em.merge(usuario); 
+	       etx.commit();
 	    }catch (HibernateException e) {
-	    	if (tx!=null) tx.rollback();
 	      	e.printStackTrace(); 
 	    }finally {
-	         session.close(); 
+	         em.close(); 
 	    }
 	}
 	
-	public static void cambiarEstado(Integer UsuarioID, SessionFactory factory) {
-		Session session = factory.openSession();
-	    Transaction tx = null;
+	public void cambiarEstado(Integer UsuarioID,  EntityManager em) {
+		EntityTransaction etx = em.getTransaction();
 	    try{
-	       tx = session.beginTransaction();
-	       Usuario usuario = (Usuario)session.get(Usuario.class, UsuarioID); 
+	      etx.begin();
+	       Usuario usuario = (Usuario)em.find(Usuario.class, UsuarioID); 
 	       usuario.setEsta_habilitado(!usuario.getEsta_habilitado());
-	       session.update(usuario); 
-	       tx.commit();
+	       em.merge(usuario); 
+	       etx.commit();
 	    }catch (HibernateException e) {
-	    	if (tx!=null) tx.rollback();
 	      	e.printStackTrace(); 
 	    }finally {
-	    	session.close(); 
+	    	em.close(); 
 	    }
 	}
 	
-	public void delete(Integer UsuarioID, SessionFactory factory) {
-		Session session = factory.openSession();
-	    Transaction tx = null;
+	public void delete(Integer UsuarioID,  EntityManager em) {
+		EntityTransaction etx = em.getTransaction();
 	    try{
-	    	tx = session.beginTransaction();
-	    	Usuario usuario = (Usuario)session.get(Usuario.class, UsuarioID); 
-	    	session.delete(usuario); 
-	    	tx.commit();
+	    	etx.begin();
+	    	Usuario usuario = (Usuario)em.find(Usuario.class, UsuarioID); 
+	    	em.detach(usuario); 
+	    	etx.commit();
 	    }catch (HibernateException e) {
-	    	if (tx!=null) tx.rollback();
 	    	e.printStackTrace(); 
 	    }finally {
-	    	session.close(); 
+	    	em.close(); 
 	    }
 	}
 }

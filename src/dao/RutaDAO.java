@@ -4,75 +4,70 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import modelos.Ruta;
 
-public class RutaDAO {
+public class RutaDAO implements DAO {
 	
-	public static Integer addNew(Ruta ruta, SessionFactory factory){
-		Session session = factory.openSession();
-	    Transaction tx = null;
+	public Integer addNew(Object o, EntityManager em){
+		Ruta ruta = (Ruta) o;
+		EntityTransaction etx = em.getTransaction();
 	    Integer rutaID = null;
 	    try{
-	       tx = session.beginTransaction();
-	       rutaID = (Integer) session.save(ruta); 
-	       tx.commit();
+	    	etx.begin();
+	    	em.persist(ruta);
+	    	etx.commit();
 	    }catch (HibernateException e) {
-	       if (tx!=null) tx.rollback();
 	       e.printStackTrace(); 
 	    }finally {
-	       session.close(); 
+	       em.close(); 
 	    }
 	    return rutaID;
 	}
 	
-	public static List<Ruta> getAll(SessionFactory factory) {
+	public List<Ruta> getAll(EntityManager em) {
 		List<Ruta> rutas = new LinkedList<Ruta>();
-		Session session = factory.openSession();
-		Transaction tx = null;
+		EntityTransaction etx = em.getTransaction();
 		try{
-			tx = session.beginTransaction();
-			List<?> listarutas = session.createQuery("FROM rutas").list(); 
+			etx.begin();
+			Query q = em.createQuery("from rutas");
+			List<Ruta> listarutas=(List<Ruta>)(q).getResultList();
 			for (Iterator<?> iterator = listarutas.iterator(); iterator.hasNext();){
 				Ruta r = (Ruta) iterator.next(); 
 				rutas.add(r);
 			}
-			tx.commit();
 		}catch (HibernateException e) {
-			if (tx!=null) tx.rollback();
 			e.printStackTrace(); 
 		}finally {
-			session.close(); 
+			em.close(); 
 		}
 		return rutas;
 	}
 	
-	public static Ruta getRuta(Integer RutaID, SessionFactory factory) {
+	public Ruta getRuta(Integer RutaID, EntityManager em) {
 		Ruta u = null;
-		Session session = factory.openSession();
-	    Transaction tx = null;
+		EntityTransaction etx = em.getTransaction();
 	    try{
-	       tx = session.beginTransaction();
-	       u = (Ruta)session.get(Ruta.class, RutaID);
+	    	etx.begin();
+	    	u = (Ruta)em.find(Ruta.class, RutaID); 
 	    }catch (HibernateException e) {
-	    if (tx!=null) tx.rollback();
 	    	e.printStackTrace(); 
 	    }finally {
-	    	session.close(); 
+	    	em.close(); 
 	    }
 		return u;
 	}
 	
-	public static void edit(Integer RutaID, String nombre_nuevo,String descripcion, Boolean es_publica, Boolean es_circular, Float distancia, Float tiempo_estimado, String actividad, String dificultad, SessionFactory factory) {
-		Session session = factory.openSession();
-	    Transaction tx = null;
+	public void edit(Integer RutaID, String nombre_nuevo,String descripcion, Boolean es_publica, Boolean es_circular, Float distancia, Float tiempo_estimado, String actividad, String dificultad, EntityManager em) {
+		EntityTransaction etx = em.getTransaction();
 	    try{
-	       tx = session.beginTransaction();
-	       Ruta ruta = (Ruta)session.get(Ruta.class, RutaID); 
+	       etx.begin();
+	       Ruta ruta = (Ruta)em.find(Ruta.class, RutaID); 
 	       ruta.setNombre(nombre_nuevo);
 	       ruta.setDescripcion(descripcion);
 	       ruta.setEs_publica(es_publica);
@@ -81,46 +76,41 @@ public class RutaDAO {
 	       ruta.setDificultad(dificultad);
 	       ruta.setDistancia(distancia);
 	       ruta.setTiempo_estimado(tiempo_estimado);
-	       session.update(ruta); 
-	       tx.commit();
+	       em.merge(ruta); 
+	       etx.commit();
 	    }catch (HibernateException e) {
-	    	if (tx!=null) tx.rollback();
 	      	e.printStackTrace(); 
 	    }finally {
-	         session.close(); 
+	         em.close(); 
 	    }
 	}
 	
-	public static void cambiarEstado(Integer RutaID, SessionFactory factory) {
-		Session session = factory.openSession();
-	    Transaction tx = null;
+	public void cambiarEstado(Integer RutaID, EntityManager em) {
+		EntityTransaction etx = em.getTransaction();
 	    try{
-	       tx = session.beginTransaction();
-	       Ruta ruta = (Ruta)session.get(Ruta.class, RutaID); 
+	       etx.begin();
+	       Ruta ruta = (Ruta)em.find(Ruta.class, RutaID); 
 	       ruta.setEs_publica(!ruta.getEs_publica());
-	       session.update(ruta); 
-	       tx.commit();
+	       em.merge(ruta); 
+	       etx.commit();
 	    }catch (HibernateException e) {
-	    	if (tx!=null) tx.rollback();
 	      	e.printStackTrace(); 
 	    }finally {
-	    	session.close(); 
+	    	em.close(); 
 	    }
 	}
 	
-	public static void delete(Integer RutaID, SessionFactory factory) {
-		Session session = factory.openSession();
-	    Transaction tx = null;
+	public void delete(Integer RutaID, EntityManager em) {
+		EntityTransaction etx = em.getTransaction();
 	    try{
-	    	tx = session.beginTransaction();
-	    	Ruta ruta = (Ruta)session.get(Ruta.class, RutaID); 
-	    	session.delete(ruta); 
-	    	tx.commit();
+	    	etx.begin();
+	    	Ruta ruta = (Ruta)em.find(Ruta.class, RutaID); 
+	    	em.detach(ruta); 
+	    	etx.commit();
 	    }catch (HibernateException e) {
-	    	if (tx!=null) tx.rollback();
 	    	e.printStackTrace(); 
 	    }finally {
-	    	session.close(); 
+	    	em.close(); 
 	    }
 	}
 }

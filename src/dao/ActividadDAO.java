@@ -4,117 +4,108 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import modelos.Actividad;
 
-public class ActividadDAO {
+public class ActividadDAO implements DAO {
 	
-	public static Integer addNew(Actividad actividad, SessionFactory factory){
-		Session session = factory.openSession();
-	    Transaction tx = null;
+	public Integer addNew(Object o, EntityManager em){
+		EntityTransaction etx = em.getTransaction();		
 	    Integer actividadID = null;
+	    Actividad actividad = (Actividad) o;
 	    try{
-	       tx = session.beginTransaction();
-	       actividadID = (Integer) session.save(actividad); 
-	       tx.commit();
+	    	etx.begin();
+	    	em.persist(actividad);
+	    	etx.commit();
 	    }catch (HibernateException e) {
-	       if (tx!=null) tx.rollback();
 	       e.printStackTrace(); 
-	    }finally {
-	       session.close(); 
+	    }finally {	    	
+			em.close();
 	    }
 	    return actividadID;
 	}
 	
-	public static List<Actividad> getAll(SessionFactory factory) {
-		Session session = factory.openSession();
-		Transaction tx = null;
+	public List<Actividad> getAll(EntityManager em) {
+		EntityTransaction etx = em.getTransaction();
 		List<Actividad> listaactividades = new LinkedList<Actividad>();
 		try{
-			tx = session.beginTransaction();
-			List<?> actividades = session.createQuery("FROM actividades").list(); 
+			etx.begin();
+			Query q = em.createQuery("from actividades");
+			List<Actividad> actividades=(List<Actividad>)(q).getResultList();
 			for (Iterator<?> iterator = actividades.iterator(); iterator.hasNext();){
 				Actividad actividad = (Actividad) iterator.next(); 
 				listaactividades.add(actividad);
 			}
-			tx.commit();
 		}catch (HibernateException e) {
-			if (tx!=null) tx.rollback();
 			e.printStackTrace(); 
 		}finally {
-			session.close(); 
+			em.close();
 		}
 		return listaactividades;
 	}
 	
-	public static Actividad getActividad(Integer ActividadID, SessionFactory factory) {
+	public Actividad getActividad(Integer ActividadID, EntityManager em) {
 		Actividad u = null;
-		Session session = factory.openSession();
-	    Transaction tx = null;
+		EntityTransaction etx = em.getTransaction();
 	    try{
-	       tx = session.beginTransaction();
-	       u = (Actividad)session.get(Actividad.class, ActividadID);
+	    	etx.begin();
+	    	u = (Actividad)em.find(Actividad.class, ActividadID); 
 	    }catch (HibernateException e) {
-	    if (tx!=null) tx.rollback();
 	    	e.printStackTrace(); 
 	    }finally {
-	    	session.close(); 
+	    	em.close(); 
 	    }
 		return u;
 	}
 	
-	public static void edit(Integer ActividadID, String nombre_nuevo, String descripcion, SessionFactory factory) {
-		Session session = factory.openSession();
-	    Transaction tx = null;
+	public void edit(Integer ActividadID, String nombre_nuevo, String descripcion, EntityManager em) {
+		EntityTransaction etx = em.getTransaction();
 	    try{
-	       tx = session.beginTransaction();
-	       Actividad actividad = (Actividad)session.get(Actividad.class, ActividadID); 
-	       actividad.setDescripcion(descripcion);
-	       actividad.setNombre(nombre_nuevo);
-	       session.update(actividad); 
-	       tx.commit();
+	    	etx.begin();
+	    	Actividad actividad = (Actividad)em.find(Actividad.class, ActividadID); 
+			actividad.setDescripcion(descripcion);
+			actividad.setNombre(nombre_nuevo);
+			em.merge(actividad); 
+			etx.commit();
 	    }catch (HibernateException e) {
-	    	if (tx!=null) tx.rollback();
 	      	e.printStackTrace(); 
 	    }finally {
-	         session.close(); 
+	         em.close(); 
 	    }
 	}
 	
-	public static void cambiarEstado(Integer ActividadID, SessionFactory factory) {
-		Session session = factory.openSession();
-	    Transaction tx = null;
+	public void cambiarEstado(Integer ActividadID, EntityManager em) {
+		EntityTransaction etx = em.getTransaction();
 	    try{
-	       tx = session.beginTransaction();
-	       Actividad actividad = (Actividad)session.get(Actividad.class, ActividadID); 
-	       actividad.setEsta_habilitada(!actividad.getEsta_habilitada());
-	       session.update(actividad); 
-	       tx.commit();
+	    	etx.begin();
+			Actividad actividad = (Actividad)em.find(Actividad.class, ActividadID); 
+			actividad.setEsta_habilitada(!actividad.getEsta_habilitada());
+			em.merge(actividad); 
+			etx.commit();
 	    }catch (HibernateException e) {
-	    	if (tx!=null) tx.rollback();
 	      	e.printStackTrace(); 
 	    }finally {
-	    	session.close(); 
+	    	em.close(); 
 	    }
 	}
 	
-	public static void delete(Integer ActividadID, SessionFactory factory) {
-		Session session = factory.openSession();
-	    Transaction tx = null;
+	public void delete(Integer ActividadID, EntityManager em) {
+		EntityTransaction etx = em.getTransaction();
 	    try{
-	    	tx = session.beginTransaction();
-	    	Actividad actividad = (Actividad)session.get(Actividad.class, ActividadID); 
-	    	session.delete(actividad); 
-	    	tx.commit();
+	    	etx.begin();
+	    	Actividad actividad = (Actividad)em.find(Actividad.class, ActividadID);
+	    	em.detach(actividad);	
+	    	etx.commit();
 	    }catch (HibernateException e) {
-	    	if (tx!=null) tx.rollback();
 	    	e.printStackTrace(); 
 	    }finally {
-	    	session.close(); 
+	    	em.close(); 
 	    }
 	}
+
 }
