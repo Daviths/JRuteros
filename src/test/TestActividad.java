@@ -22,7 +22,7 @@ import modelos.Actividad;
 @WebServlet("/TestActividad")
 public class TestActividad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	EntityManagerFactory emf = Persistence.createEntityManagerFactory("miUP");
+	EntityManagerFactory emf = Persistence.createEntityManagerFactory("JRuterosPersistenceUnit");
 	EntityManager em = emf.createEntityManager();
 
 	public void init(ServletConfig config) throws ServletException {
