@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sun.istack.internal.logging.Logger;
 
-import dao.RutaDAO;
+import dao.RutaDAOImplementacion;
 import modelos.Ruta;
 
 

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sun.istack.internal.logging.Logger;
 
-import dao.UsuarioDAO;
+import dao.UsuarioDAOImplementacion;
 import modelos.Usuario;
 
 @WebServlet("/ver_usuario")

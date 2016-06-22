@@ -8,7 +8,8 @@ import javax.persistence.*;
 @Table(name = "actividades")
 public class Actividad {
 	//Variables
-	@Id @GeneratedValue
+	@Id 
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id")
 	private Integer id;
 	

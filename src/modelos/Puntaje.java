@@ -6,7 +6,8 @@ import javax.persistence.*;
 @Table(name = "puntajes")
 public class Puntaje {
 	//Variables
-	@Id @GeneratedValue
+	@Id 
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id")
 	private Integer id;
 	

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.UsuarioDAO;
+import dao.UsuarioDAOImplementacion;
 
 @WebServlet("/cambiar_estado_usuario")
 public class CambiarEstado extends HttpServlet {

@@ -6,7 +6,8 @@ import javax.persistence.*;
 @Table(name = "coordenadas")
 public class Coordenada {
 	//variables
-	@Id @GeneratedValue
+	@Id 
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id")
 	private Integer id;	
 	

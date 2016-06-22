@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.RutaDAO;
+import dao.RutaDAOImplementacion;
 
 @WebServlet("/eliminar_ruta")
 public class Eliminar extends HttpServlet {

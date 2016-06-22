@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.ActividadDAO;
-import dao.RutaDAO;
+import dao.ActividadDAOImplementacion;
+import dao.RutaDAOImplementacion;
 import modelos.Ruta;
 
 @WebServlet("/nueva_ruta")

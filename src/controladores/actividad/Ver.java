@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sun.istack.internal.logging.Logger;
 
-import dao.ActividadDAO;
+import dao.ActividadDAOImplementacion;
 import modelos.Actividad;
 
 @WebServlet("/ver_actividad")
