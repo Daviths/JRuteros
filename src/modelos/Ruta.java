@@ -1,16 +1,22 @@
 package modelos;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "rutas")
-public class Ruta {
+@Table(name = "rutas", schema = "jruteros")
+public class Ruta implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	//Variables
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id")
-	private Integer id;
+	private Integer idruta;
 	
 	@Column(name = "nombre")
 	private String	nombre;
@@ -25,12 +31,12 @@ public class Ruta {
 	private String	dificultad;
 	
 	@ManyToOne(optional = false)
-	@JoinColumn(name="actividad_id")
-	private String	actividad;
+	@JoinColumn(name="idactividad")
+	private Actividad	idactividad;
 	
 	@ManyToOne(optional = false)
-	@JoinColumn(name="usuario_id")
-	private String	usuario;
+	@JoinColumn(name="idusuario")
+	private Usuario	idusuario;
 					
 	@Column(name = "es_publica")
 	private Boolean es_publica; 
@@ -44,22 +50,16 @@ public class Ruta {
 	@Column(name = "tiempo_estimado")
 	private Float	tiempo_estimado;
 	
-	@OneToMany(mappedBy="ruta")
+	@OneToMany(orphanRemoval = true, mappedBy = "Ruta")
 	private List<Foto> fotos;
 	
-	@OneToMany(mappedBy="ruta")
+	@OneToMany(orphanRemoval = true, mappedBy = "Ruta")
 	private List<Coordenada> coordenadas;
 
 
 	//Constructores
 	public Ruta(){}	
 	//Metodos
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -115,32 +115,36 @@ public class Ruta {
 	public void setTiempo_estimado(Float tiempo_estimado) {
 		this.tiempo_estimado = tiempo_estimado;
 	}	
-	// FALTA RECORRIDO
-	// FALTAN FOTOS
-	// PREGUNTAR BORRADO LOGICO
 	public String getDificultad() {
 		return dificultad;
 	}
 	public void setDificultad(String dificultad) {
 		this.dificultad = dificultad;
 	}
-	public String getActividad() {
-		return actividad;
-	}
-	public void setActividad(String actividad) {
-		this.actividad = actividad;
-	}
-	public String getUsuario() {
-		return usuario;
-	}
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
+
 	public List<Foto> getFotos() {
 		return fotos;
 	}
 	public void setFotos(List<Foto> fotos) {
 		this.fotos = fotos;
+	}
+	public Integer getIdruta() {
+		return idruta;
+	}
+	public void setIdruta(Integer idruta) {
+		this.idruta = idruta;
+	}
+	public Actividad getIdactividad() {
+		return idactividad;
+	}
+	public void setIdactividad(Actividad idactividad) {
+		this.idactividad = idactividad;
+	}
+	public Usuario getIdusuario() {
+		return idusuario;
+	}
+	public void setIdusuario(Usuario idusuario) {
+		this.idusuario = idusuario;
 	}
 	public List<Coordenada> getCoordenadas() {
 		return coordenadas;

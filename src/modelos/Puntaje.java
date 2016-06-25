@@ -8,7 +8,7 @@ public class Puntaje {
 	//Variables
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id")
+	@Column(name = "idpuntaje")
 	private Integer id;
 	
 	@Column(name = "puntos")
@@ -17,7 +17,7 @@ public class Puntaje {
 	@Column(name = "fecha")
 	private String fecha;
 	
-	@OneToOne(optional = true, mappedBy="puntaje")
+	@OneToOne(optional = true)
 	private Ruta Ruta;
 	
 	//Contructor

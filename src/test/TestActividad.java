@@ -22,14 +22,16 @@ import modelos.Actividad;
 @WebServlet("/TestActividad")
 public class TestActividad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	EntityManagerFactory emf = Persistence.createEntityManagerFactory("JRuterosPersistenceUnit");
-	EntityManager em = emf.createEntityManager();
+	EntityManagerFactory emf;
+	EntityManager em;
 
 	public void init(ServletConfig config) throws ServletException {
 		
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		emf = Persistence.createEntityManagerFactory("JRPA2");
+		em = emf.createEntityManager();
 		EntityTransaction etx = em.getTransaction();
 		etx.begin();
 		
@@ -39,11 +41,11 @@ public class TestActividad extends HttpServlet {
 		a.setEsta_habilitada(true);
 		
 		em.persist(a);
-		
+		/*
 		List<Actividad> actividades=(List<Actividad>)(em.createQuery("from modelos.Actividad")).getResultList();
 		for (Actividad ac:actividades) {
 			response.getWriter().append("Nombre: ").append(ac.getNombre()).append('\n');
-		}		
+		}	*/	
 		etx.commit();
 		em.close();
 		response.getWriter().append("Served at: ").append(request.getContextPath());

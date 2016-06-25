@@ -7,7 +7,7 @@ public class Foto {
 	//variables
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id")
+	@Column(name = "idfotos")
 	private Integer id;
 	
 	@Column(name = "nombre")
@@ -21,7 +21,7 @@ public class Foto {
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name="ruta_id")
-	public Ruta Ruta;
+	private Ruta Ruta;
 	
 	//Contructor
 	public Foto(){}

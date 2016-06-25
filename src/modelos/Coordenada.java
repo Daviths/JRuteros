@@ -8,7 +8,7 @@ public class Coordenada {
 	//variables
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id")
+	@Column(name = "idcoordenadas")
 	private Integer id;	
 	
 	@Column(name = "x")

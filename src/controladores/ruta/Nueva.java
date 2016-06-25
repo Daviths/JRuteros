@@ -31,9 +31,9 @@ public class Nueva extends HttpServlet {
 		ruta.setEs_circular(request.getParameter("formato").equals("CIRCULAR"));
 		ruta.setDistancia(Float.parseFloat(request.getParameter("distancia")));
 		ruta.setDificultad(request.getParameter("dificultad"));
-		ruta.setActividad(request.getParameter("actividad"));
+		//ruta.setActividad(request.getParameter("actividad"));
 		ruta.setTiempo_estimado(Float.parseFloat(request.getParameter("tiempo")));
-		ruta.setUsuario(request.getParameter("usuario"));
+		//ruta.setUsuario(request.getParameter("usuario"));
 		ruta.setFecha_de_realizacion(request.getParameter("fecha"));
 		//RutaDAO.addNew(ruta);		
 		response.sendRedirect("rutas");	

@@ -1,15 +1,21 @@
 package modelos;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "usuarios")
-public class Usuario {
+public class Usuario implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	// Atributos
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id")
+	@Column(name = "idusuario")
 	private Integer id;
 	
 	@Column(name = "usuario")
@@ -45,7 +51,7 @@ public class Usuario {
 	@Column(name = "esta_habilitado")
 	private Boolean	esta_habilitado;	
 	
-	@OneToMany(mappedBy="usuario")
+	@OneToMany(mappedBy="idusuario", orphanRemoval = true)
 	private List<Ruta> rutas;
 	
 	// Constructores

@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import org.hibernate.HibernateException;
 
+import modelos.Actividad;
 import modelos.Ruta;
 
 public class RutaDAOImplementacion implements RutaDAO {
@@ -63,7 +64,7 @@ public class RutaDAOImplementacion implements RutaDAO {
 		return u;
 	}
 	
-	public void edit(Integer RutaID, String nombre_nuevo,String descripcion, Boolean es_publica, Boolean es_circular, Float distancia, Float tiempo_estimado, String actividad, String dificultad, EntityManager em) {
+	public void edit(Integer RutaID, String nombre_nuevo,String descripcion, Boolean es_publica, Boolean es_circular, Float distancia, Float tiempo_estimado, Actividad actividad, String dificultad, EntityManager em) {
 		EntityTransaction etx = em.getTransaction();
 	    try{
 	       etx.begin();
@@ -72,7 +73,7 @@ public class RutaDAOImplementacion implements RutaDAO {
 	       ruta.setDescripcion(descripcion);
 	       ruta.setEs_publica(es_publica);
 	       ruta.setEs_circular(es_circular);
-	       ruta.setActividad(actividad);
+	       ruta.setIdactividad(actividad);
 	       ruta.setDificultad(dificultad);
 	       ruta.setDistancia(distancia);
 	       ruta.setTiempo_estimado(tiempo_estimado);

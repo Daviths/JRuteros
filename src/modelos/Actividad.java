@@ -1,17 +1,23 @@
 package modelos;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "actividades")
-public class Actividad {
+public class Actividad implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	//Variables
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "id")
-	private Integer id;
+	@Column(name = "idactividad")
+	private int id;
 	
 	@Column(name = "nombre")
 	private String  nombre;
@@ -22,7 +28,7 @@ public class Actividad {
 	@Column(name = "esta_habilitada")
 	private Boolean esta_habilitada;	
 	
-	@OneToMany(mappedBy="actividad")
+	@OneToMany(orphanRemoval = true, mappedBy = "idactividad")
 	private List<Ruta> rutas;
 	//Constructores
 	public Actividad(){	}
@@ -51,10 +57,10 @@ public class Actividad {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
