@@ -41,7 +41,7 @@ public class FotoTest {
 
 		int foto_id = fotoDAO.findByName("testEdit").getId();		
 		
-		fotoDAO.edit(foto_id, "NUEVO_NOMBRE", "NUEVO_TIPO", "NUEVA_CONTENIDO");		
+		fotoDAO.edit(foto_id, "NUEVO_NOMBRE", "NUEVO_TIPO", "NUEVO_CONTENIDO");		
 		foto = fotoDAO.getFoto(foto_id);
 		
 		Assert.assertEquals("NUEVO_NOMBRE", foto.getNombre());
