@@ -5,46 +5,58 @@ import javax.persistence.*;
 @Entity
 @Table(name = "coordenadas")
 public class Coordenada {
-	//variables
+	
+	// Variables
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "idcoordenadas")
-	private Integer id;	
+	@Column(name = "id")
+	private int id;	
 	
 	@Column(name = "x")
-	private Float x;
+	private Double x;
 	
 	@Column(name = "y")
-	private Float y;
-	
+	private Double y;
+	/*
 	@ManyToOne(optional = false)
 	@JoinColumn(name="ruta_id")
 	private Ruta Ruta;
+	*/
+	// Constructores
+	public Coordenada() {
+		
+	}
 	
-	//Constructor
-	public Coordenada(){}
+	public Coordenada(Double x, Double y) {
+		setX(x);
+		setY(y);
+	}
 	
-	//metodos
-	public Float getX() {
+	// Métodos
+	public Double getX() {
 		return x;
 	}
-	public void setX(Float x) {
+	
+	public void setX(Double x) {
 		this.x = x;
 	}
-	public Float getY() {
+	
+	public Double getY() {
 		return y;
 	}
-	public void setY(Float y) {
+	
+	public void setY(Double y) {
 		this.y = y;
 	}
-	public Integer getId() {
+	
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-
+	/*
 	public Ruta getRuta() {
 		return Ruta;
 	}
@@ -52,4 +64,5 @@ public class Coordenada {
 	public void setRuta(Ruta ruta) {
 		Ruta = ruta;
 	}
+	*/
 }
