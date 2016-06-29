@@ -1,22 +1,18 @@
 package modelos;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "usuarios")
 public class Usuario implements Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	// Atributos
 	@Id 
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "idusuario")
-	private Integer id;
+	@Column(name = "id")
+	private int id;
 	
 	@Column(name = "usuario")
 	private String 	usuario;
@@ -50,12 +46,31 @@ public class Usuario implements Serializable{
 	
 	@Column(name = "esta_habilitado")
 	private Boolean	esta_habilitado;	
-	
+	/*
 	@OneToMany(mappedBy="idusuario", orphanRemoval = true)
 	private List<Ruta> rutas;
-	
+	*/
 	// Constructores
-	public Usuario() {}
+	public Usuario() {
+		
+	}
+	
+	public Usuario(String usuario, String password, String dni,
+			String apellido, String nombre, String domicilio,
+			String sexo, String fecha_de_nacimiento, String email,
+			Boolean es_admin, Boolean esta_habilitado) {
+		setUsuario(usuario);
+		setPassword(password);
+		setDni(dni);
+		setApellido(apellido);
+		setNombre(nombre);
+		setDomicilio(domicilio);
+		setSexo(sexo);
+		setFecha_de_nacimiento(fecha_de_nacimiento);
+		setEmail(email);
+		setEs_admin(es_admin);
+		setEsta_habilitado(esta_habilitado);
+	}
 
 	// Metodos
 	public String getPassword() {
@@ -146,14 +161,14 @@ public class Usuario implements Serializable{
 		this.usuario = usuario;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 	
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-
+/*
 	public List<Ruta> getRutas() {
 		return rutas;
 	}
@@ -161,5 +176,5 @@ public class Usuario implements Serializable{
 	public void setRutas(List<Ruta> rutas) {
 		this.rutas = rutas;
 	}
-	
+*/	
 }

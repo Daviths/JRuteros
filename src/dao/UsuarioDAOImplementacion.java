@@ -1,114 +1,144 @@
 package dao;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
-
-import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 import modelos.Usuario;
 
 public class UsuarioDAOImplementacion implements UsuarioDAO {	
 	
-	public Integer addNew(Object o ,  EntityManager em) {
-		Usuario usuario = (Usuario) o;
-		EntityTransaction etx = em.getTransaction();
-	    Integer usuarioID = null;
-	    try{
-	      etx.begin();
-		   em.persist(usuario); 
-	       etx.commit();
-	    }catch (HibernateException e) {
-	       e.printStackTrace(); 
-	    }finally {
-	       em.close(); 
-	    }
-	    return usuarioID;
+	private SessionFactory factory;	
+	private Session session;
+
+	private void prepararTransaccion() {
+		factory = new Configuration()
+				.configure("hibernate.cfg.xml")
+				.addAnnotatedClass(Usuario.class)
+				.buildSessionFactory();
+
+		session = factory.getCurrentSession();
 	}
-	
-	public List<Usuario> getAll( EntityManager em) {
-		List<Usuario> usuarios = new LinkedList<Usuario>();
-		EntityTransaction etx = em.getTransaction();
-		try{
-			etx.begin();
-			Query q = em.createQuery("from usuarios");
-			List<Usuario> listausuarios =(List<Usuario>)(q).getResultList();
-			for (Iterator<Usuario> iterator = listausuarios.iterator(); iterator.hasNext();){
-				Usuario u = (Usuario) iterator.next(); 
-				usuarios.add(u);
-			}
-		}catch (HibernateException e) {
-			e.printStackTrace(); 
-		}finally {
-			em.close(); 
+
+	@Override
+	public void addNew(Usuario usuario) {
+		prepararTransaccion();
+		
+		try {
+			session.beginTransaction();
+			session.save(usuario);
+			session.getTransaction().commit();
+		} finally {
+			factory.close();
 		}
+	}
+
+	@Override
+	@SuppressWarnings({ "unchecked", "deprecation" })
+	public List<Usuario> getAll() {		
+		prepararTransaccion();
+		
+		List<Usuario> usuarios = new LinkedList<>();
+		
+		try {
+			session.beginTransaction();	
+			
+			usuarios = session.createQuery("from Usuario").list();
+			
+			session.getTransaction().commit();
+		} finally {
+			factory.close();
+		}
+		
 		return usuarios;
 	}
-	
-	public Usuario getUsuario(Integer UsuarioID,  EntityManager em) {
-		Usuario u = null;
-		EntityTransaction etx = em.getTransaction();
-	    try{
-	       etx.begin();
-	       u = (Usuario)em.find(Usuario.class, UsuarioID);
-	    }catch (HibernateException e) {
-	    	e.printStackTrace(); 
-	    }finally {
-	    	em.close(); 
+
+	public Usuario getUsuario(Integer id) {			
+		prepararTransaccion();			
+		Usuario usuario;		
+		
+	    try {
+	    	session.beginTransaction();	    	
+	    	usuario = session.get(Usuario.class, id);
+	    	session.getTransaction().commit();	    	
+	    } finally {
+	    	factory.close(); 
 	    }
-		return u;
+	    
+		return usuario;
 	}
-	
-	public void edit(Integer UsuarioID, String dni, String domicilio, String nombre, String apellido, String sexo, String email,  EntityManager em) {
-		EntityTransaction etx = em.getTransaction();
-	    try{
-	      etx.begin();
-	       Usuario usuario = (Usuario)em.find(Usuario.class, UsuarioID); 
-	       usuario.setApellido(apellido);
-	       usuario.setDni(dni);
-	       usuario.setDomicilio(domicilio);
-	       usuario.setEmail(email);
-	       usuario.setNombre(nombre);
-	       usuario.setSexo(sexo);
-	       em.merge(usuario); 
-	       etx.commit();
-	    }catch (HibernateException e) {
-	      	e.printStackTrace(); 
-	    }finally {
-	         em.close(); 
+
+	@Override
+	public void edit(Integer id, String dni, String domicilio, String nombre, String apellido, String sexo,
+			String email) {
+		Usuario usuario = getUsuario(id);
+		
+		prepararTransaccion();
+		
+	    try {
+	    	session.beginTransaction();		 
+	    	
+	    	usuario.setDni(dni);
+	    	usuario.setDomicilio(domicilio);	    	
+	    	usuario.setNombre(nombre);
+	    	usuario.setApellido(apellido);
+	    	usuario.setSexo(sexo);
+	    	usuario.setEmail(email);
+	    	
+	    	session.update(usuario);
+	    	session.getTransaction().commit();
+	    } finally {
+	         factory.close(); 
 	    }
+		
 	}
-	
-	public void cambiarEstado(Integer UsuarioID,  EntityManager em) {
-		EntityTransaction etx = em.getTransaction();
-	    try{
-	      etx.begin();
-	       Usuario usuario = (Usuario)em.find(Usuario.class, UsuarioID); 
-	       usuario.setEsta_habilitado(!usuario.getEsta_habilitado());
-	       em.merge(usuario); 
-	       etx.commit();
-	    }catch (HibernateException e) {
-	      	e.printStackTrace(); 
-	    }finally {
-	    	em.close(); 
-	    }
-	}
-	
-	public void delete(Integer UsuarioID,  EntityManager em) {
-		EntityTransaction etx = em.getTransaction();
-	    try{
-	    	etx.begin();
-	    	Usuario usuario = (Usuario)em.find(Usuario.class, UsuarioID); 
-	    	em.detach(usuario); 
-	    	etx.commit();
-	    }catch (HibernateException e) {
-	    	e.printStackTrace(); 
-	    }finally {
-	    	em.close(); 
+
+	@Override
+	public void cambiarEstado(Integer id) {
+		Usuario usuario = getUsuario(id);
+		Boolean esta_habilitado = !usuario.getEsta_habilitado();
+		prepararTransaccion();
+		
+	    try {
+	    	session.beginTransaction();	    	
+	    	usuario.setEsta_habilitado(esta_habilitado);
+	    	session.update(usuario);
+	    	session.getTransaction().commit();
+	    } finally {
+	    	factory.close(); 
 	    }
 	}
+
+	@Override
+	public void delete(Integer id) {
+		Usuario usuario = getUsuario(id);
+		
+		prepararTransaccion();
+		
+	    try {
+	    	session.beginTransaction();	    	
+	    	//Usuario usuario = session.get(Usuario.class, id);	    	
+	    	session.delete(usuario);
+	    	session.getTransaction().commit();
+	    } finally {
+	    	factory.close(); 
+	    }
+		
+	}
+
+	 @Override
+	 public Usuario findByName(String usuario_nombre) {
+		List<Usuario> usuarios = getAll();
+		
+		for(Usuario usuario: usuarios) {
+			if(usuario.getUsuario().equals(usuario_nombre)) {
+				return usuario;
+			}
+		}
+		
+		return null;
+	}	
 }

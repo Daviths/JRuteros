@@ -1,35 +1,30 @@
 package modelos;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "rutas", schema = "jruteros")
-public class Ruta implements Serializable{
-	/**
-	 * 
-	 */
+@Table(name = "rutas")
+public class Ruta implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	//Variables
+	// Variables
 	@Id 
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "id")
-	private Integer idruta;
+	private int id;
 	
 	@Column(name = "nombre")
-	private String	nombre;
+	private String nombre;
 	
 	@Column(name = "descripcion")
-	private String	descripcion;
+	private String descripcion;
 	
 	@Column(name = "fecha_de_realizacion")
-	private String	fecha_de_realizacion;
+	private String fecha_de_realizacion;
 	
 	@Column(name = "dificultad")
-	private String	dificultad;
-	
+	private String dificultad;
+/*
 	@ManyToOne(optional = false)
 	@JoinColumn(name="idactividad")
 	private Actividad	idactividad;
@@ -37,7 +32,7 @@ public class Ruta implements Serializable{
 	@ManyToOne(optional = false)
 	@JoinColumn(name="idusuario")
 	private Usuario	idusuario;
-					
+*/
 	@Column(name = "es_publica")
 	private Boolean es_publica; 
 	
@@ -45,21 +40,38 @@ public class Ruta implements Serializable{
 	private Boolean	es_circular;
 	
 	@Column(name = "distancia")
-	private Float 	distancia;
+	private Double distancia;
 	
 	@Column(name = "tiempo_estimado")
-	private Float	tiempo_estimado;
-	
+	private Double tiempo_estimado;
+/*
 	@OneToMany(orphanRemoval = true, mappedBy = "Ruta")
 	private List<Foto> fotos;
 	
 	@OneToMany(orphanRemoval = true, mappedBy = "Ruta")
 	private List<Coordenada> coordenadas;
+*/
 
+	// Constructores
+	public Ruta() {
+		
+	}	
+	
+	public Ruta(String nombre, String descripcion, String fecha_de_realizacion,
+					String dificultad, Boolean es_publica, Boolean es_circular,
+					Double distancia, Double tiempo_estimado) {
+		
+		setNombre(nombre);
+		setDescripcion(descripcion);
+		setFecha_de_realizacion(fecha_de_realizacion);
+		setDificultad(dificultad);
+		setEs_publica(es_publica);		
+		setEs_circular(es_circular);
+		setDistancia(distancia);
+		setTiempo_estimado(tiempo_estimado);
+	}
 
-	//Constructores
-	public Ruta(){}	
-	//Metodos
+	// Metodos
 	public String getNombre() {
 		return nombre;
 	}
@@ -100,19 +112,19 @@ public class Ruta implements Serializable{
 		this.es_circular = es_circular;
 	}
 
-	public Float getDistancia() {
+	public Double getDistancia() {
 		return distancia;
 	}
 
-	public void setDistancia(Float distancia) {
+	public void setDistancia(Double distancia) {
 		this.distancia = distancia;
 	}
 
-	public Float getTiempo_estimado() {
+	public Double getTiempo_estimado() {
 		return tiempo_estimado;
 	}
 
-	public void setTiempo_estimado(Float tiempo_estimado) {
+	public void setTiempo_estimado(Double tiempo_estimado) {
 		this.tiempo_estimado = tiempo_estimado;
 	}	
 	public String getDificultad() {
@@ -121,36 +133,45 @@ public class Ruta implements Serializable{
 	public void setDificultad(String dificultad) {
 		this.dificultad = dificultad;
 	}
-
+/*
 	public List<Foto> getFotos() {
 		return fotos;
 	}
+	
 	public void setFotos(List<Foto> fotos) {
 		this.fotos = fotos;
 	}
-	public Integer getIdruta() {
-		return idruta;
+*/
+	public Integer getId() {
+		return id;
 	}
-	public void setIdruta(Integer idruta) {
-		this.idruta = idruta;
+	
+	public void setId(Integer id) {
+		this.id = id;
 	}
+	/*
 	public Actividad getIdactividad() {
 		return idactividad;
 	}
+	
 	public void setIdactividad(Actividad idactividad) {
 		this.idactividad = idactividad;
 	}
+	
 	public Usuario getIdusuario() {
 		return idusuario;
 	}
+	
 	public void setIdusuario(Usuario idusuario) {
 		this.idusuario = idusuario;
 	}
+	
 	public List<Coordenada> getCoordenadas() {
 		return coordenadas;
 	}
+	
 	public void setCoordenadas(List<Coordenada> coordenadas) {
 		this.coordenadas = coordenadas;
 	}
-
+	*/
 }

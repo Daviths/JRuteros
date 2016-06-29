@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.ActividadDAOImplementacion;
-import dao.RutaDAOImplementacion;
 import modelos.Ruta;
 
 @WebServlet("/nueva_ruta")
@@ -29,10 +27,10 @@ public class Nueva extends HttpServlet {
 		ruta.setDescripcion(request.getParameter("descripcion"));
 		ruta.setEs_publica(request.getParameter("privacidad").equals("PUBLICA"));		
 		ruta.setEs_circular(request.getParameter("formato").equals("CIRCULAR"));
-		ruta.setDistancia(Float.parseFloat(request.getParameter("distancia")));
+		ruta.setDistancia(Double.parseDouble(request.getParameter("distancia")));
 		ruta.setDificultad(request.getParameter("dificultad"));
 		//ruta.setActividad(request.getParameter("actividad"));
-		ruta.setTiempo_estimado(Float.parseFloat(request.getParameter("tiempo")));
+		ruta.setTiempo_estimado(Double.parseDouble(request.getParameter("tiempo")));
 		//ruta.setUsuario(request.getParameter("usuario"));
 		ruta.setFecha_de_realizacion(request.getParameter("fecha"));
 		//RutaDAO.addNew(ruta);		

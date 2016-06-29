@@ -1,13 +1,12 @@
 package dao;
 
 import java.util.List;
-
-import javax.persistence.EntityManager;
+import modelos.Actividad;
 
 public interface ActividadDAO {
-	public Integer addNew(Object o, EntityManager em);
-	public List<?> getAll(EntityManager em);
-	public void edit(Integer a, String s1, String s2, EntityManager em);
-	public void cambiarEstado(Integer a, EntityManager em);
-	public void delete(Integer a, EntityManager em);
+	public abstract void addNew(Actividad actividad);
+	public abstract List<Actividad> getAll();
+	public abstract void edit(Integer id, String nombre, String descripcion);
+	public abstract void cambiarEstado(Integer id);
+	public abstract void delete(int id);
 }
