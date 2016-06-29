@@ -47,10 +47,10 @@ public class Ruta implements Serializable {
 	
 	@Column(name = "tiempo_estimado")
 	private Double tiempo_estimado;
-	@OneToMany(orphanRemoval = true, mappedBy = "Ruta")
+	@OneToMany(orphanRemoval = true, mappedBy = "id")
 	private List<Foto> fotos;
 	
-	@OneToMany(orphanRemoval = true, mappedBy = "Ruta")
+	@OneToMany(orphanRemoval = true, mappedBy = "id")
 	private List<Coordenada> coordenadas;
 
 	// Constructores

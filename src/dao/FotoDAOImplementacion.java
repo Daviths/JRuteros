@@ -37,7 +37,6 @@ public class FotoDAOImplementacion implements FotoDAO {
 	}
 
 	@SuppressWarnings({ "unchecked", "deprecation" })
-	@Override
 	public List<Foto> getAll() {
 		prepararTransaccion();
 			
@@ -56,7 +55,7 @@ public class FotoDAOImplementacion implements FotoDAO {
 		return fotos;
 	}
 
-	@Override
+	
 	public void edit(Integer id, String nombre, String tipo, String contenido) {
 		Foto foto = getFoto(id);
 			

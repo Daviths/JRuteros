@@ -20,18 +20,18 @@ public class CorrerJUnits {
 		*/
 		
 		String resultado = (result_actividad.wasSuccessful()) ? "OK!" : "SE ENCONTRARON ERRORES";
-		System.out.println("ActividadTest - " + resultado);		
-		
-		resultado = (result_ruta.wasSuccessful()) ? "OK!" : "SE ENCONTRARON ERRORES";
-		System.out.println("RutaTest - " + resultado);
+		System.out.println("ActividadTest - " + resultado);				
 		
 		resultado = (result_usuario.wasSuccessful()) ? "OK!" : "SE ENCONTRARON ERRORES";
 		System.out.println("UsuarioTest - " + resultado);
 		
-		resultado = (result_foto.wasSuccessful()) ? "OK!" : "SE ENCONTRARON ERRORES";
+		resultado = (result_ruta.wasSuccessful()) ? "OK!" : "SE ENCONTRARON ERRORES";
+		System.out.println("RutaTest - " + resultado);
+		
+		/*resultado = (result_foto.wasSuccessful()) ? "OK!" : "SE ENCONTRARON ERRORES";
 		System.out.println("FotoTest - " + resultado);
 		
-		/*
+		
 		resultado = (result_puntaje.wasSuccessful()) ? "OK!" : "SE ENCONTRARON ERRORES";
 		System.out.println("PuntajeTest - " + resultado);
 		

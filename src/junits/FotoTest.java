@@ -6,14 +6,20 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import dao.FotoDAOImplementacion;
+import dao.RutaDAOImplementacion;
 import modelos.Foto;
 
 public class FotoTest {
 	private FotoDAOImplementacion fotoDAO = new FotoDAOImplementacion();
+	private RutaDAOImplementacion rutaDAO = new RutaDAOImplementacion();
 	private Foto foto;
 	
 	private void cargarFoto(String nombre) {
-		foto = new Foto(nombre, "TIPO", "CONTENIDO");
+		foto = new Foto();
+		foto.setNombre(nombre);
+		foto.setContenido(nombre+"contenido");
+		foto.setTipo("tipo");
+		foto.setRuta(rutaDAO.getAll().get(2));
 		fotoDAO.addNew(foto);
 	}
 

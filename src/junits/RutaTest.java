@@ -10,21 +10,33 @@ import org.junit.Test;
 import dao.ActividadDAOImplementacion;
 import dao.RutaDAOImplementacion;
 import dao.UsuarioDAOImplementacion;
+import modelos.Actividad;
 import modelos.Ruta;
+import modelos.Usuario;
 
 public class RutaTest {
 	private RutaDAOImplementacion rutaDAO = new RutaDAOImplementacion();
 	private ActividadDAOImplementacion actividadDAO = new ActividadDAOImplementacion();
 	private UsuarioDAOImplementacion usuarioDAO = new UsuarioDAOImplementacion();
 	private Ruta ruta;
+	private Usuario usuario;
+	private Actividad actividad;
 
 	private void cargarRuta(String nombre) {
 		ruta = new Ruta(nombre, "Neque pilro quisquam est qui dolorem", "2016-06-06",
 						"UNA_DIFICULTAD", true, true, 20.55, 43.33);
-		
+		actividad = new Actividad(nombre+"Act", 
+				"Neque pilro quisquam est qui dolorem",
+				true);
+		usuario = new Usuario("User"+nombre, "gaspar", "dni",
+				"apellido", "nombre", "domicilio",
+				"MASCULINO", "fecha_de_nacimiento", "email",
+				false, true);
+		usuarioDAO.addNew(usuario);
+		actividadDAO.addNew(actividad);
 		//ruta = new Ruta(nombre, null, null, null, null, null, null, null);
-		ruta.setActividad(actividadDAO.getActividad(2)); //Se le agrega como actividad la segunda de la BD
-		ruta.setUsuario(usuarioDAO.getUsuario(2)); //Idem Usuario
+		ruta.setActividad(actividad);
+		ruta.setUsuario(usuario); 
 		rutaDAO.addNew(ruta); //Se carga
 	}
 

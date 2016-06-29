@@ -17,11 +17,11 @@ public class Coordenada {
 	
 	@Column(name = "y")
 	private Double y;
-	/*
+	
 	@ManyToOne(optional = false)
 	@JoinColumn(name="idruta")
 	private Ruta Ruta;
-	*/
+	
 	// Constructores
 	public Coordenada() {
 		
@@ -56,7 +56,7 @@ public class Coordenada {
 	public void setId(int id) {
 		this.id = id;
 	}
-	/*
+	
 	public Ruta getRuta() {
 		return Ruta;
 	}
@@ -64,5 +64,5 @@ public class Coordenada {
 	public void setRuta(Ruta ruta) {
 		Ruta = ruta;
 	}
-	*/
+	
 }
