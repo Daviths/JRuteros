@@ -8,7 +8,7 @@ public class Puntaje {
 	//Variables
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "idpuntaje")
+	@Column(name = "id")
 	private Integer id;
 	
 	@Column(name = "puntos")

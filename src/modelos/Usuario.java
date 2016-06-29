@@ -1,6 +1,8 @@
 package modelos;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -47,10 +49,9 @@ public class Usuario implements Serializable{
 	
 	@Column(name = "esta_habilitado")
 	private Boolean	esta_habilitado;	
-	/*
-	@OneToMany(mappedBy="idusuario", orphanRemoval = true)
+	@OneToMany(mappedBy="id", orphanRemoval = true)
 	private List<Ruta> rutas;
-	*/
+	
 	// Constructores
 	public Usuario() {
 		
@@ -169,7 +170,6 @@ public class Usuario implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
-/*
 	public List<Ruta> getRutas() {
 		return rutas;
 	}
@@ -177,5 +177,4 @@ public class Usuario implements Serializable{
 	public void setRutas(List<Ruta> rutas) {
 		this.rutas = rutas;
 	}
-*/	
 }

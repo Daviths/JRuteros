@@ -8,7 +8,7 @@ public class Coordenada {
 	//variables
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "idcoordenadas")
+	@Column(name = "id")
 	private Integer id;	
 	
 	@Column(name = "x")
@@ -18,7 +18,7 @@ public class Coordenada {
 	private Float y;
 	
 	@ManyToOne(optional = false)
-	@JoinColumn(name="ruta_id")
+	@JoinColumn(name="idruta")
 	private Ruta Ruta;
 	
 	//Constructor

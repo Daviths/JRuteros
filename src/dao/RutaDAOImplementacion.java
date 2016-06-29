@@ -17,7 +17,6 @@ public class RutaDAOImplementacion implements RutaDAO {
 	private void prepararTransaccion() {
 		factory = new Configuration()
 				.configure("hibernate.cfg.xml")
-				.addAnnotatedClass(Ruta.class)
 				.buildSessionFactory();
 
 		session = factory.getCurrentSession();
@@ -114,9 +113,8 @@ public class RutaDAOImplementacion implements RutaDAO {
 
 	public void delete(Integer id) {
 		Ruta ruta = getRuta(id);
-		
 		prepararTransaccion();
-		
+				
 	    try {
 	    	session.beginTransaction();	    	
 	    	session.delete(ruta);

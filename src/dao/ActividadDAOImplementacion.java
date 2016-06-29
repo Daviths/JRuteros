@@ -17,7 +17,6 @@ public class ActividadDAOImplementacion implements ActividadDAO {
 	private void prepararTransaccion() {
 		factory = new Configuration()
 				.configure("hibernate.cfg.xml")
-				.addAnnotatedClass(Actividad.class)
 				.buildSessionFactory();
 
 		session = factory.getCurrentSession();

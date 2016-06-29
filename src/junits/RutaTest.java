@@ -7,11 +7,15 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import dao.ActividadDAOImplementacion;
 import dao.RutaDAOImplementacion;
+import dao.UsuarioDAOImplementacion;
 import modelos.Ruta;
 
 public class RutaTest {
 	private RutaDAOImplementacion rutaDAO = new RutaDAOImplementacion();
+	private ActividadDAOImplementacion actividadDAO = new ActividadDAOImplementacion();
+	private UsuarioDAOImplementacion usuarioDAO = new UsuarioDAOImplementacion();
 	private Ruta ruta;
 
 	private void cargarRuta(String nombre) {
@@ -19,8 +23,9 @@ public class RutaTest {
 						"UNA_DIFICULTAD", true, true, 20.55, 43.33);
 		
 		//ruta = new Ruta(nombre, null, null, null, null, null, null, null);
-		
-		rutaDAO.addNew(ruta);
+		ruta.setActividad(actividadDAO.getActividad(2)); //Se le agrega como actividad la segunda de la BD
+		ruta.setUsuario(usuarioDAO.getUsuario(2)); //Idem Usuario
+		rutaDAO.addNew(ruta); //Se carga
 	}
 
 	@Test
@@ -67,7 +72,7 @@ public class RutaTest {
 		
 		ruta = rutaDAO.getRuta(ruta_id);
 		
-		assertEquals(es_publica, ruta.getEs_publica());
+		Assert.assertEquals(es_publica, ruta.getEs_publica());
 	}
 
 	@Test
@@ -77,8 +82,8 @@ public class RutaTest {
 		int ruta_id = rutaDAO.findByName("testDelete").getId();
 		rutaDAO.delete(ruta_id);
 		
-		Ruta AUX = rutaDAO.getRuta(ruta_id);
+		ruta = rutaDAO.getRuta(ruta_id);
 		
-		Assert.assertNull("Ruta no es null.", AUX);
+		Assert.assertNull("Ruta no es null.", ruta);
 	}
 }
