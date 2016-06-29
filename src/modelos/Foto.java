@@ -4,11 +4,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "fotos")
 public class Foto {
-	// Atributos
+	//variables
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "idfotos")
-	private int id;
+	@Column(name = "id")
+	private Integer id;
 	
 	@Column(name = "nombre")
 	private String nombre;
@@ -18,39 +18,27 @@ public class Foto {
 	
 	@Column(name = "contenido")
 	private String contenido;
-	/*
+	
 	@ManyToOne(optional = false)
-	@JoinColumn(name="ruta_id")
+	@JoinColumn(name="idruta")
 	private Ruta Ruta;
-	*/
-	// Contructor
-	public Foto() {
-		
-	}
 	
-	public Foto(String nombre, String tipo, String contenido) {
-		setNombre(nombre);
-		setTipo(tipo);
-		setContenido(contenido);
-	}
+	//Contructor
+	public Foto(){}
 	
-	// Metodos
+	//metodos
 	public String getNombre() {
 		return nombre;
 	}
-	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
 	public String getTipo() {
 		return tipo;
 	}
-	
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	
 	public String getContenido() {
 		return contenido;
 	}
@@ -58,14 +46,14 @@ public class Foto {
 		this.contenido = contenido;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	/*
+
 	public Ruta getRuta() {
 		return Ruta;
 	}
@@ -73,5 +61,4 @@ public class Foto {
 	public void setRuta(Ruta ruta) {
 		Ruta = ruta;
 	}
-	*/
 }

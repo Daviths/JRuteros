@@ -19,7 +19,7 @@ public class Coordenada {
 	private Double y;
 	/*
 	@ManyToOne(optional = false)
-	@JoinColumn(name="ruta_id")
+	@JoinColumn(name="idruta")
 	private Ruta Ruta;
 	*/
 	// Constructores

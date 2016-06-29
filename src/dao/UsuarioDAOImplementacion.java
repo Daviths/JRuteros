@@ -17,7 +17,6 @@ public class UsuarioDAOImplementacion implements UsuarioDAO {
 	private void prepararTransaccion() {
 		factory = new Configuration()
 				.configure("hibernate.cfg.xml")
-				.addAnnotatedClass(Usuario.class)
 				.buildSessionFactory();
 
 		session = factory.getCurrentSession();

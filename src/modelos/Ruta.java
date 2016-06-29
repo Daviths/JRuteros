@@ -1,6 +1,8 @@
 package modelos;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -25,15 +27,15 @@ public class Ruta implements Serializable {
 	
 	@Column(name = "dificultad")
 	private String dificultad;
-/*
+
 	@ManyToOne(optional = false)
 	@JoinColumn(name="idactividad")
-	private Actividad	idactividad;
+	private Actividad actividad;
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name="idusuario")
-	private Usuario	idusuario;
-*/
+	private Usuario	usuario;
+
 	@Column(name = "es_publica")
 	private Boolean es_publica; 
 	
@@ -45,13 +47,11 @@ public class Ruta implements Serializable {
 	
 	@Column(name = "tiempo_estimado")
 	private Double tiempo_estimado;
-/*
 	@OneToMany(orphanRemoval = true, mappedBy = "Ruta")
 	private List<Foto> fotos;
 	
 	@OneToMany(orphanRemoval = true, mappedBy = "Ruta")
 	private List<Coordenada> coordenadas;
-*/
 
 	// Constructores
 	public Ruta() {
@@ -134,7 +134,7 @@ public class Ruta implements Serializable {
 	public void setDificultad(String dificultad) {
 		this.dificultad = dificultad;
 	}
-/*
+
 	public List<Foto> getFotos() {
 		return fotos;
 	}
@@ -142,7 +142,7 @@ public class Ruta implements Serializable {
 	public void setFotos(List<Foto> fotos) {
 		this.fotos = fotos;
 	}
-*/
+
 	public Integer getId() {
 		return id;
 	}
@@ -150,21 +150,20 @@ public class Ruta implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	/*
-	public Actividad getIdactividad() {
-		return idactividad;
+	public Actividad getActividad() {
+		return actividad;
 	}
 	
-	public void setIdactividad(Actividad idactividad) {
-		this.idactividad = idactividad;
+	public void setActividad(Actividad actividad) {
+		this.actividad = actividad;
 	}
 	
-	public Usuario getIdusuario() {
-		return idusuario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 	
-	public void setIdusuario(Usuario idusuario) {
-		this.idusuario = idusuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	public List<Coordenada> getCoordenadas() {
@@ -174,5 +173,4 @@ public class Ruta implements Serializable {
 	public void setCoordenadas(List<Coordenada> coordenadas) {
 		this.coordenadas = coordenadas;
 	}
-	*/
 }

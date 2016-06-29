@@ -20,7 +20,7 @@ public class CorrerJUnits {
 		*/
 		
 		String resultado = (result_actividad.wasSuccessful()) ? "OK!" : "SE ENCONTRARON ERRORES";
-		System.out.println("ActividadTest - " + resultado);
+		System.out.println("ActividadTest - " + resultado);		
 		
 		resultado = (result_ruta.wasSuccessful()) ? "OK!" : "SE ENCONTRARON ERRORES";
 		System.out.println("RutaTest - " + resultado);
@@ -38,7 +38,6 @@ public class CorrerJUnits {
 		resultado = (result_coordenada.wasSuccessful()) ? "OK!" : "SE ENCONTRARON ERRORES";
 		System.out.println("CoordenadaTest - " + resultado);
 		*/
-		
 	}
 
 }

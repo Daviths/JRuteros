@@ -93,10 +93,4 @@ public class UsuarioTest {
 		
 		Assert.assertNull("Usuario no es null.", usuario);
 	}
-	/*
-	@Test
-	public void testFindByName(String name) {
-		
-	}
-	*/
 }
