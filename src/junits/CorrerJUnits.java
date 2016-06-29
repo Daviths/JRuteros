@@ -11,6 +11,7 @@ public class CorrerJUnits {
 		Result result_actividad = junit.run(ActividadTest.class);		
 		Result result_ruta = junit.run(RutaTest.class);
 		Result result_usuario = junit.run(UsuarioTest.class);		
+		Result result_foto = junit.run(FotoTest.class);
 		
 		String resultado = (result_actividad.wasSuccessful()) ? "OK!" : "SE ENCONTRARON ERRORES";
 		System.out.println("ActividadTest - " + resultado);
@@ -19,7 +20,10 @@ public class CorrerJUnits {
 		System.out.println("RutaTest - " + resultado);
 		
 		resultado = (result_usuario.wasSuccessful()) ? "OK!" : "SE ENCONTRARON ERRORES";
-		System.out.println("UsuarioTest - " + resultado);		
+		System.out.println("UsuarioTest - " + resultado);
+		
+		resultado = (result_foto.wasSuccessful()) ? "OK!" : "SE ENCONTRARON ERRORES";
+		System.out.println("FotoTest - " + resultado);
 	}
 
 }
