@@ -14,10 +14,10 @@ public class CorrerJUnits {
 		Result result_usuario = junit.run(UsuarioTest.class);		
 		Result result_foto = junit.run(FotoTest.class);
 		
-		/*
+	
 		Result result_puntaje = junit.run(PuntajeTest.class);
 		Result result_coordenada = junit.run(CoordenadaTest.class);
-		*/
+
 		
 		String resultado = (result_actividad.wasSuccessful()) ? "OK!" : "SE ENCONTRARON ERRORES";
 		System.out.println("ActividadTest - " + resultado);				
@@ -28,16 +28,16 @@ public class CorrerJUnits {
 		resultado = (result_ruta.wasSuccessful()) ? "OK!" : "SE ENCONTRARON ERRORES";
 		System.out.println("RutaTest - " + resultado);
 		
-		/*resultado = (result_foto.wasSuccessful()) ? "OK!" : "SE ENCONTRARON ERRORES";
+		resultado = (result_foto.wasSuccessful()) ? "OK!" : "SE ENCONTRARON ERRORES";
 		System.out.println("FotoTest - " + resultado);
-		
+
 		
 		resultado = (result_puntaje.wasSuccessful()) ? "OK!" : "SE ENCONTRARON ERRORES";
 		System.out.println("PuntajeTest - " + resultado);
 		
 		resultado = (result_coordenada.wasSuccessful()) ? "OK!" : "SE ENCONTRARON ERRORES";
 		System.out.println("CoordenadaTest - " + resultado);
-		*/
+
 	}
 
 }

@@ -17,17 +17,19 @@ public class Puntaje {
 	
 	@Column(name = "fecha")
 	private String fecha;
-	/*
+
 	@OneToOne(optional = true)
 	private Ruta Ruta;
-	*/
+	
+	@OneToOne(optional = true)
+	private Usuario Usuario;
+
 	// Contructores
 	public Puntaje() {
 		
 	}
 	
-	public Puntaje(int id, Integer puntos, String fecha) {
-		setId(id);
+	public Puntaje(Integer puntos, String fecha) {
 		setPuntos(puntos);
 		setFecha(fecha);
 	}
@@ -65,4 +67,20 @@ public class Puntaje {
 		Ruta = ruta;
 	}
 	*/
+
+	public Ruta getRuta() {
+		return Ruta;
+	}
+
+	public void setRuta(Ruta ruta) {
+		Ruta = ruta;
+	}
+
+	public Usuario getUsuario() {
+		return Usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		Usuario = usuario;
+	}
 }

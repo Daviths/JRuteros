@@ -8,6 +8,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import modelos.Puntaje;
+import modelos.Ruta;
+import modelos.Usuario;
 
 public class PuntajeDAOImplementacion implements PuntajeDAO {
 
@@ -17,7 +19,6 @@ public class PuntajeDAOImplementacion implements PuntajeDAO {
 	private void prepararTransaccion() {
 		factory = new Configuration()
 				.configure("hibernate.cfg.xml")
-				.addAnnotatedClass(Puntaje.class)
 				.buildSessionFactory();
 
 		session = factory.getCurrentSession();
@@ -57,7 +58,20 @@ public class PuntajeDAOImplementacion implements PuntajeDAO {
 	}
 
 	@Override
-	public Puntaje getPuntaje(Integer id) {
+	public Puntaje getPuntaje(Usuario usuario, Ruta ruta) {
+		prepararTransaccion();			
+	    List<Puntaje> puntajes = getAll();
+	    
+	    for(Puntaje p:puntajes){
+	    	if((p.getRuta().getId()==ruta.getId()) && (p.getUsuario().getId()==usuario.getId())){
+	    		return p;
+	    	}
+	    }
+	    
+		return null;
+	}
+	
+	public Puntaje getPuntajePorId(Integer id) {
 		prepararTransaccion();			
 		Puntaje puntaje;
 		
@@ -74,7 +88,7 @@ public class PuntajeDAOImplementacion implements PuntajeDAO {
 
 	@Override
 	public void edit(Integer id, Integer puntos, String fecha) {
-		Puntaje puntaje = getPuntaje(id);
+		Puntaje puntaje = getPuntajePorId(id);
 		
 		prepararTransaccion();
 		
@@ -93,7 +107,7 @@ public class PuntajeDAOImplementacion implements PuntajeDAO {
 
 	@Override
 	public void delete(Integer id) {
-		Puntaje puntaje = getPuntaje(id);
+		Puntaje puntaje = getPuntajePorId(id);
 		
 		prepararTransaccion();
 		

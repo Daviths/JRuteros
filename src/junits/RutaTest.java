@@ -51,7 +51,7 @@ public class RutaTest {
 
 	@Test
 	public void testGetAll() {
-		cargarRuta("testGetAll");
+		//cargarRuta("testGetAll");
 		
 		List<Ruta> rutas = rutaDAO.getAll();
 		

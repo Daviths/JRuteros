@@ -5,36 +5,63 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import dao.ActividadDAOImplementacion;
 import dao.PuntajeDAOImplementacion;
+import dao.RutaDAOImplementacion;
+import dao.UsuarioDAOImplementacion;
+import modelos.Actividad;
 import modelos.Puntaje;
+import modelos.Ruta;
+import modelos.Usuario;
 
 public class PuntajeTest {
 	
 	private PuntajeDAOImplementacion puntajeDAO = new PuntajeDAOImplementacion();
+	private RutaDAOImplementacion rutaDAO = new RutaDAOImplementacion();
+	private ActividadDAOImplementacion actividadDAO = new ActividadDAOImplementacion();
+	private UsuarioDAOImplementacion usuarioDAO = new UsuarioDAOImplementacion();
+	private Ruta ruta;
+	private Usuario usuario;
+	private Actividad actividad;
 	private Puntaje puntaje;
-	private int puntaje_id;
 
-	private void cargarPuntaje(int id) {
-		puntaje = new Puntaje(id, 99, "UNA_FECHA");
+	private void cargarPuntaje(String nombre) {
+		ruta = new Ruta("Ruta"+nombre, "Neque pilro quisquam est qui dolorem", "2016-06-06",
+				"UNA_DIFICULTAD", true, true, 20.55, 43.33);
+		actividad = new Actividad(nombre+"Act", 
+				"Neque pilro quisquam est qui dolorem",
+				true);
+		usuario = new Usuario("User"+nombre, "gaspar", "dni",
+				"apellido", "nombre", "domicilio",
+				"MASCULINO", "fecha_de_nacimiento", "email",
+				false, true);
+		usuarioDAO.addNew(usuario);
+		actividadDAO.addNew(actividad);
+		//ruta = new Ruta(nombre, null, null, null, null, null, null, null);
+		ruta.setActividad(actividad);
+		ruta.setUsuario(usuario); 
+		rutaDAO.addNew(ruta); //Se carga
+		puntaje = new Puntaje(99, "UNA_FECHA");
+		puntaje.setUsuario(usuario);
+		puntaje.setRuta(ruta);
 		puntajeDAO.addNew(puntaje);
 	}
 
 	@Test
 	public void testAddNew() {
-		puntaje_id = 1111;		
 		
-		cargarPuntaje(puntaje_id);
+		cargarPuntaje("Nuevo");
 		
 		Integer puntaje_puntos = puntaje.getPuntos();
 		
-		puntaje = puntajeDAO.getPuntaje(puntaje_id);
+		puntaje = puntajeDAO.getPuntajePorId(puntaje.getId());
 		
 		Assert.assertEquals(puntaje_puntos, puntaje.getPuntos());
 	}
 
 	@Test
 	public void testGetAll() {
-		cargarPuntaje(2222);
+		cargarPuntaje("GetAll");
 		
 		List<Puntaje> puntaje = puntajeDAO.getAll();
 		
@@ -43,25 +70,25 @@ public class PuntajeTest {
 
 	@Test	
 	public void testEdit() {
-		cargarPuntaje(3333);
+		cargarPuntaje("Edit");
 
-		int puntaje_id = puntajeDAO.getPuntaje(3333).getId();		
+		int puntaje_id = puntajeDAO.getPuntajePorId(puntaje.getId()).getId();
 		
-		puntajeDAO.edit(puntaje_id, 99, "NUEVA_FECHA");		
-		puntaje = puntajeDAO.getPuntaje(puntaje_id);
+		puntajeDAO.edit(puntaje_id, 100, "NUEVA_FECHA");		
+		puntaje = puntajeDAO.getPuntajePorId(puntaje_id);
 		
-		Assert.assertEquals((Integer)99, puntaje.getPuntos());
+		Assert.assertEquals((Integer)100, puntaje.getPuntos());
 		Assert.assertEquals("NUEVA_FECHA", puntaje.getFecha());
 	}
 
 	@Test	
 	public void testDelete() {
-		cargarPuntaje(4444);
+		cargarPuntaje("Delete");
 
-		int puntaje_id = puntajeDAO.getPuntaje(4444).getId();
+		int puntaje_id =  puntajeDAO.getPuntajePorId(puntaje.getId()).getId();
 		puntajeDAO.delete(puntaje_id);
 		
-		puntaje = puntajeDAO.getPuntaje(puntaje_id);
+		puntaje = puntajeDAO.getPuntajePorId(puntaje.getId());
 		
 		Assert.assertNull("Puntaje no es null.", puntaje);
 	}

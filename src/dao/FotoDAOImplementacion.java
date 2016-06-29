@@ -17,7 +17,6 @@ public class FotoDAOImplementacion implements FotoDAO {
 	private void prepararTransaccion() {
 		factory = new Configuration()
 				.configure("hibernate.cfg.xml")
-				.addAnnotatedClass(Foto.class)
 				.buildSessionFactory();
 
 		session = factory.getCurrentSession();

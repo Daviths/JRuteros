@@ -16,7 +16,6 @@ public class CoordenadaDAOImplementacion implements CoordenadaDAO {
 	private void prepararTransaccion() {
 		factory = new Configuration()
 				.configure("hibernate.cfg.xml")
-				.addAnnotatedClass(Coordenada.class)
 				.buildSessionFactory();
 
 		session = factory.getCurrentSession();
