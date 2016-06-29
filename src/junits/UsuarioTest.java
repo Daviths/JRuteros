@@ -20,7 +20,7 @@ public class UsuarioTest {
 		
 		usuario = new Usuario(usuario_nombre, "gaspar", "dni",
 				"apellido", "nombre", "domicilio",
-				"sexo", "fecha_de_nacimiento", "email",
+				"MASCULINO", "fecha_de_nacimiento", "email",
 				false, true);
 		
 		usuarioDAO.addNew(usuario);
@@ -56,7 +56,7 @@ public class UsuarioTest {
 		int usuario_id = usuarioDAO.findByName("testEdit").getId();		
 		
 		usuarioDAO.edit(usuario_id, "NUEVO_DNI", "NUEVO_DOMICILIO", "NUEVO_NOMBRE",
-				"NUEVO_APELLIDO", "NUEVO_SEXO", "NUEVO_EMAIL");
+				"NUEVO_APELLIDO", "FEMENINO", "NUEVO_EMAIL");
 		
 		usuario = usuarioDAO.getUsuario(usuario_id);
 		
@@ -64,7 +64,7 @@ public class UsuarioTest {
 		Assert.assertEquals("NUEVO_DOMICILIO", usuario.getDomicilio());
 		Assert.assertEquals("NUEVO_NOMBRE", usuario.getNombre());
 		Assert.assertEquals("NUEVO_APELLIDO", usuario.getApellido());
-		Assert.assertEquals("NUEVO_SEXO", usuario.getSexo());
+		Assert.assertEquals("FEMENINO", usuario.getSexo());
 		Assert.assertEquals("NUEVO_EMAIL", usuario.getEmail());
 	}
 	

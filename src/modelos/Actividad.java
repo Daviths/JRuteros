@@ -1,6 +1,7 @@
 package modelos;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -11,6 +12,7 @@ public class Actividad implements Serializable {
 
 	// Variables
 	@Id 
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "idactividad")
 	private int id;
 	
@@ -24,8 +26,8 @@ public class Actividad implements Serializable {
 	private Boolean esta_habilitada;	
 	/*
 	@OneToMany(orphanRemoval = true, mappedBy = "idactividad")
-	private List<Ruta> rutas;
-	*/
+	private List<Ruta> rutas;*/
+	
 	// Constructores	
 	public Actividad(){
 		

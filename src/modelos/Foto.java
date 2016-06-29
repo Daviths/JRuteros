@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Foto {
 	//variables
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "idfotos")
 	private Integer id;
 	
