@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Coordenada {
 	//variables
 	@Id 
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "idcoordenadas")
 	private Integer id;	
 	

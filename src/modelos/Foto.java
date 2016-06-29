@@ -6,9 +6,9 @@ import javax.persistence.*;
 public class Foto {
 	// Atributos
 	@Id
-	@GeneratedValue()
-	@Column(name = "id")
-	private int id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "idfotos")
+	private Integer id;
 	
 	@Column(name = "nombre")
 	private String nombre;
