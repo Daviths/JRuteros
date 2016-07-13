@@ -10,6 +10,10 @@ import utils.JpaUtil;
 
 public class ActividadDao implements ActividadDaoInterfaz {
 	
+	public ActividadDao() {
+		
+	}
+	
 	protected EntityManager getEntityManager() {
 		return JpaUtil.getSession();
 	}
@@ -46,6 +50,7 @@ public class ActividadDao implements ActividadDaoInterfaz {
 		String query ="SELECT * FROM actividades";
 		@SuppressWarnings("unchecked")
 		List<Actividad> actividades = getEntityManager().createQuery(query).getResultList();
+		//List<Actividad> actividades = (List<Actividad>) JpaUtil.getSession().createQuery(query).getResultList();		
 		
 		return actividades;
 	}
