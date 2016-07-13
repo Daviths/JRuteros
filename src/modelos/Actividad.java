@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "actividades")
 public class Actividad implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 
 	// Variables
@@ -25,7 +26,8 @@ public class Actividad implements Serializable {
 	@Column(name = "esta_habilitada")
 	private Boolean esta_habilitada;	
 	
-	@OneToMany(orphanRemoval = true, mappedBy = "id")
+	//@OneToMany(orphanRemoval = true, mappedBy = "id")
+	@OneToMany(targetEntity = Ruta.class, cascade = CascadeType.ALL)
 	private List<Ruta> rutas;
 	
 	// Constructores	

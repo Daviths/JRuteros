@@ -7,7 +7,7 @@ import javax.persistence.Persistence;
 public class JpaUtil {
 	private static final EntityManager em;
 	
-	static{
+	static {
 		try{
 			em = Persistence.createEntityManagerFactory("persistence-unit").createEntityManager();
 		}

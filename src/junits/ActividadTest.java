@@ -2,81 +2,89 @@ package junits;
 
 import org.junit.Test;
 
-import dao.ActividadDAOImplementacion;
-
-import static org.junit.Assert.assertEquals;
-
 import java.util.List;
 
 import org.junit.Assert;
 import modelos.Actividad;
+import servicios.ActividadServicio;
 
 public class ActividadTest {	
-	private ActividadDAOImplementacion actividadDAO = new ActividadDAOImplementacion();
-	private Actividad actividad;
-	
-	private void cargarActividad(String nombre) {
-		actividad = new Actividad(nombre, 
-				"Neque pilro quisquam est qui dolorem",
-				true);
-		
-		actividadDAO.addNew(actividad);
-	}
-	
-	@Test
-	public void testAddNew() {
-		cargarActividad("testAddNew");
-		
-		actividad = actividadDAO.findByName("testAddNew");
-		
-		Assert.assertEquals("testAddNew", actividad.getNombre());
-	}
-		
-	@Test
-	public void testGetAll() {
-		cargarActividad("testGetAll");
-		
-		List<Actividad> actividades = actividadDAO.getAll();
-		
-		Assert.assertNotNull("Actividad es null", actividades);
-	}
-	
-	@Test
-	public void testEdit() {
-		cargarActividad("testEdit");
 
-		int actividad_id = actividadDAO.findByName("testEdit").getId();		
-		
-		actividadDAO.edit(actividad_id, "NUEVO_NOMBRE", "NUEVA_DESCRIPCION");		
-		actividad = actividadDAO.getActividad(actividad_id);
-		
-		Assert.assertEquals("NUEVO_NOMBRE", actividad.getNombre());
-		Assert.assertEquals("NUEVA_DESCRIPCION", actividad.getDescripcion());
+	private ActividadServicio actividadServicio = new ActividadServicio();
+	private Actividad actividad, aux;
+
+	private void cargarActividad(String actividad_nombre) {
+		actividad = new Actividad(
+			actividad_nombre,
+			"Neque pilro quisquam est qui dolorem",
+			true
+		);
+
+		actividadServicio.persist(actividad);
 	}
 	
+	private void recuperarActividad() {
+		List<Actividad> actividades = actividadServicio.findAll();
+		aux = actividades.get(0);
+	}
+
 	@Test
-	public void testCambiarEstado() {
-		cargarActividad("testCambiarEstado");
+	public void testPersist() {
+		cargarActividad("testPersist");
+		recuperarActividad();
 		
-		actividad = actividadDAO.findByName("testCambiarEstado");
-		int actividad_id = actividad.getId();
-		Boolean esta_habilitada = !actividad.getEsta_habilitada();
-		actividadDAO.cambiarEstado(actividad_id);
+		Assert.assertEquals(actividad.getNombre(), aux.getNombre());
+	}
+
+	@Test
+	public void testUpdate() {
+		cargarActividad("testUpdate");
+		recuperarActividad();
 		
-		actividad = actividadDAO.getActividad(actividad_id);
+		aux.setNombre("NUEVO_NOMBRE");
+		actividadServicio.update(aux);		
+		recuperarActividad();
 		
-		assertEquals(esta_habilitada, actividad.getEsta_habilitada());
-	}	
-	
+		Assert.assertNotEquals(actividad.getNombre(), aux.getNombre());
+	}
+
+	@Test
+	public void testFindById() {
+		cargarActividad("testFindById");
+		recuperarActividad();
+		Integer actividad_id = aux.getId();
+		aux = actividadServicio.findById(actividad_id);
+		
+		Assert.assertEquals(actividad.getNombre(), aux.getNombre());
+	}
+
 	@Test
 	public void testDelete() {
 		cargarActividad("testDelete");
-
-		int actividad_id = actividadDAO.findByName("testDelete").getId();
-		actividadDAO.delete(actividad_id);
+		recuperarActividad();
+		Integer actividad_id = aux.getId();
 		
-		actividad = actividadDAO.getActividad(actividad_id);
+		actividadServicio.delete(actividad_id);
+		aux = actividadServicio.findById(actividad_id);
 		
-		Assert.assertNull("Actividad no es null.", actividad);
+		Assert.assertNull(aux);
 	}
+
+	@Test
+	public void testFindAll() {
+		cargarActividad("testFindAll");
+		List<Actividad> actividades = actividadServicio.findAll();
+		
+		Assert.assertNotNull("Actividades es null", actividades);
+	}
+
+	@Test
+	public void testDeleteAll() {
+		cargarActividad("testDeleteAll");
+		actividadServicio.deleteAll();
+		List<Actividad> actividades = actividadServicio.findAll();
+		
+		Assert.assertNull("Actividades no es null", actividades);
+	}
+
 }

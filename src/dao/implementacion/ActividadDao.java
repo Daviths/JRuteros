@@ -3,7 +3,6 @@ package dao.implementacion;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-
 import dao.interfaces.ActividadDaoInterfaz;
 import modelos.Actividad;
 import utils.JpaUtil;
@@ -38,15 +37,14 @@ public class ActividadDao implements ActividadDaoInterfaz {
 
 	@Override
 	public void delete(Actividad actividad) {
-		getEntityManager().merge(actividad);
 		getEntityManager().remove(actividad);		
 	}
 
 	@Override
 	public List<Actividad> findAll() {
-		String query = "FROM actividades a ORDER BY a.nombre ASC";
 		@SuppressWarnings("unchecked")
-		List<Actividad> actividades = getEntityManager().createQuery(query).getResultList();
+		List<Actividad> actividades = getEntityManager().createQuery("FROM actividades").getResultList();
+		
 		return actividades;
 	}
 
