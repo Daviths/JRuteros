@@ -52,7 +52,7 @@ public class ActividadServicio {
 	}
 	
 	public List<Actividad> findAll() {
-		JpaUtil.getSession();	
+		JpaUtil.getSession();
 		List<Actividad> actividades = actividadDao.findAll();
 		JpaUtil.closeSession();
 		

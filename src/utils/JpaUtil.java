@@ -33,4 +33,5 @@ public class JpaUtil {
 	public static void closeSession() {
 		getSession().close();
 	}
+	
 }
