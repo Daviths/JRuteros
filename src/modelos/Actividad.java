@@ -1,7 +1,6 @@
 package modelos;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.*;
 
@@ -14,7 +13,6 @@ public class Actividad implements Serializable {
 	// Variables
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "id")
 	private int id;
 	
 	@Column(name = "nombre")
@@ -25,11 +23,11 @@ public class Actividad implements Serializable {
 	
 	@Column(name = "esta_habilitada")
 	private Boolean esta_habilitada;	
-	
-	//@OneToMany(orphanRemoval = true, mappedBy = "id")
-	@OneToMany(targetEntity = Ruta.class, cascade = CascadeType.ALL)
+	/*
+	@OneToMany(orphanRemoval = true, mappedBy = "id")
+	//@OneToMany(targetEntity = Ruta.class, cascade = CascadeType.ALL)
 	private List<Ruta> rutas;
-	
+	*/
 	// Constructores	
 	public Actividad(){
 		
@@ -71,7 +69,7 @@ public class Actividad implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+	/*
 	public List<Ruta> getRutas() {
 		return rutas;
 	}
@@ -79,5 +77,5 @@ public class Actividad implements Serializable {
 	public void setRutas(List<Ruta> rutas) {
 		this.rutas = rutas;
 	}
-	
+	*/
 }

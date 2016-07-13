@@ -1,18 +1,18 @@
 package junits;
 
-import org.junit.Test;
-
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.Test;
+
 import modelos.Actividad;
 import servicios.ActividadServicio;
 
 public class ActividadTest {	
 
 	private ActividadServicio actividadServicio = new ActividadServicio();
-	private Actividad actividad, aux;
-
+	private Actividad actividad, aux;	
+	
 	private void cargarActividad(String actividad_nombre) {
 		actividad = new Actividad(
 			actividad_nombre,

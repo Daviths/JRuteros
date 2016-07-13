@@ -3,12 +3,13 @@ package dao.implementacion;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+
 import dao.interfaces.ActividadDaoInterfaz;
 import modelos.Actividad;
 import utils.JpaUtil;
 
 public class ActividadDao implements ActividadDaoInterfaz {
-
+	
 	protected EntityManager getEntityManager() {
 		return JpaUtil.getSession();
 	}
@@ -42,8 +43,9 @@ public class ActividadDao implements ActividadDaoInterfaz {
 
 	@Override
 	public List<Actividad> findAll() {
+		String query ="SELECT * FROM actividades";
 		@SuppressWarnings("unchecked")
-		List<Actividad> actividades = getEntityManager().createQuery("FROM actividades").getResultList();
+		List<Actividad> actividades = getEntityManager().createQuery(query).getResultList();
 		
 		return actividades;
 	}

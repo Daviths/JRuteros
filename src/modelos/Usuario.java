@@ -50,8 +50,8 @@ public class Usuario implements Serializable{
 	@Column(name = "esta_habilitado")
 	private Boolean	esta_habilitado;	
 	
-	//@OneToMany(mappedBy="id", orphanRemoval = true)
-	@OneToMany(targetEntity = Ruta.class, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="id", orphanRemoval = true)
+	//@OneToMany(targetEntity = Ruta.class, cascade = CascadeType.ALL)
 	private List<Ruta> rutas;
 	
 	// Constructores
