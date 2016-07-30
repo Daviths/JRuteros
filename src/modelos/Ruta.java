@@ -48,11 +48,11 @@ public class Ruta implements Serializable {
 	@Column(name = "tiempo_estimado")
 	private Double tiempo_estimado;
 	
-	@OneToMany(orphanRemoval = true, mappedBy = "id")
+	@OneToMany(orphanRemoval = true, mappedBy = "ruta")
 	//@OneToMany(targetEntity = Foto.class, cascade = CascadeType.ALL)
 	private List<Foto> fotos;
 	
-	@OneToMany(orphanRemoval = true, mappedBy = "id")
+	@OneToMany(orphanRemoval = true, mappedBy = "ruta")
 	//@OneToMany(targetEntity = Coordenada.class, cascade = CascadeType.ALL)
 	private List<Coordenada> coordenadas;
 

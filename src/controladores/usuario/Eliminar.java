@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.UsuarioDAOImplementacion;
+//import dao.UsuarioDAOImplementacion;
 
 @WebServlet("/eliminar_usuario")
 public class Eliminar extends HttpServlet {
@@ -16,7 +16,7 @@ public class Eliminar extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String usuario = request.getParameter("usuario");
-		UsuarioDAOImplementacion usuario_dao = new UsuarioDAOImplementacion();
+		//UsuarioDAOImplementacion usuario_dao = new UsuarioDAOImplementacion();
 		//usuario_dao.delete(usuario);
 		response.sendRedirect("usuarios");
 	}

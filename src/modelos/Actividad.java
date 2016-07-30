@@ -3,6 +3,7 @@ package modelos;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
 
 @Entity
 @Table(name = "actividades")

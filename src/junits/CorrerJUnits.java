@@ -6,7 +6,7 @@ import org.junit.runner.Result;
 public class CorrerJUnits {
 
 	public static void main(String[] args) {
-		
+		/*
 		JUnitCore junit = new JUnitCore();
 		
 		Result result_actividad = junit.run(ActividadTest.class);		
@@ -37,7 +37,7 @@ public class CorrerJUnits {
 		
 		resultado = (result_coordenada.wasSuccessful()) ? "OK!" : "SE ENCONTRARON ERRORES";
 		System.out.println("CoordenadaTest - " + resultado);
-
+*/
 	}
 
 }

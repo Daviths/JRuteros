@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sun.istack.internal.logging.Logger;
 
-import dao.UsuarioDAOImplementacion;
+//import dao.UsuarioDAOImplementacion;
 import modelos.Usuario;
 
 @WebServlet("/editar_usuario")
@@ -39,7 +39,7 @@ public class Editar extends HttpServlet {
 		String apellido = request.getParameter("apellido");
 		String sexo = request.getParameter("sexo");
 		String email = request.getParameter("email");		
-		UsuarioDAOImplementacion usuario_dao = new UsuarioDAOImplementacion();
+		//UsuarioDAOImplementacion usuario_dao = new UsuarioDAOImplementacion();
 		//usuario_dao.edit(usuario, dni, domicilio, nombre, apellido, sexo, email);		
 		response.sendRedirect("actividades");
 	}

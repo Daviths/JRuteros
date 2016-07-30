@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sun.istack.internal.logging.Logger;
 
-import dao.ActividadDAOImplementacion;
-import dao.RutaDAOImplementacion;
+//import dao.ActividadDAOImplementacion;
+//import dao.RutaDAOImplementacion;
 import modelos.Ruta;
 
 @WebServlet("/editar_ruta")

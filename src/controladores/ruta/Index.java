@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.ActividadDAOImplementacion;
-import dao.RutaDAOImplementacion;
+//import dao.ActividadDAOImplementacion;
+//import dao.RutaDAOImplementacion;
 
 @WebServlet("/rutas")
 public class Index extends HttpServlet {

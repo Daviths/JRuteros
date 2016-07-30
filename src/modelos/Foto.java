@@ -20,8 +20,8 @@ public class Foto {
 	private String contenido;
 	
 	@ManyToOne(optional = false)
-	@JoinColumn(name="idruta")
-	private Ruta Ruta;
+	@JoinColumn(name="ruta")
+	private Ruta ruta;
 	
 	//Contructor
 	public Foto(){}
@@ -55,10 +55,10 @@ public class Foto {
 	}
 
 	public Ruta getRuta() {
-		return Ruta;
+		return ruta;
 	}
 
-	public void setRuta(Ruta ruta) {
-		Ruta = ruta;
+	public void setRuta(Ruta r) {
+		ruta = r;
 	}
 }

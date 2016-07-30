@@ -1,10 +1,10 @@
-package Servicios;
+package servicios;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import dao.PuntoDao;
+import dao.implementacion.PuntoDao;
 import modelos.Punto;
 
 public class PuntoServicio {

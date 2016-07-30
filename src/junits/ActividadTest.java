@@ -2,87 +2,96 @@ package junits;
 
 import java.util.List;
 
+import org.hibernate.cfg.Configuration;
 import org.junit.Assert;
 import org.junit.Test;
 
+import dao.implementacion.ActividadDao;
 import modelos.Actividad;
 import servicios.ActividadServicio;
 
 public class ActividadTest {	
 
-	private ActividadServicio actividadServicio = new ActividadServicio();
+	private ActividadDao ActividadDAO = new ActividadDao();
+	//private ActividadServicio actividadServicio = new ActividadServicio();
 	private Actividad actividad, aux;	
 	
 	private void cargarActividad(String actividad_nombre) {
+		
 		actividad = new Actividad(
 			actividad_nombre,
 			"Neque pilro quisquam est qui dolorem",
 			true
 		);
-
-		actividadServicio.persist(actividad);
+		
+		ActividadDAO.openCurrentSessionwithTransaction();
+		ActividadDAO.persist(actividad);
+		ActividadDAO.closeCurrentSessionwithTransaction();
 	}
 	
 	private void recuperarActividad() {
-		List<Actividad> actividades = actividadServicio.findAll();
+
+		ActividadDAO.openCurrentSessionwithTransaction();
+		List<Actividad> actividades = ActividadDAO.findAll();
 		aux = actividades.get(0);
+		ActividadDAO.closeCurrentSessionwithTransaction();
 	}
 
 	@Test
-	public void testPersist() {
+	public void testPersist() {		
 		cargarActividad("testPersist");
-		recuperarActividad();
-		
+		recuperarActividad();		
 		Assert.assertEquals(actividad.getNombre(), aux.getNombre());
+		
 	}
 
-	@Test
+	//@Test
 	public void testUpdate() {
 		cargarActividad("testUpdate");
 		recuperarActividad();
 		
 		aux.setNombre("NUEVO_NOMBRE");
-		actividadServicio.update(aux);		
+		ActividadDAO.update(aux);		
 		recuperarActividad();
 		
 		Assert.assertNotEquals(actividad.getNombre(), aux.getNombre());
 	}
 
-	@Test
+	//@Test
 	public void testFindById() {
 		cargarActividad("testFindById");
 		recuperarActividad();
 		Integer actividad_id = aux.getId();
-		aux = actividadServicio.findById(actividad_id);
+		aux = ActividadDAO.findById(actividad_id);
 		
 		Assert.assertEquals(actividad.getNombre(), aux.getNombre());
 	}
 
-	@Test
+	//@Test
 	public void testDelete() {
 		cargarActividad("testDelete");
 		recuperarActividad();
 		Integer actividad_id = aux.getId();
 		
-		actividadServicio.delete(actividad_id);
-		aux = actividadServicio.findById(actividad_id);
+		ActividadDAO.delete(ActividadDAO.findById(actividad_id));
+		aux = ActividadDAO.findById(actividad_id);
 		
 		Assert.assertNull(aux);
 	}
 
-	@Test
+	//@Test
 	public void testFindAll() {
 		cargarActividad("testFindAll");
-		List<Actividad> actividades = actividadServicio.findAll();
+		List<Actividad> actividades = ActividadDAO.findAll();
 		
 		Assert.assertNotNull("Actividades es null", actividades);
 	}
 
-	@Test
+	//@Test
 	public void testDeleteAll() {
 		cargarActividad("testDeleteAll");
-		actividadServicio.deleteAll();
-		List<Actividad> actividades = actividadServicio.findAll();
+		ActividadDAO.deleteAll();
+		List<Actividad> actividades = ActividadDAO.findAll();
 		
 		Assert.assertNull("Actividades no es null", actividades);
 	}

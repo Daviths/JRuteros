@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.ActividadDAOImplementacion;
-import dao.RutaDAOImplementacion;
+//import dao.ActividadDAOImplementacion;
+//import dao.RutaDAOImplementacion;
 import modelos.Usuario;
 
 /**

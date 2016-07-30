@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
-import Servicios.PuntoServicio;
+import servicios.PuntoServicio;
 import modelos.Punto;
 
 @Path("rutas")

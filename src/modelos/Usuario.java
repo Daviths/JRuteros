@@ -50,7 +50,7 @@ public class Usuario implements Serializable{
 	@Column(name = "esta_habilitado")
 	private Boolean	esta_habilitado;	
 	
-	@OneToMany(mappedBy="id", orphanRemoval = true)
+	@OneToMany(mappedBy="usuario", orphanRemoval = true)
 	//@OneToMany(targetEntity = Ruta.class, cascade = CascadeType.ALL)
 	private List<Ruta> rutas;
 	
