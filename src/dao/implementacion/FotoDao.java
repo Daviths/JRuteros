@@ -86,7 +86,13 @@ public class FotoDao implements FotoDaoInterfaz {
 
 	@Override
 	public Foto findById(Integer foto_id) {
-		Foto foto = (Foto) getCurrentSession().get(Foto.class, foto_id);
+		//Foto foto = (Foto) getCurrentSession().get(Foto.class, foto_id);
+		Foto foto = null;
+		for (Foto f: findAll()){
+			if(f.getId() == foto_id){
+				foto = f;
+			}
+		}
 		return foto;
 	}
 

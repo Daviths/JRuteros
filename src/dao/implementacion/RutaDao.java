@@ -11,8 +11,8 @@ import org.hibernate.cfg.Configuration;
 import dao.interfaces.RutaDaoInterfaz;
 import modelos.Actividad;
 import modelos.Coordenada;
-import modelos.Foto;
 import modelos.Ruta;
+import modelos.Foto;
 import modelos.Usuario;
 
 public class RutaDao implements RutaDaoInterfaz {
@@ -50,8 +50,8 @@ public class RutaDao implements RutaDaoInterfaz {
 		configuration.addAnnotatedClass(Usuario.class);
 		configuration.addAnnotatedClass(Ruta.class);
 		configuration.addAnnotatedClass(Actividad.class);
-		configuration.addAnnotatedClass(Coordenada.class);
 		configuration.addAnnotatedClass(Foto.class);
+		configuration.addAnnotatedClass(Coordenada.class);
 		configuration.configure();
 		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
 		SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
@@ -86,7 +86,13 @@ public class RutaDao implements RutaDaoInterfaz {
 
 	@Override
 	public Ruta findById(Integer ruta_id) {
-		Ruta ruta = (Ruta) getCurrentSession().get(Ruta.class, ruta_id);
+		//Ruta ruta = (Ruta) getCurrentSession().get(Ruta.class, ruta_id);
+		Ruta ruta = null;
+		for (Ruta r: findAll()){
+			if(r.getId() == ruta_id){
+				ruta = r;
+			}
+		}
 		return ruta;
 	}
 

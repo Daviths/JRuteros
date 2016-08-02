@@ -38,8 +38,7 @@ public class RutaTest {
 	public void testPersist() {		
 		cargarRuta("testPersist");
 		recuperarRuta(ruta.getId());
-		Assert.assertNotNull(aux);
-		//Assert.assertEquals(ruta.getNombre(), aux.getNombre());		
+		Assert.assertEquals(ruta.getNombre(), aux.getNombre());		
 	}
 
 	@Test

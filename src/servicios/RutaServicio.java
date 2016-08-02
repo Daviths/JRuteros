@@ -4,7 +4,6 @@ import java.util.List;
 
 import dao.implementacion.RutaDao;
 import modelos.Ruta;
-import utils.JpaUtil;
 
 public class RutaServicio {
 	

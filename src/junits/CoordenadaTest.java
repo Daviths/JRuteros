@@ -58,11 +58,9 @@ public class CoordenadaTest {
 	@Test
 	public void testDelete() {
 		cargarCoordenada(4,5);
-		recuperarCoordenada(coordenada.getId());
-		Integer coordenada_id = aux.getId();
-		
-		coordenadaServicio.delete(coordenada_id);
-		aux = coordenadaServicio.findById(coordenada_id);
+			
+		coordenadaServicio.delete(coordenada.getId());
+		aux = coordenadaServicio.findById(coordenada.getId());
 		
 		Assert.assertNull(aux);
 	}

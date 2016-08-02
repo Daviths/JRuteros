@@ -53,7 +53,6 @@ public class CoordenadaDao implements CoordenadaDaoInterfaz {
 		configuration.addAnnotatedClass(Usuario.class);
 		configuration.addAnnotatedClass(Ruta.class);
 		configuration.addAnnotatedClass(Actividad.class);
-		configuration.addAnnotatedClass(Coordenada.class);
 		configuration.addAnnotatedClass(Foto.class);
 		configuration.configure();
 		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
@@ -89,7 +88,13 @@ public class CoordenadaDao implements CoordenadaDaoInterfaz {
 
 	@Override
 	public Coordenada findById(Integer coordenada_id) {
-		Coordenada coordenada = (Coordenada) getCurrentSession().get(Coordenada.class, coordenada_id);
+		//Coordenada coordenada = (Coordenada) getCurrentSession().get(Coordenada.class, coordenada_id);
+		Coordenada coordenada = null;
+		for (Coordenada c: findAll()){
+			if(c.getId() == coordenada_id){
+				coordenada = c;
+			}
+		}
 		return coordenada;
 	}
 

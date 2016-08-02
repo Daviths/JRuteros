@@ -11,8 +11,8 @@ import org.hibernate.cfg.Configuration;
 import dao.interfaces.PuntajeDaoInterfaz;
 import modelos.Actividad;
 import modelos.Coordenada;
-import modelos.Foto;
 import modelos.Puntaje;
+import modelos.Foto;
 import modelos.Ruta;
 import modelos.Usuario;
 
@@ -88,7 +88,13 @@ public class PuntajeDao implements PuntajeDaoInterfaz {
 
 	@Override
 	public Puntaje findById(Integer puntaje_id) {
-		Puntaje puntaje = (Puntaje) getCurrentSession().get(Puntaje.class, puntaje_id);
+		//Puntaje puntaje = (Puntaje) getCurrentSession().get(Puntaje.class, puntaje_id);
+		Puntaje puntaje = null;
+		for (Puntaje p: findAll()){
+			if(p.getId() == puntaje_id){
+				puntaje = p;
+			}
+		}
 		return puntaje;
 	}
 
