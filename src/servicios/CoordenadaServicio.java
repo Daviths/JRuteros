@@ -4,7 +4,6 @@ import java.util.List;
 
 import dao.implementacion.CoordenadaDao;
 import modelos.Coordenada;
-import utils.JpaUtil;
 
 public class CoordenadaServicio {
 
@@ -15,48 +14,44 @@ public class CoordenadaServicio {
 	}
 	
 	public void persist(Coordenada coordenada) {
-		JpaUtil.beginTransaction();
+		coordenadaDao.openCurrentSessionwithTransaction();
 		coordenadaDao.persist(coordenada);
-		JpaUtil.commitTransaction();
-		JpaUtil.closeSession();
+		coordenadaDao.closeCurrentSessionwithTransaction();
 	}
 	
 	public void update(Coordenada coordenada) {
-		JpaUtil.beginTransaction();
+		coordenadaDao.openCurrentSessionwithTransaction();
 		coordenadaDao.update(coordenada);
-		JpaUtil.commitTransaction();
-		JpaUtil.closeSession();
+		coordenadaDao.closeCurrentSessionwithTransaction();
 	}
 	
 	public Coordenada findById(Integer coordenada_id) {
-		JpaUtil.getSession();
+		coordenadaDao.openCurrentSession();
 		Coordenada coordenada = coordenadaDao.findById(coordenada_id);
-		JpaUtil.closeSession();
+		coordenadaDao.closeCurrentSession();
 		
 		return coordenada;
 	}
 	
 	public void delete(Integer coordenada_id) {
-		JpaUtil.beginTransaction();
+		coordenadaDao.openCurrentSessionwithTransaction();
 		Coordenada coordenada = coordenadaDao.findById(coordenada_id);
 		coordenadaDao.delete(coordenada);
-		JpaUtil.commitTransaction();
-		JpaUtil.closeSession();
+		coordenadaDao.closeCurrentSessionwithTransaction();
 	}
 	
 	public List<Coordenada> findAll() {
-		JpaUtil.getSession();
+		coordenadaDao.openCurrentSession();
 		List<Coordenada> coordenadaes = coordenadaDao.findAll();
-		JpaUtil.closeSession();
+		coordenadaDao.closeCurrentSession();
 		
 		return coordenadaes;
 	}
 	
 	public void deleteAll() {
-		JpaUtil.beginTransaction();
+		coordenadaDao.openCurrentSessionwithTransaction();
 		coordenadaDao.deleteAll();
-		JpaUtil.commitTransaction();
-		JpaUtil.closeSession();
+		coordenadaDao.closeCurrentSessionwithTransaction();
 	}
 	
 }

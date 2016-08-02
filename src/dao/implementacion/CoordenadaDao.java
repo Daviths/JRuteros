@@ -9,7 +9,12 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 import dao.interfaces.CoordenadaDaoInterfaz;
+import modelos.Actividad;
 import modelos.Coordenada;
+import modelos.Foto;
+import modelos.Puntaje;
+import modelos.Ruta;
+import modelos.Usuario;
 
 public class CoordenadaDao implements CoordenadaDaoInterfaz {
 	
@@ -44,6 +49,12 @@ public class CoordenadaDao implements CoordenadaDaoInterfaz {
 	private static SessionFactory getSessionFactory() {
 		Configuration configuration = new Configuration().configure();
 		configuration.addAnnotatedClass(Coordenada.class);
+		configuration.addAnnotatedClass(Puntaje.class);
+		configuration.addAnnotatedClass(Usuario.class);
+		configuration.addAnnotatedClass(Ruta.class);
+		configuration.addAnnotatedClass(Actividad.class);
+		configuration.addAnnotatedClass(Coordenada.class);
+		configuration.addAnnotatedClass(Foto.class);
 		configuration.configure();
 		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
 		SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
