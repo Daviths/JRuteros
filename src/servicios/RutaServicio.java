@@ -15,48 +15,43 @@ public class RutaServicio {
 	}
 	
 	public void persist(Ruta ruta) {
-		JpaUtil.beginTransaction();
+		rutaDao.openCurrentSessionwithTransaction();
 		rutaDao.persist(ruta);
-		JpaUtil.commitTransaction();
-		JpaUtil.closeSession();
+		rutaDao.closeCurrentSessionwithTransaction();
 	}
 	
 	public void update(Ruta ruta) {
-		JpaUtil.beginTransaction();
+		rutaDao.openCurrentSessionwithTransaction();
 		rutaDao.update(ruta);
-		JpaUtil.commitTransaction();
-		JpaUtil.closeSession();
+		rutaDao.closeCurrentSessionwithTransaction();
 	}
 	
 	public Ruta findById(Integer ruta_id) {
-		JpaUtil.getSession();
+		rutaDao.openCurrentSession();
 		Ruta ruta = rutaDao.findById(ruta_id);
-		JpaUtil.closeSession();
-		
+		rutaDao.closeCurrentSession();	
 		return ruta;
 	}
 	
 	public void delete(Integer ruta_id) {
-		JpaUtil.beginTransaction();
+		rutaDao.openCurrentSessionwithTransaction();
 		Ruta ruta = rutaDao.findById(ruta_id);
 		rutaDao.delete(ruta);
-		JpaUtil.commitTransaction();
-		JpaUtil.closeSession();
+		rutaDao.closeCurrentSessionwithTransaction();
 	}
 	
 	public List<Ruta> findAll() {
-		JpaUtil.getSession();
+		rutaDao.openCurrentSession();
 		List<Ruta> rutas = rutaDao.findAll();
-		JpaUtil.closeSession();
+		rutaDao.closeCurrentSession();
 		
 		return rutas;
 	}
 	
 	public void deleteAll() {
-		JpaUtil.beginTransaction();
+		rutaDao.openCurrentSessionwithTransaction();
 		rutaDao.deleteAll();
-		JpaUtil.commitTransaction();
-		JpaUtil.closeSession();
+		rutaDao.closeCurrentSessionwithTransaction();
 	}
 
 }

@@ -9,7 +9,11 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 import dao.interfaces.RutaDaoInterfaz;
+import modelos.Actividad;
+import modelos.Coordenada;
+import modelos.Foto;
 import modelos.Ruta;
+import modelos.Usuario;
 
 public class RutaDao implements RutaDaoInterfaz {
 	
@@ -43,7 +47,11 @@ public class RutaDao implements RutaDaoInterfaz {
 	
 	private static SessionFactory getSessionFactory() {
 		Configuration configuration = new Configuration().configure();
+		configuration.addAnnotatedClass(Usuario.class);
 		configuration.addAnnotatedClass(Ruta.class);
+		configuration.addAnnotatedClass(Actividad.class);
+		configuration.addAnnotatedClass(Coordenada.class);
+		configuration.addAnnotatedClass(Foto.class);
 		configuration.configure();
 		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
 		SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
