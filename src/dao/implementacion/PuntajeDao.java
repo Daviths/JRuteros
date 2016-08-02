@@ -9,7 +9,12 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 import dao.interfaces.PuntajeDaoInterfaz;
+import modelos.Actividad;
+import modelos.Coordenada;
+import modelos.Foto;
 import modelos.Puntaje;
+import modelos.Ruta;
+import modelos.Usuario;
 
 public class PuntajeDao implements PuntajeDaoInterfaz {
 	
@@ -44,6 +49,11 @@ public class PuntajeDao implements PuntajeDaoInterfaz {
 	private static SessionFactory getSessionFactory() {
 		Configuration configuration = new Configuration().configure();
 		configuration.addAnnotatedClass(Puntaje.class);
+		configuration.addAnnotatedClass(Usuario.class);
+		configuration.addAnnotatedClass(Ruta.class);
+		configuration.addAnnotatedClass(Actividad.class);
+		configuration.addAnnotatedClass(Coordenada.class);
+		configuration.addAnnotatedClass(Foto.class);
 		configuration.configure();
 		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
 		SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
@@ -93,14 +103,14 @@ public class PuntajeDao implements PuntajeDaoInterfaz {
 		/*String query ="SELECT * FROM puntajees";		
 		List<Puntaje> puntajees = getEntityManager().createQuery(query).getResultList();		
 		return puntajees;*/		
-		List<Puntaje> puntajees = (List<Puntaje>) getCurrentSession().createQuery("from Puntaje").list();
-		return puntajees;
+		List<Puntaje> puntajes = (List<Puntaje>) getCurrentSession().createQuery("from Puntaje").list();
+		return puntajes;
 	}
 
 	@Override
 	public void deleteAll() {
-		List<Puntaje> puntajees = findAll();
-		for(Puntaje puntaje: puntajees) {
+		List<Puntaje> puntajes = findAll();
+		for(Puntaje puntaje: puntajes) {
 			delete(puntaje);
 		}		
 	}

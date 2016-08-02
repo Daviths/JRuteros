@@ -15,48 +15,44 @@ public class PuntajeServicio {
 	}
 	
 	public void persist(Puntaje puntaje) {
-		JpaUtil.beginTransaction();
+		puntajeDao.openCurrentSessionwithTransaction();
 		puntajeDao.persist(puntaje);
-		JpaUtil.commitTransaction();
-		JpaUtil.closeSession();
+		puntajeDao.closeCurrentSessionwithTransaction();
 	}
 	
 	public void update(Puntaje puntaje) {
-		JpaUtil.beginTransaction();
+		puntajeDao.openCurrentSessionwithTransaction();
 		puntajeDao.update(puntaje);
-		JpaUtil.commitTransaction();
-		JpaUtil.closeSession();
+		puntajeDao.closeCurrentSessionwithTransaction();
 	}
 	
 	public Puntaje findById(Integer puntaje_id) {
-		JpaUtil.getSession();
+		puntajeDao.openCurrentSession();
 		Puntaje puntaje = puntajeDao.findById(puntaje_id);
-		JpaUtil.closeSession();
+		puntajeDao.closeCurrentSession();
 		
 		return puntaje;
 	}
 	
 	public void delete(Integer puntaje_id) {
-		JpaUtil.beginTransaction();
+		puntajeDao.openCurrentSessionwithTransaction();
 		Puntaje puntaje = puntajeDao.findById(puntaje_id);
 		puntajeDao.delete(puntaje);
-		JpaUtil.commitTransaction();
-		JpaUtil.closeSession();
+		puntajeDao.closeCurrentSessionwithTransaction();
 	}
 	
 	public List<Puntaje> findAll() {
-		JpaUtil.getSession();
+		puntajeDao.openCurrentSession();
 		List<Puntaje> puntajes = puntajeDao.findAll();
-		JpaUtil.closeSession();
+		puntajeDao.closeCurrentSession();
 		
 		return puntajes;
 	}
 	
 	public void deleteAll() {
-		JpaUtil.beginTransaction();
+		puntajeDao.openCurrentSessionwithTransaction();
 		puntajeDao.deleteAll();
-		JpaUtil.commitTransaction();
-		JpaUtil.closeSession();
+		puntajeDao.closeCurrentSessionwithTransaction();
 	}
 	
 }

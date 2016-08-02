@@ -15,48 +15,44 @@ public class FotoServicio {
 	}
 	
 	public void persist(Foto foto) {
-		JpaUtil.beginTransaction();
+		fotoDao.openCurrentSessionwithTransaction();
 		fotoDao.persist(foto);
-		JpaUtil.commitTransaction();
-		JpaUtil.closeSession();
+		fotoDao.closeCurrentSessionwithTransaction();
 	}
 	
 	public void update(Foto foto) {
-		JpaUtil.beginTransaction();
+		fotoDao.openCurrentSessionwithTransaction();
 		fotoDao.update(foto);
-		JpaUtil.commitTransaction();
-		JpaUtil.closeSession();
+		fotoDao.closeCurrentSessionwithTransaction();
 	}
 	
 	public Foto findById(Integer foto_id) {
-		JpaUtil.getSession();
+		fotoDao.openCurrentSession();
 		Foto foto = fotoDao.findById(foto_id);
-		JpaUtil.closeSession();
+		fotoDao.closeCurrentSession();
 		
 		return foto;
 	}
 	
 	public void delete(Integer foto_id) {
-		JpaUtil.beginTransaction();
+		fotoDao.openCurrentSessionwithTransaction();
 		Foto foto = fotoDao.findById(foto_id);
 		fotoDao.delete(foto);
-		JpaUtil.commitTransaction();
-		JpaUtil.closeSession();
+		fotoDao.closeCurrentSessionwithTransaction();
 	}
 	
 	public List<Foto> findAll() {
-		JpaUtil.getSession();
+		fotoDao.openCurrentSession();
 		List<Foto> fotos = fotoDao.findAll();
-		JpaUtil.closeSession();
+		fotoDao.closeCurrentSession();
 		
 		return fotos;
 	}
 	
 	public void deleteAll() {
-		JpaUtil.beginTransaction();
+		fotoDao.openCurrentSessionwithTransaction();
 		fotoDao.deleteAll();
-		JpaUtil.commitTransaction();
-		JpaUtil.closeSession();
+		fotoDao.closeCurrentSessionwithTransaction();
 	}
 	
 }
