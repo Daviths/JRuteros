@@ -2,45 +2,98 @@ package dao.implementacion;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 
 import dao.interfaces.FotoDaoInterfaz;
 import modelos.Foto;
-import utils.JpaUtil;
 
 public class FotoDao implements FotoDaoInterfaz {
-
-	protected EntityManager getEntityManager() {
-		return JpaUtil.getSession();
+	
+	private Session currentSession;
+	private Transaction currentTransaction;
+	
+	public FotoDao() {
+		
+	}
+	
+	
+	public Session openCurrentSession() {
+        currentSession = getSessionFactory().openSession();
+        return currentSession;
+    }
+	
+	public Session openCurrentSessionwithTransaction() {
+		currentSession = getSessionFactory().openSession();
+		currentTransaction = currentSession.beginTransaction();
+		return currentSession;
+	}
+	
+	public void closeCurrentSession() {
+		currentSession.close();
+	}
+	
+	public void closeCurrentSessionwithTransaction() {
+		currentTransaction.commit();
+		currentSession.close();
+	}
+	
+	private static SessionFactory getSessionFactory() {
+		Configuration configuration = new Configuration().configure();
+		configuration.addAnnotatedClass(Foto.class);
+		configuration.configure();
+		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
+		SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
+		return sessionFactory;
 	}
 
+	public Session getCurrentSession() {
+		return currentSession;
+	}
+
+	public void setCurrentSession(Session currentSession) {
+		this.currentSession = currentSession;
+	}
+
+	public Transaction getCurrentTransaction() {
+		return currentTransaction;
+	}
+
+	public void setCurrentTransaction(Transaction currentTransaction) {
+		this.currentTransaction = currentTransaction;
+	}
+	
 	@Override
 	public void persist(Foto foto) {
-		getEntityManager().persist(foto);		
+		getCurrentSession().save(foto);
 	}
 
 	@Override
 	public void update(Foto foto) {
-		getEntityManager().merge(foto);
+		getCurrentSession().update(foto);		
 	}
 
 	@Override
 	public Foto findById(Integer foto_id) {
-		Foto foto = getEntityManager().find(Foto.class, foto_id);
+		Foto foto = (Foto) getCurrentSession().get(Foto.class, foto_id);
 		return foto;
 	}
 
 	@Override
 	public void delete(Foto foto) {
-		getEntityManager().merge(foto);
-		getEntityManager().remove(foto);
+		getCurrentSession().delete(foto);		
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Foto> findAll() {
-		String query = "FROM fotos";
-		List<Foto> fotos = getEntityManager().createQuery(query).getResultList();
+		/*String query ="SELECT * FROM fotos";		
+		List<Foto> fotos = getEntityManager().createQuery(query).getResultList();		
+		return fotos;*/		
+		List<Foto> fotos = (List<Foto>) getCurrentSession().createQuery("from Foto").list();
 		return fotos;
 	}
 
@@ -49,7 +102,7 @@ public class FotoDao implements FotoDaoInterfaz {
 		List<Foto> fotos = findAll();
 		for(Foto foto: fotos) {
 			delete(foto);
-		}
-	}	
+		}		
+	}
 	
 }

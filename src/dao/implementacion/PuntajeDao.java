@@ -2,55 +2,107 @@ package dao.implementacion;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 
 import dao.interfaces.PuntajeDaoInterfaz;
 import modelos.Puntaje;
-import utils.JpaUtil;
 
 public class PuntajeDao implements PuntajeDaoInterfaz {
-
-	protected EntityManager getEntityManager() {
-		return JpaUtil.getSession();
+	
+	private Session currentSession;
+	private Transaction currentTransaction;
+	
+	public PuntajeDao() {
+		
+	}
+	
+	
+	public Session openCurrentSession() {
+        currentSession = getSessionFactory().openSession();
+        return currentSession;
+    }
+	
+	public Session openCurrentSessionwithTransaction() {
+		currentSession = getSessionFactory().openSession();
+		currentTransaction = currentSession.beginTransaction();
+		return currentSession;
+	}
+	
+	public void closeCurrentSession() {
+		currentSession.close();
+	}
+	
+	public void closeCurrentSessionwithTransaction() {
+		currentTransaction.commit();
+		currentSession.close();
+	}
+	
+	private static SessionFactory getSessionFactory() {
+		Configuration configuration = new Configuration().configure();
+		configuration.addAnnotatedClass(Puntaje.class);
+		configuration.configure();
+		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
+		SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
+		return sessionFactory;
 	}
 
+	public Session getCurrentSession() {
+		return currentSession;
+	}
+
+	public void setCurrentSession(Session currentSession) {
+		this.currentSession = currentSession;
+	}
+
+	public Transaction getCurrentTransaction() {
+		return currentTransaction;
+	}
+
+	public void setCurrentTransaction(Transaction currentTransaction) {
+		this.currentTransaction = currentTransaction;
+	}
+	
 	@Override
 	public void persist(Puntaje puntaje) {
-		getEntityManager().persist(puntaje);
+		getCurrentSession().save(puntaje);
 	}
 
 	@Override
 	public void update(Puntaje puntaje) {
-		getEntityManager().merge(puntaje);
+		getCurrentSession().update(puntaje);		
 	}
 
 	@Override
 	public Puntaje findById(Integer puntaje_id) {
-		Puntaje puntaje = getEntityManager().find(Puntaje.class, puntaje_id);
+		Puntaje puntaje = (Puntaje) getCurrentSession().get(Puntaje.class, puntaje_id);
 		return puntaje;
 	}
 
 	@Override
 	public void delete(Puntaje puntaje) {
-		getEntityManager().merge(puntaje);
-		getEntityManager().remove(puntaje);
+		getCurrentSession().delete(puntaje);		
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Puntaje> findAll() {
-		String query = "FROM puntajes";
-		List<Puntaje> puntajes = getEntityManager().createQuery(query).getResultList();
-		return puntajes;
+		/*String query ="SELECT * FROM puntajees";		
+		List<Puntaje> puntajees = getEntityManager().createQuery(query).getResultList();		
+		return puntajees;*/		
+		List<Puntaje> puntajees = (List<Puntaje>) getCurrentSession().createQuery("from Puntaje").list();
+		return puntajees;
 	}
 
 	@Override
 	public void deleteAll() {
-		List<Puntaje> puntajes = findAll();
-		for(Puntaje puntaje: puntajes) {
+		List<Puntaje> puntajees = findAll();
+		for(Puntaje puntaje: puntajees) {
 			delete(puntaje);
-		}
-		
-	}	
+		}		
+	}
 	
 }

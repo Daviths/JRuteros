@@ -4,59 +4,58 @@ import java.util.List;
 
 import dao.implementacion.UsuarioDao;
 import modelos.Usuario;
-import utils.JpaUtil;
 
 public class UsuarioServicio {
 	
-	private static UsuarioDao usuarioDao;
+	private static UsuarioDao UsuarioDAO;
 	
 	public UsuarioServicio() {
-		usuarioDao = new UsuarioDao();
+		UsuarioDAO = new UsuarioDao();
+	}
+	
+	public void cambiarEstado(Integer usuario_id) {
+		UsuarioDAO.openCurrentSessionwithTransaction();
+		UsuarioDAO.cambiarEstado(usuario_id);
+		UsuarioDAO.closeCurrentSessionwithTransaction();
 	}
 	
 	public void persist(Usuario usuario) {
-		JpaUtil.beginTransaction();
-		usuarioDao.persist(usuario);
-		JpaUtil.commitTransaction();
-		JpaUtil.closeSession();
+		UsuarioDAO.openCurrentSessionwithTransaction();
+		UsuarioDAO.persist(usuario);
+		UsuarioDAO.closeCurrentSessionwithTransaction();
 	}
 	
 	public void update(Usuario usuario) {
-		JpaUtil.beginTransaction();
-		usuarioDao.update(usuario);
-		JpaUtil.commitTransaction();
-		JpaUtil.closeSession();
+		UsuarioDAO.openCurrentSessionwithTransaction();
+		UsuarioDAO.update(usuario);
+		UsuarioDAO.closeCurrentSessionwithTransaction();		
 	}
 	
 	public Usuario findById(Integer usuario_id) {
-		JpaUtil.getSession();
-		Usuario usuario = usuarioDao.findById(usuario_id);
-		JpaUtil.closeSession();
-		
+		UsuarioDAO.openCurrentSession();
+		Usuario usuario = UsuarioDAO.findById(usuario_id);
+		UsuarioDAO.closeCurrentSession();		
 		return usuario;
 	}
 	
 	public void delete(Integer usuario_id) {
-		JpaUtil.beginTransaction();
-		Usuario usuario = usuarioDao.findById(usuario_id);
-		usuarioDao.delete(usuario);
-		JpaUtil.commitTransaction();
-		JpaUtil.closeSession();
+		UsuarioDAO.openCurrentSessionwithTransaction();
+		Usuario usuario = UsuarioDAO.findById(usuario_id);
+		UsuarioDAO.delete(usuario);
+		UsuarioDAO.closeCurrentSessionwithTransaction();	
 	}
 	
 	public List<Usuario> findAll() {
-		JpaUtil.getSession();
-		List<Usuario> usuarios = usuarioDao.findAll();
-		JpaUtil.closeSession();
-		
+		UsuarioDAO.openCurrentSessionwithTransaction();
+		List<Usuario> usuarios = UsuarioDAO.findAll();
+		UsuarioDAO.closeCurrentSessionwithTransaction();		
 		return usuarios;
 	}
 	
 	public void deleteAll() {
-		JpaUtil.beginTransaction();
-		usuarioDao.deleteAll();
-		JpaUtil.commitTransaction();
-		JpaUtil.closeSession();
+		UsuarioDAO.openCurrentSessionwithTransaction();
+		UsuarioDAO.deleteAll();
+		UsuarioDAO.closeCurrentSessionwithTransaction();	
 	}
-
+	
 }
