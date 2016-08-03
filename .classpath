@@ -35,13 +35,15 @@
 			<attribute name="owner.project.facets" value="jpt.jaxb;jpt.jpa"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.persistence.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-simple-1.7.21.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/asm-5.3.0-m3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/saaj.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Java Hibernate y Jersey">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 			<attribute name="owner.project.facets" value="jst.jaxrs"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.persistence.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-simple-1.7.21.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

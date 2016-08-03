@@ -4,7 +4,6 @@ import java.util.List;
 
 import dao.implementacion.PuntajeDao;
 import modelos.Puntaje;
-import utils.JpaUtil;
 
 public class PuntajeServicio {
 

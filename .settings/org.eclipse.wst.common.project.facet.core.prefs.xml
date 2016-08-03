@@ -4,4 +4,5 @@
       <attribute name="provider-id" value="jaxrs-user-library-provider"/>
     </node>
   </facet>
+  <facet id="jpt.jpa"/>
 </root>

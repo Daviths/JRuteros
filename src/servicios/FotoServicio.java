@@ -4,7 +4,6 @@ import java.util.List;
 
 import dao.implementacion.FotoDao;
 import modelos.Foto;
-import utils.JpaUtil;
 
 public class FotoServicio {
 

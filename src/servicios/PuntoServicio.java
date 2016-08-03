@@ -12,8 +12,8 @@ public class PuntoServicio {
 	public void PuntoService() {
 		puntoDao = PuntoDao.instance;
 	}
-	public void createPunto(Punto animal) {
-		puntoDao.getPuntos().put(animal.getId(), animal);
+	public void createPunto(Punto punto) {
+		puntoDao.getPuntos().put(punto.getId(), punto);
 	}
 	public Punto getPunto(String id) {
 		return puntoDao.getPuntos().get(id);
@@ -22,15 +22,14 @@ public class PuntoServicio {
 		return puntoDao.getPuntos();
 	}
 	public static List<Punto> getPuntoAsList() {
-		List<Punto> animalList = new ArrayList<Punto>();
-		animalList.addAll(puntoDao.getPuntos().values());
-		return animalList;
+		List<Punto> puntos = new ArrayList<Punto>();
+		puntos.addAll(puntoDao.getPuntos().values());
+		return puntos;
 	}
 	public int getPuntosCount() {
 		return puntoDao.getPuntos().size();
 	}
-	 public void deletePunto(String id) {
-	 puntoDao.getPuntos().remove(id);
-	 }
-
+	public void deletePunto(String id) {
+		puntoDao.getPuntos().remove(id);
+	}
 }

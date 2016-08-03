@@ -11,6 +11,7 @@ public enum PuntoDao {
 	private Map<String, Punto> puntos = new HashMap<String, Punto>();
 	
 	private PuntoDao() {
+		//metiendo puntos por defecto 
 		Punto punto = new Punto("1", "123123", "321321");
 		puntos.put("1", punto);
 		punto = new Punto("2", "456465", "654654");

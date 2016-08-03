@@ -58,15 +58,6 @@ public class Puntaje {
 	public void setId(int id) {
 		this.id = id;
 	}
-	/*
-	public Ruta getRuta() {
-		return Ruta;
-	}
-
-	public void setRuta(Ruta ruta) {
-		Ruta = ruta;
-	}
-	*/
 
 	public Ruta getRuta() {
 		return Ruta;
